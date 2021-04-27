@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\MKRTOS.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\MKRTOS.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Feb 28 23:57:26 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Apr 27 21:40:01 2021
 <BR><P>
-<H3>Maximum Stack Usage =         12 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         20 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; mk_taskinit
 <P>
@@ -168,7 +168,7 @@ Global Symbols
 <P><STRONG><a name="[4f]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[22]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 20 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; mk_taskinit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -363,15 +363,13 @@ Global Symbols
 <P><STRONG><a name="[2c]"></a>delay</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, main.o(i.delay))
 <BR><BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task2
 <LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
-<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = main &rArr; mk_taskinit
+<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = main &rArr; mk_taskinit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_taskinit
 <LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MK_RTOS_RUN_
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -382,13 +380,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[19]"></a>task1</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, main.o(i.task1))
+<P><STRONG><a name="[19]"></a>task1</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, main.o(i.task1))
 <BR><BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_TriggerPendSV_
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[1a]"></a>task2</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, main.o(i.task2))
+<P><STRONG><a name="[1a]"></a>task2</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, main.o(i.task2))
 <BR><BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_TriggerPendSV_
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>

@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\kernel\data_type;.\kernel\include;.\kernel\libcpu\m3;.\kernel\source</IncludePath>
+              <IncludePath>.\kernel\data_type;.\kernel\include;.\kernel\libcpu\m3;.\kernel\source;.\kernel\list</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -436,6 +436,21 @@
               <FileName>cpu.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\kernel\libcpu\m3\cpu.s</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>kernel/list</GroupName>
+          <Files>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\kernel\list\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\kernel\list\list.h</FilePath>
             </File>
           </Files>
         </Group>

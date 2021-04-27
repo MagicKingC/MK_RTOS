@@ -7,6 +7,8 @@
 	#define	MK_RTOS_EXT	extern
 #endif
 
+#define MK_NULL (void *)0
+	
 //RTOS的自定义数据类型
 typedef unsigned int   mk_uint32;
 typedef unsigned short mk_uint16;

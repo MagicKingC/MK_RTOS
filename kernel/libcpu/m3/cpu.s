@@ -53,7 +53,7 @@ PendSV_Handler PROC
 	
 	ENDP
 	
-Pro_Switch
+Pro_Switch PROC
 	;下文切换
 	LDR	  R0,=_MK_Current_Pro_
 	LDR   R1,=_MK_Next_Pro_
@@ -66,4 +66,6 @@ Pro_Switch
 	ORR	  LR,LR,#0x04			;是退出中断之后使用PSP堆栈
 	BX    LR
 	NOP
+	ENDP
+	
 	END
