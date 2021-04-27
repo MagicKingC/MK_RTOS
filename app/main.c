@@ -18,21 +18,15 @@ mk_stack task_1;
 mk_stack task_2;
 void task1(void *param);
 void task2(void *param);
-int bit3=0;
+
+
 int main(void){
 	
 	mk_taskinit(&task_1,task1,(void *)1,&taskEnv1[512]);
 	mk_taskinit(&task_2,task2,(void *)2,&taskEnv2[512]);
 	
-	_MK_Next_Pro_->stack = taskEnv1;
-	
+	_MK_Next_Pro_ = &task_1;
 	_MK_RTOS_RUN_();
-	while(1){
-		bit3 = 0;
-		delay();
-		bit3 = 1;
-		delay();
-	}
 	return 0;
 }
 
@@ -46,6 +40,7 @@ void task1(void *param){
 		delay();
 		bit1 = 1;
 		delay();
+		_MK_Next_Pro_ = &task_2;
 		_TriggerPendSV_();
 	}
 
@@ -57,6 +52,7 @@ void task2(void *param){
 		delay();
 		bit2 = 1;
 		delay();
+		_MK_Next_Pro_ = &task_1;
 		_TriggerPendSV_();
 	}
 

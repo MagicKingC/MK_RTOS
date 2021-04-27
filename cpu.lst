@@ -85,6 +85,7 @@ ARM Macro Assembler    Page 2
    54 0000002E                 ENDP
    55 0000002E         
    56 0000002E         Pro_Switch
+                               PROC
    57 0000002E         ;ÏÂÎÄÇÐ»»
    58 0000002E 4808            LDR              R0,=_MK_Current_Pro_
    59 00000030 4908            LDR              R1,=_MK_Next_Pro_
@@ -101,7 +102,9 @@ ARM Macro Assembler    Page 2
                                                             PSP¶ÑÕ»
    67 00000044 4770            BX               LR
    68 00000046 BF00            NOP
-   69 00000048                 END
+   69 00000048                 ENDP
+   70 00000048         
+   71 00000048                 END
               E000ED22 
               E000ED04 
               00000000 
