@@ -1,7 +1,8 @@
 #include "system.h"
 #include "systick.h"
+#include "idle.h"
 
-void mk_taskinit(mk_stack * task,void (*entry)(void *),void *param,mk_taskstack *stack){
+void mk_task_init(mk_task_tcb * task,void (*entry)(void *),void *param,mk_taskstack *stack){
 	
 	*(--stack) = (mk_uint32)(1<<24);//必须置为1，否则进入arm模式，运行异常
 	*(--stack) = (mk_uint32)(entry);
@@ -22,7 +23,7 @@ void mk_taskinit(mk_stack * task,void (*entry)(void *),void *param,mk_taskstack 
 	*(--stack) = (mk_uint32)(0x5);
 	*(--stack) = (mk_uint32)(0x4);
 	
-	task->stack = stack;
+	task->Stack = stack;
 	
 }
 
@@ -31,6 +32,8 @@ void mk_rtos_init(void){
 	_CPU_InterruptDisable_();
 	//初始化系统定时器
 	mk_SystickInit(10);
+	//初始化空闲任务
+	mk_idle_init();
 	//开始运行系统,并且打开中断
 	_MK_Next_Pro_ = _OSReadyList[0].Head;
 	_MK_RTOS_RUN_();
