@@ -437,6 +437,16 @@
               <FileType>1</FileType>
               <FilePath>..\kernel\source\switch.c</FilePath>
             </File>
+            <File>
+              <FileName>idle.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\source\idle.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\source\delay.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

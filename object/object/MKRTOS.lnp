@@ -3,6 +3,8 @@
 ".\object\data_type.o"
 ".\object\system.o"
 ".\object\switch.o"
+".\object\idle.o"
+".\object\delay.o"
 ".\object\cpu.o"
 ".\object\systick.o"
 ".\object\list.o"

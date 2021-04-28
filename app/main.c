@@ -12,16 +12,16 @@ void delay(){
 mk_taskstack taskEnv1[512];
 mk_taskstack taskEnv2[512];
 
-mk_stack task_1;
-mk_stack task_2;
+mk_task_tcb task_1;
+mk_task_tcb task_2;
 void task1(void *param);
 void task2(void *param);
 
 
 int main(void){
 	
-	mk_taskinit(&task_1,task1,(void *)1,&taskEnv1[512]);
-	mk_taskinit(&task_2,task2,(void *)2,&taskEnv2[512]);
+	mk_task_init(&task_1,task1,(void *)1,&taskEnv1[512]);
+	mk_task_init(&task_2,task2,(void *)2,&taskEnv2[512]);
 	
 	_OSReadyList[0].Head = &task_1;
 	_OSReadyList[1].Head = &task_2;
