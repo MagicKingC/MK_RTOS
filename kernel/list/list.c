@@ -6,5 +6,6 @@ void InitNode(LIST_NODE * const node){
 }
 
 //≥ı ºªØ¡¥±Ì
-void InitList()
+void InitList(){
+}
 
