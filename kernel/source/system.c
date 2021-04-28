@@ -1,4 +1,5 @@
 #include "system.h"
+#include "systick.h"
 
 void mk_taskinit(mk_stack * task,void (*entry)(void *),void *param,mk_taskstack *stack){
 	
@@ -24,4 +25,16 @@ void mk_taskinit(mk_stack * task,void (*entry)(void *),void *param,mk_taskstack 
 	task->stack = stack;
 	
 }
+
+void mk_rtos_init(void){
+	//关中断
+	_CPU_InterruptDisable_();
+	//初始化系统定时器
+	mk_SystickInit(10);
+	//开始运行系统,并且打开中断
+	_MK_Next_Pro_ = _OSReadyList[0].Head;
+	_MK_RTOS_RUN_();
+	
+}
+
 
