@@ -412,6 +412,16 @@
               <FileType>5</FileType>
               <FilePath>..\kernel\include\system.h</FilePath>
             </File>
+            <File>
+              <FileName>switch.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\include\switch.h</FilePath>
+            </File>
+            <File>
+              <FileName>mkrtos_inc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\include\mkrtos_inc.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -422,6 +432,11 @@
               <FileType>1</FileType>
               <FilePath>..\kernel\source\system.c</FilePath>
             </File>
+            <File>
+              <FileName>switch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\source\switch.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -431,6 +446,11 @@
               <FileName>cpu.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\kernel\libcpu\m3\cpu.s</FilePath>
+            </File>
+            <File>
+              <FileName>systick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\libcpu\m3\systick.c</FilePath>
             </File>
           </Files>
         </Group>

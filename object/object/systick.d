@@ -1,0 +1,12 @@
+.\object\systick.o: ..\kernel\libcpu\m3\systick.c
+.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\Device\ARM\ARMCM3\Include\ARMCM3.h
+.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h
+.\object\systick.o: D:\Keil_v5\MDK\ARM\ARMCC\Bin\..\include\stdint.h
+.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h
+.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h
+.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h
+.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h
+.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h
+.\object\systick.o: ..\kernel\libcpu\m3\systick.h
+.\object\systick.o: ..\kernel\data_type\data_type.h
+.\object\systick.o: ..\kernel\include\switch.h
