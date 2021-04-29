@@ -37,9 +37,9 @@ void task1(void *param){
 	
 	while(1){
 		bit1 = 0;
-		delay();
+		mk_delay_ms(1);
 		bit1 = 1;
-		delay();
+		mk_delay_ms(1);
 	}
 
 }
@@ -47,9 +47,9 @@ void task1(void *param){
 void task2(void *param){
 	while(1){
 		bit2 = 0;
-		delay();
+		mk_delay_ms(1);
 		bit2 = 1;
-		delay();
+		mk_delay_ms(1);
 		
 	}
 

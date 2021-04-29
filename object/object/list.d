@@ -5,3 +5,4 @@
 .\object\list.o: ..\kernel\data_type\data_type.h
 .\object\list.o: ..\kernel\include\system.h
 .\object\list.o: ..\kernel\include\mkrtos_inc.h
+.\object\list.o: ..\kernel\include\delay.h
