@@ -422,6 +422,11 @@
               <FileType>5</FileType>
               <FilePath>..\kernel\include\mkrtos_inc.h</FilePath>
             </File>
+            <File>
+              <FileName>mkrtos_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\include\mkrtos_config.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -446,6 +451,11 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\kernel\source\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>time_stamp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\source\time_stamp.c</FilePath>
             </File>
           </Files>
         </Group>

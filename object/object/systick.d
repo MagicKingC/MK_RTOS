@@ -10,3 +10,5 @@
 .\object\systick.o: ..\kernel\libcpu\m3\systick.h
 .\object\systick.o: ..\kernel\data_type\data_type.h
 .\object\systick.o: ..\kernel\include\switch.h
+.\object\systick.o: ..\kernel\include\system.h
+.\object\systick.o: ..\kernel\include\mkrtos_inc.h

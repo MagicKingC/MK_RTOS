@@ -4,3 +4,5 @@
 .\object\system.o: ..\kernel\data_type\data_type.h
 .\object\system.o: ..\kernel\libcpu\m3\systick.h
 .\object\system.o: ..\kernel\include\idle.h
+.\object\system.o: ..\kernel\include\time_stamp.h
+.\object\system.o: ..\kernel\include\mkrtos_config.h

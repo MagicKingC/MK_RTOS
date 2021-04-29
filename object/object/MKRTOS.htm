@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\object\MKRTOS.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\object\MKRTOS.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Apr 29 00:05:19 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Apr 29 23:20:18 2021
 <BR><P>
 <H3>Maximum Stack Usage =         36 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -340,11 +340,11 @@ Global Symbols
 
 <P><STRONG><a name="[5e]"></a>_CPU_InterruptEnable_</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cpu.o(CODE), UNUSED)
 
-<P><STRONG><a name="[30]"></a>_CPU_InterruptDisable_</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cpu.o(CODE))
+<P><STRONG><a name="[31]"></a>_CPU_InterruptDisable_</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cpu.o(CODE))
 <BR><BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_rtos_init
 </UL>
 
-<P><STRONG><a name="[32]"></a>_MK_RTOS_RUN_</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, cpu.o(CODE))
+<P><STRONG><a name="[33]"></a>_MK_RTOS_RUN_</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, cpu.o(CODE))
 <BR><BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_rtos_init
 </UL>
 
@@ -355,7 +355,7 @@ Global Symbols
 <P><STRONG><a name="[b]"></a>PendSV_Handler</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, cpu.o(CODE))
 <BR>[Address Reference Count : 1]<UL><LI> startup_armcm3.o(RESET)
 </UL>
-<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, systick.o(i.SysTick_Handler))
+<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, systick.o(i.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = SysTick_Handler &rArr; _mk_task_switch_
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mk_task_switch_
@@ -365,17 +365,13 @@ Global Symbols
 <P><STRONG><a name="[17]"></a>SystemInit</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, system_armcm3.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_armcm3.o(.text)
 </UL>
-<P><STRONG><a name="[2b]"></a>_mk_task_switch_</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, switch.o(i._mk_task_switch_))
+<P><STRONG><a name="[2b]"></a>_mk_task_switch_</STRONG> (Thumb, 154 bytes, Stack size 8 bytes, switch.o(i._mk_task_switch_))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _mk_task_switch_
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_TriggerPendSV_
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
-</UL>
-
-<P><STRONG><a name="[33]"></a>delay</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, main.o(i.delay))
-<BR><BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task2
-<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_delay_ms
 </UL>
 
 <P><STRONG><a name="[24]"></a>main</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, main.o(i.main))
@@ -387,13 +383,22 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[31]"></a>mk_SystickInit</STRONG> (Thumb, 74 bytes, Stack size 12 bytes, systick.o(i.mk_SystickInit))
+<P><STRONG><a name="[32]"></a>mk_SystickInit</STRONG> (Thumb, 74 bytes, Stack size 12 bytes, systick.o(i.mk_SystickInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = mk_SystickInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_rtos_init
 </UL>
 
-<P><STRONG><a name="[2f]"></a>mk_idle_init</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, idle.o(i.mk_idle_init))
+<P><STRONG><a name="[2f]"></a>mk_delay_ms</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, delay.o(i.mk_delay_ms))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = mk_delay_ms &rArr; _mk_task_switch_
+</UL>
+<BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mk_task_switch_
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task2
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1
+</UL>
+
+<P><STRONG><a name="[30]"></a>mk_idle_init</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, idle.o(i.mk_idle_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = mk_idle_init &rArr; mk_task_init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_task_init
@@ -407,10 +412,10 @@ Global Symbols
 <P><STRONG><a name="[2e]"></a>mk_rtos_init</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, system.o(i.mk_rtos_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = mk_rtos_init &rArr; mk_idle_init &rArr; mk_task_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_idle_init
-<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_SystickInit
-<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MK_RTOS_RUN_
-<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_CPU_InterruptDisable_
+<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_idle_init
+<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_SystickInit
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MK_RTOS_RUN_
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_CPU_InterruptDisable_
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -418,17 +423,21 @@ Global Symbols
 <P><STRONG><a name="[2d]"></a>mk_task_init</STRONG> (Thumb, 132 bytes, Stack size 12 bytes, system.o(i.mk_task_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = mk_task_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_idle_init
+<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_idle_init
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[19]"></a>task1</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, main.o(i.task1))
-<BR><BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<P><STRONG><a name="[19]"></a>task1</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, main.o(i.task1))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = task1 &rArr; mk_delay_ms &rArr; _mk_task_switch_
+</UL>
+<BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_delay_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[1a]"></a>task2</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, main.o(i.task2))
-<BR><BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<P><STRONG><a name="[1a]"></a>task2</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, main.o(i.task2))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = task2 &rArr; mk_delay_ms &rArr; _mk_task_switch_
+</UL>
+<BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mk_delay_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL><P>
