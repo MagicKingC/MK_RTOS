@@ -472,6 +472,11 @@
               <FileType>1</FileType>
               <FilePath>..\kernel\libcpu\m3\systick.c</FilePath>
             </File>
+            <File>
+              <FileName>cpu_o.asm</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\kernel\libcpu\m3\cpu_o.asm</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

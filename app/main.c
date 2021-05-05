@@ -1,12 +1,5 @@
 #include "mkrtos.h"
 
-void delay(){
-	int i,j;
-	for(i=0;i<30;i++){
-		for(j=0;j<80;j++){
-		}
-	}
-}
 
 //创建任务
 mk_taskstack taskEnv1[512];
@@ -34,7 +27,6 @@ int bit1 = 0;
 int bit2 = 0;
 
 void task1(void *param){
-	
 	while(1){
 		bit1 = 0;
 		mk_delay_ms(1);
