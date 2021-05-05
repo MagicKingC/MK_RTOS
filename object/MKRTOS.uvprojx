@@ -427,6 +427,11 @@
               <FileType>5</FileType>
               <FilePath>..\kernel\include\mkrtos_config.h</FilePath>
             </File>
+            <File>
+              <FileName>priority.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\include\priority.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -456,6 +461,11 @@
               <FileName>time_stamp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\kernel\source\time_stamp.c</FilePath>
+            </File>
+            <File>
+              <FileName>priority.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\source\priority.c</FilePath>
             </File>
           </Files>
         </Group>
