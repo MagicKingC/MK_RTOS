@@ -1,7 +1,5 @@
 	EXPORT _TriggerPendSV_
 	EXPORT _MK_RTOS_RUN_
-	EXPORT _CPU_InterruptEnable_
-	EXPORT _CPU_InterruptDisable_
 	EXPORT PendSV_Handler
 		
 	IMPORT _MK_Current_Pro_
@@ -17,17 +15,6 @@ NVIC_PENDSV_PRI	EQU			  0xFF
 	
 	AREA CODE,CODE,READONLY
 
-;开中断
-_CPU_InterruptEnable_ PROC
-	CPSIE   I
-	BX      LR
-	ENDP
-	
-;关中断
-_CPU_InterruptDisable_ PROC
-	CPSID   I
-	BX      LR
-	ENDP
 		
 _MK_RTOS_RUN_ PROC
 
@@ -83,5 +70,6 @@ Pro_Switch PROC
 	NOP
 	ENDP
 	
+	NOP
 	END
 	
