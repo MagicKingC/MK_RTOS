@@ -1,10 +1,6 @@
-.\object\list.o: ..\kernel\list\list.c
-.\object\list.o: ..\kernel\list\list.h
-.\object\list.o: ..\kernel\include\mkrtos.h
-.\object\list.o: ..\kernel\include\switch.h
-.\object\list.o: ..\kernel\data_type\data_type.h
-.\object\list.o: ..\kernel\include\system.h
-.\object\list.o: ..\kernel\include\mkrtos_inc.h
-.\object\list.o: ..\kernel\include\time_stamp.h
-.\object\list.o: ..\kernel\include\mkrtos_config.h
-.\object\list.o: ..\kernel\include\delay.h
+./object/list.o: ..\kernel\list\list.c ..\kernel\list\list.h \
+  ..\kernel\include\mkrtos.h ..\kernel\include\switch.h \
+  ..\kernel\data_type\data_type.h ..\kernel\include\system.h \
+  ..\kernel\include\mkrtos_inc.h ..\kernel\include\time_stamp.h \
+  ..\kernel\include\mkrtos_config.h ..\kernel\include\delay.h \
+  ..\kernel\include\priority.h

@@ -45,12 +45,12 @@ ARM Macro Assembler    Page 1
    34 00000016         
    35 00000016         
                        
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\object\cpu_o.d -o.\object\cpu_o.o -I.\RTE\_Target_1 -ID:\Users\M
-agicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include -ID:\Users
-\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\Device\ARM\ARMCM3\Include -
--predefine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine=
-"ARMCM3 SETA 1" --list=.\cpu_o.lst ..\kernel\libcpu\m3\cpu_o.asm
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --depend=.\ob
+ject\cpu_o.d -o.\object\cpu_o.o -I.\RTE\_Target_1 -ID:\Users\magic\AppData\Loca
+l\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -ID:\Users\magic\AppData\Local\A
+rm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include --predefine="__UVISION_VERSI
+ON SETA 537" --predefine="_RTE_ SETA 1" --predefine="ARMCM3 SETA 1" --predefine
+="_RTE_ SETA 1" --list=.\cpu_o.lst ..\kernel\libcpu\m3\cpu_o.asm
 
 
 

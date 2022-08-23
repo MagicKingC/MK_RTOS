@@ -1,14 +1,12 @@
-.\object\systick.o: ..\kernel\libcpu\m3\systick.c
-.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\Device\ARM\ARMCM3\Include\ARMCM3.h
-.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h
-.\object\systick.o: D:\Keil_v5\MDK\ARM\ARMCC\Bin\..\include\stdint.h
-.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h
-.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h
-.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h
-.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h
-.\object\systick.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h
-.\object\systick.o: ..\kernel\libcpu\m3\systick.h
-.\object\systick.o: ..\kernel\data_type\data_type.h
-.\object\systick.o: ..\kernel\include\switch.h
-.\object\systick.o: ..\kernel\include\system.h
-.\object\systick.o: ..\kernel\include\mkrtos_inc.h
+./object/systick.o: ..\kernel\libcpu\m3\systick.c \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\ARMCM3.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h \
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h \
+  ..\kernel\libcpu\m3\systick.h ..\kernel\data_type\data_type.h \
+  ..\kernel\include\switch.h ..\kernel\include\system.h \
+  ..\kernel\include\mkrtos_inc.h

@@ -1,5 +1,3 @@
-.\object\idle.o: ..\kernel\source\idle.c
-.\object\idle.o: ..\kernel\include\idle.h
-.\object\idle.o: ..\kernel\include\mkrtos_inc.h
-.\object\idle.o: ..\kernel\data_type\data_type.h
-.\object\idle.o: ..\kernel\include\system.h
+./object/idle.o: ..\kernel\source\idle.c ..\kernel\include\idle.h \
+  ..\kernel\include\mkrtos_inc.h ..\kernel\data_type\data_type.h \
+  ..\kernel\include\system.h
