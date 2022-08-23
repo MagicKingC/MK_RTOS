@@ -44,7 +44,7 @@ _TriggerPendSV_ PROC
 PendSV_Handler PROC
 	;判断psp是否为0，默认系统初始化时会将psp的值赋值为0
 	MRS	  R0,PSP				;取出当前栈指针的值
-	CBZ	  R0,Pro_Switch			;跳到下文切换
+	CBZ	  R0,PRO_SWITCH			;跳到下文切换
 	
 	;保存上文
 	STMDB R0!,{R4-R11}
@@ -55,7 +55,7 @@ PendSV_Handler PROC
 	
 	ENDP
 	
-Pro_Switch PROC
+PRO_SWITCH PROC
 	;下文切换
 	LDR	  R0,=_MK_Current_Pro_
 	LDR   R1,=_MK_Next_Pro_

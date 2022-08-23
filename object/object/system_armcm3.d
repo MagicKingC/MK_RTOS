@@ -1,9 +1,9 @@
-.\object\system_armcm3.o: RTE\Device\ARMCM3\system_ARMCM3.c
-.\object\system_armcm3.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\Device\ARM\ARMCM3\Include\ARMCM3.h
-.\object\system_armcm3.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h
-.\object\system_armcm3.o: D:\Keil_v5\MDK\ARM\ARMCC\Bin\..\include\stdint.h
-.\object\system_armcm3.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h
-.\object\system_armcm3.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h
-.\object\system_armcm3.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h
-.\object\system_armcm3.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h
-.\object\system_armcm3.o: D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h
+./object/system_armcm3.o: RTE\Device\ARMCM3\system_ARMCM3.c \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\ARMCM3.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h \
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h \
+  D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h

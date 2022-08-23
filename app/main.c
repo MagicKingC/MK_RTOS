@@ -11,7 +11,7 @@ void task1(void *param);
 void task2(void *param);
 
 
-int main(void){
+int _MK_main_(void){
 	
 	mk_task_init(&task_1,task1,(void *)1,&taskEnv1[512]);
 	mk_task_init(&task_2,task2,(void *)2,&taskEnv2[512]);

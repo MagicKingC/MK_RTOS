@@ -6,6 +6,7 @@
 ".\object\idle.o"
 ".\object\delay.o"
 ".\object\time_stamp.o"
+".\object\priority.o"
 ".\object\cpu.o"
 ".\object\systick.o"
 ".\object\cpu_o.o"

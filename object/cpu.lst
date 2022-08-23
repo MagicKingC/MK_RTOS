@@ -62,7 +62,7 @@ ARM Macro Assembler    Page 1
    45 00000020         ;判断psp是否为0，默认系统初始化时会将psp的值赋值为0
    46 00000020 F3EF 8009       MRS              R0,PSP      ;取出当前栈指针的值
                                                             
-   47 00000024 B120            CBZ              R0,Pro_Switch ;跳到下文切换
+   47 00000024 B120            CBZ              R0,PRO_SWITCH ;跳到下文切换
 
 
 
@@ -86,7 +86,7 @@ ARM Macro Assembler    Page 2
    55 00000030         
    56 00000030                 ENDP
    57 00000030         
-   58 00000030         Pro_Switch
+   58 00000030         PRO_SWITCH
                                PROC
    59 00000030         ;下文切换
    60 00000030 4808            LDR              R0,=_MK_Current_Pro_
@@ -112,12 +112,12 @@ ARM Macro Assembler    Page 2
               E000ED04 
               00000000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\object\cpu.d -o.\object\cpu.o -I.\RTE\_Target_1 -ID:\Users\Magic
-KingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include -ID:\Users\Mag
-icKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\Device\ARM\ARMCM3\Include --pre
-define="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="ARM
-CM3 SETA 1" --list=.\cpu.lst ..\kernel\libcpu\m3\cpu.s
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --depend=.\ob
+ject\cpu.d -o.\object\cpu.o -I.\RTE\_Target_1 -ID:\Users\magic\AppData\Local\Ar
+m\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -ID:\Users\magic\AppData\Local\Arm\P
+acks\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include --predefine="__UVISION_VERSION S
+ETA 537" --predefine="_RTE_ SETA 1" --predefine="ARMCM3 SETA 1" --predefine="_R
+TE_ SETA 1" --list=.\cpu.lst ..\kernel\libcpu\m3\cpu.s
 
 
 
@@ -132,6 +132,14 @@ Symbol: CODE
    Uses
       None
 Comment: CODE unused
+PRO_SWITCH 00000030
+
+Symbol: PRO_SWITCH
+   Definitions
+      At line 58 in file ..\kernel\libcpu\m3\cpu.s
+   Uses
+      At line 47 in file ..\kernel\libcpu\m3\cpu.s
+Comment: PRO_SWITCH used once
 PendSV_Handler 00000020
 
 Symbol: PendSV_Handler
@@ -140,14 +148,6 @@ Symbol: PendSV_Handler
    Uses
       At line 3 in file ..\kernel\libcpu\m3\cpu.s
 Comment: PendSV_Handler used once
-Pro_Switch 00000030
-
-Symbol: Pro_Switch
-   Definitions
-      At line 58 in file ..\kernel\libcpu\m3\cpu.s
-   Uses
-      At line 47 in file ..\kernel\libcpu\m3\cpu.s
-Comment: Pro_Switch used once
 _MK_RTOS_RUN_ 00000000
 
 Symbol: _MK_RTOS_RUN_
