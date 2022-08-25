@@ -1,11 +1,22 @@
 #include "list.h"
 
-//初始化节点
-void InitNode(LIST_NODE * const node){
-	node->TCBPoint = MK_NULL;
+//插入节点
+//采用尾插法
+void InsertNode(){
+
+
 }
 
-//初始化链表
-void InitList(){
+//查找列表
+void FindNode()
+{
+	
 }
+
+//删除节点
+void DeleteNode()
+{
+	
+}
+
 
