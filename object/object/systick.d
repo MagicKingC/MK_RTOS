@@ -9,4 +9,5 @@
   D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h \
   ..\kernel\libcpu\m3\systick.h ..\kernel\data_type\data_type.h \
   ..\kernel\include\switch.h ..\kernel\include\system.h \
-  ..\kernel\include\mkrtos_inc.h
+  ..\kernel\include\mkrtos_inc.h ..\kernel\include\mkrtos_config.h \
+  ..\kernel\include\idle.h

@@ -18,7 +18,7 @@ typedef int   mk_int32;
 typedef short mk_int16;
 typedef char  mk_int8;
 	
-typedef mk_uint32 mk_taskstack;
+typedef mk_uint32 mk_TaskStack;
 
 
 #endif

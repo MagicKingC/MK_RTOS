@@ -2,6 +2,7 @@
 #include "systick.h"
 #include "switch.h"
 #include "system.h"
+#include "idle.h"
 
 
 void mk_SystickInit(mk_uint32 ms){
@@ -19,11 +20,12 @@ void mk_SystickInit(mk_uint32 ms){
 void SysTick_Handler(void){
 	mk_uint8 i =0;
 	for(i=0;i<2;i++){
-		if(_OSReadyList[i].Head->TaskDelayTicks>0){
-			_OSReadyList[i].Head->TaskDelayTicks--;
+		if(_OSReadyList[i].TaskDelayTicks>0){
+			_OSReadyList[i].TaskDelayTicks--;
 		}
 	}
 	_mk_task_switch_();
+
 }
 
 
