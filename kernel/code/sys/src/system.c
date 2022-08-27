@@ -46,10 +46,6 @@ void mk_task_init(mk_task_tcb * TaskTCB,void (*entry)(void *),void *param,mk_Tas
 	
 }
 
-int _MK_main_(void){
-	mk_rtos_init();
-	return 0;
-}
 
 void mk_rtos_init(void){
 	//关中断
@@ -66,8 +62,8 @@ void mk_rtos_init(void){
 	//初始化空闲任务
 	_MK_Idle_Init_();
 	
-	//初始化优先级表
-	_MK_PrioInit_();
+//	//初始化优先级表
+//	_MK_PrioInit_();
 
 	//开始运行系统,并且打开中断
 	

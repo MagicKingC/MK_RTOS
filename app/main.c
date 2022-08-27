@@ -10,13 +10,23 @@ mk_task_tcb task_2;
 void task1(void *param);
 void task2(void *param);
 
-int main(void){
+int _MK_main_(void){
+	_MK_DelayInit();
+	_MK_PrioInit_();
 	
 	mk_task_init(&task_1,task1,(void *)1,&taskEnv1[512],1);
 	mk_task_init(&task_2,task2,(void *)2,&taskEnv2[512],2);
 	
-	_OSReadyList[0].Head = &task_1;
-	_OSReadyList[1].Head = &task_2;
+	mk_rtos_init();
+	return 0;
+}
+
+int main(void){
+	
+
+	
+//	_OSReadyList[0].Head = &task_1;
+//	_OSReadyList[1].Head = &task_2;
 	
 	return 0;
 }

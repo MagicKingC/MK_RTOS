@@ -1,5 +1,5 @@
-#include "idle.h"
-#include "system.h"
+#include <idle.h>
+#include <system.h>
 #include <mkrtos_config.h>
 #include <priority.h>
 
