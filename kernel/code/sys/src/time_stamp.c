@@ -1,6 +1,6 @@
 #include <time_stamp.h>
 #include <ARMCM3.h>
-#include <data_type.h>
+#include <mktype.h>
 
 #if USE_TIME_STAMP
 

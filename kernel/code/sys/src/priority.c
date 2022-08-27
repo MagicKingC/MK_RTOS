@@ -2,12 +2,24 @@
 
 //优先级表
 static mk_task_tcb _MK_Prio_Table_[MK_PRIORITY_MAX];
+//延迟阻塞队列
+#define _MK_DELAY_LIST_MAX_ 256
+static mk_task_tcb * _MK_Delay_List[_MK_DELAY_LIST_MAX_];
+static mk_uint16 _mkDelayIndex = 0;
 
 void _MK_PrioInit_(void){
 	mk_uint32 index = 0;
 	for(index=0;index < MK_PRIORITY_MAX; index++){
 		_MK_Prio_Table_[index].Head = MK_NULL;
 		_MK_Prio_Table_[index].Next = MK_NULL;
+	}
+}
+
+void _MK_DelayInit(void){
+	mk_uint16 index = 0;
+	for(index=0; index < _MK_DELAY_LIST_MAX_;index++)
+	{
+		_MK_Delay_List[index]=MK_NULL;
 	}
 }
 
@@ -46,12 +58,41 @@ mk_task_tcb * _MK_GetTCBFromPrioTable(){
 			{
 				_MK_Prio_Table_[index].Head = MK_NULL;
 				_MK_Prio_Table_[index].Next = MK_NULL;
-				continue;
 			}
 			return node;
 		}
-		
 	}
 	return node;
 }
 
+
+/*
+将线程模块插入延迟队列
+*/
+mk_code _MK_InsertToDelayList(mk_task_tcb *TaskTCB){
+	mk_uint16 index = 0;
+	for(index=0;index<_MK_DELAY_LIST_MAX_;index++){
+		if(_MK_Delay_List[index]==MK_NULL){
+				_MK_Delay_List[index] = TaskTCB;
+				return MK_SUCCESS;
+		}
+	}
+	return MK_FAIL;
+}
+
+/*
+线程的延迟数减一
+*/
+void _MK_SUBDelayList(){
+	mk_uint16 index = 0;
+	for(index = 0;index<_MK_DELAY_LIST_MAX_;index++){
+		if(_MK_Delay_List[index]){
+			if(_MK_Delay_List[index]->TaskDelayTicks > 0){
+				_MK_Delay_List[index]->TaskDelayTicks--;
+			}else{
+				_MK_InsertTCBToPrioTable(_MK_Delay_List[index]);
+				_MK_Delay_List[index] = MK_NULL;
+			}
+		}
+	}
+}

@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\kernel\data_type;..\kernel\include;..\kernel\libcpu\m3;..\kernel\source;..\kernel\list</IncludePath>
+              <IncludePath>..\kernel\libcpu\m3;..\kernel\code\sys\inc;..\kernel\code\tools\list</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -392,82 +392,112 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>kernel/data_type</GroupName>
+          <GroupName>kernel/code/sys/src</GroupName>
           <Files>
             <File>
-              <FileName>data_type.c</FileName>
+              <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\kernel\data_type\data_type.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>kernel/include</GroupName>
-          <Files>
-            <File>
-              <FileName>mkrtos.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\kernel\include\mkrtos.h</FilePath>
-            </File>
-            <File>
-              <FileName>system.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\kernel\include\system.h</FilePath>
-            </File>
-            <File>
-              <FileName>switch.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\kernel\include\switch.h</FilePath>
-            </File>
-            <File>
-              <FileName>mkrtos_inc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\kernel\include\mkrtos_inc.h</FilePath>
-            </File>
-            <File>
-              <FileName>mkrtos_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\kernel\include\mkrtos_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>priority.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\kernel\include\priority.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>kernel/source</GroupName>
-          <Files>
-            <File>
-              <FileName>system.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\kernel\source\system.c</FilePath>
-            </File>
-            <File>
-              <FileName>switch.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\kernel\source\switch.c</FilePath>
+              <FilePath>..\kernel\code\sys\src\delay.c</FilePath>
             </File>
             <File>
               <FileName>idle.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\kernel\source\idle.c</FilePath>
+              <FilePath>..\kernel\code\sys\src\idle.c</FilePath>
             </File>
             <File>
-              <FileName>delay.c</FileName>
+              <FileName>mktype.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\kernel\source\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>time_stamp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\kernel\source\time_stamp.c</FilePath>
+              <FilePath>..\kernel\code\sys\src\mktype.c</FilePath>
             </File>
             <File>
               <FileName>priority.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\kernel\source\priority.c</FilePath>
+              <FilePath>..\kernel\code\sys\src\priority.c</FilePath>
+            </File>
+            <File>
+              <FileName>switch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\code\sys\src\switch.c</FilePath>
+            </File>
+            <File>
+              <FileName>system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\code\sys\src\system.c</FilePath>
+            </File>
+            <File>
+              <FileName>time_stamp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\code\sys\src\time_stamp.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>kernel/code/sys/inc</GroupName>
+          <Files>
+            <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>idle.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\idle.h</FilePath>
+            </File>
+            <File>
+              <FileName>mkrtos.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\mkrtos.h</FilePath>
+            </File>
+            <File>
+              <FileName>mkrtos_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\mkrtos_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>mkrtos_inc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\mkrtos_inc.h</FilePath>
+            </File>
+            <File>
+              <FileName>mktype.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\mktype.h</FilePath>
+            </File>
+            <File>
+              <FileName>priority.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\priority.h</FilePath>
+            </File>
+            <File>
+              <FileName>switch.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\switch.h</FilePath>
+            </File>
+            <File>
+              <FileName>system.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\system.h</FilePath>
+            </File>
+            <File>
+              <FileName>time_stamp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\time_stamp.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>kernel/code/tool/list</GroupName>
+          <Files>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\code\tools\list\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\tools\list\list.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -488,21 +518,6 @@
               <FileName>cpu_o.asm</FileName>
               <FileType>2</FileType>
               <FilePath>..\kernel\libcpu\m3\cpu_o.asm</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>kernel/list</GroupName>
-          <Files>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\kernel\list\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>list.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\kernel\list\list.h</FilePath>
             </File>
           </Files>
         </Group>

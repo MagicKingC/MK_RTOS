@@ -1,7 +1,7 @@
 #ifndef MKRTOS_INC_H
 #define MKRTOS_INC_H
 
-#include "data_type.h"
+#include <mktype.h>
 #include <mkrtos_config.h>
 
 typedef struct _MK_Task_ mk_task_tcb;
@@ -22,7 +22,7 @@ struct _MK_Task_{
 //	struct os_list_node	*Next;
 //}_OS_LIST_NODE;
 //ап╠М
-MK_RTOS_EXT mk_task_tcb _OSReadyList[MK_PRIORITY_MAX];
+//MK_RTOS_EXT mk_task_tcb _OSReadyList[MK_PRIORITY_MAX];
 
 MK_RTOS_EXT mk_task_tcb *_MK_Current_Pro_;
 MK_RTOS_EXT mk_task_tcb *_MK_Next_Pro_;
