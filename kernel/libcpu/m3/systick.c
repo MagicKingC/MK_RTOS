@@ -3,6 +3,7 @@
 #include "switch.h"
 #include "system.h"
 #include "idle.h"
+#include <priority.h>
 
 
 void mk_SystickInit(mk_uint32 ms){
@@ -18,12 +19,20 @@ void mk_SystickInit(mk_uint32 ms){
 }
 
 void SysTick_Handler(void){
-	mk_uint8 i =0;
-//	for(i=0;i<2;i++){
-//		if(_OSReadyList[i].TaskDelayTicks>0){
-//			_OSReadyList[i].TaskDelayTicks--;
-//		}
-//	}
+	mk_uint32 index = 0;
+	mk_uint32 c_res = mk_critical_enter();
+	for(index = 0;index < MK_PRIORITY_MAX; index++)
+	{
+		if(_MK_ReadyList[index].Prev){
+			if(_MK_ReadyList[index].Prev->TaskDelayTicks > 0){
+				_MK_ReadyList[index].Prev->TaskDelayTicks--;
+				if(_MK_ReadyList[index].Prev->TaskDelayTicks == 0){
+					SetBitToPrioTable(_MK_ReadyList[index].Prev->TaskPrio);
+				}
+			}
+		}
+	}
+	mk_critical_exit(c_res);
 	_mk_task_switch_();
 
 }

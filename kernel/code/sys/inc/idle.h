@@ -4,6 +4,6 @@
 #include "mkrtos_inc.h"
 
 MK_RTOS_EXT void _MK_Idle_Init_(void); 
-MK_RTOS_EXT mk_task_tcb idletask;
+MK_RTOS_EXT mk_TaskTcb idletask;
 
 #endif

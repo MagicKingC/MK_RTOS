@@ -3,7 +3,7 @@
 	EXPORT PendSV_Handler
 		
 	IMPORT _MK_Current_Pro_
-	IMPORT _MK_Next_Pro_
+	IMPORT _MK_Highest_Pro_
 		
 NVIC_INT_CTRL	EQU		0xE000ED04
 NVIC_PENDSVSET	EQU		0x10000000
@@ -58,7 +58,7 @@ PendSV_Handler PROC
 PRO_SWITCH PROC
 	;ÏÂÎÄÇÐ»»
 	LDR	  R0,=_MK_Current_Pro_
-	LDR   R1,=_MK_Next_Pro_
+	LDR   R1,=_MK_Highest_Pro_
 	LDR   R2,[R1]
 	STR	  R2,[R0]
 	

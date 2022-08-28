@@ -1,0 +1,20 @@
+--cpu Cortex-M3
+".\object\main.o"
+".\object\delay.o"
+".\object\idle.o"
+".\object\mktype.o"
+".\object\priority.o"
+".\object\switch.o"
+".\object\system.o"
+".\object\time_stamp.o"
+".\object\list.o"
+".\object\str.o"
+".\object\cpu.o"
+".\object\systick.o"
+".\object\cpu_1.o"
+".\object\startup_armcm3.o"
+".\object\system_armcm3.o"
+--strict --scatter ".\object\MKRTOS.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\MKRTOS.map" -o .\object\MKRTOS.axf
