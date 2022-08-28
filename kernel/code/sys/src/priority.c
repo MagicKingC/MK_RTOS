@@ -1,54 +1,11 @@
 #include <priority.h>
 #include <system.h>
 
-/*****************************链表操作**********************************/
-//初始化链表
-#define _LIST_HEAD_INIT_(list) { .Prev=MK_NULL, .Next=MK_NULL,.TaskNum=0};
-#define __MK_InitList(list,node_type) list = (node_type)_LIST_HEAD_INIT_(list)
-//判断链表是否为空
-#define __MK_ListIsEmpty(list) ((((list->Prev == MK_NULL) && (list->Next == MK_NULL))) ? MK_TRUE:MK_FALSE)
-//插入数据到链表
-//尾插法
-//inline void __MK_InsertToListTail(MK_READY_LIST_NODE *list,MK_READY_LIST_NODE *node){
-//	
-////	list->Prev->Next = node;
-////	node->Next = list;
-////	
-////	node->Prev = list->Prev;
-////	list->Prev = node;
-//}
-//删除链表节点
-//inline void __MK_DeletFromList(_MK_LIST_NODE *node){
-//	node->Next->Prev = node->Prev;
-//	node->Prev->Next = node->Next;
-//	
-//	node->Prev = MK_NULL;
-//	node->Next = MK_NULL;
-//}
-////查找列表中节点
-//inline mk_bool __MK_FindFromList(_MK_LIST_NODE *list,_MK_LIST_NODE *node){
-//	_MK_LIST_NODE *tmpNode;
-//	tmpNode = list->Next;
-//	while(tmpNode != list){
-//		if(tmpNode == node){
-//			return MK_TRUE;
-//		}
-//		tmpNode = tmpNode->Next;
-//	}
-//	return MK_FALSE;
-//}
-
-////取出链表第一个节点
-//inline _MK_LIST_NODE * GetFirstNodeFromList(_MK_LIST_NODE *list){
-//	_MK_LIST_NODE *node;
-//	node = list->Next;
-//	__MK_DeletFromList(node);
-//	return node;
-//}
-/****************************************************************************/
-
 /**********************************就绪列表********************************/
 //初始化就绪列表
+#define _LIST_HEAD_INIT_(list) { .Prev=MK_NULL, .Next=MK_NULL,.TaskNum=0};
+#define __MK_InitList(list,node_type) list = (node_type)_LIST_HEAD_INIT_(list)
+
 void InitReadyList(void){
 	mk_uint32 index;
 	for(index=0; index < MK_READYLIST_MAX;index++){
@@ -63,13 +20,13 @@ void InsertNodeToReadyListHead(mk_TaskTcb *node){
 		_MK_ReadyList->Prev = node;
 		_MK_ReadyList->Next = node;
 		
-		node->Prev = MK_NULL;
-		node->Next = MK_NULL;
+		node->ReadyPrev = MK_NULL;
+		node->ReadyNext = MK_NULL;
 	}
 	else{
-		node->Next = _MK_ReadyList->Next->Next;
-		node->Prev = _MK_ReadyList->Next;
-		_MK_ReadyList->Next->Next = node;
+		node->ReadyNext = _MK_ReadyList->Next->ReadyNext;
+		node->ReadyPrev = _MK_ReadyList->Next;
+		_MK_ReadyList->Next->ReadyNext = node;
 		_MK_ReadyList->Next = node;
 	}
 	_MK_ReadyList[node->TaskPrio].TaskNum++;
@@ -83,13 +40,13 @@ void InsertNodeToReadyListTail(mk_TaskTcb *node){
 		_MK_ReadyList[node->TaskPrio].Prev = node;
 		_MK_ReadyList[node->TaskPrio].Next = node;
 		
-		node->Prev = MK_NULL;
-		node->Next = MK_NULL;
+		node->ReadyPrev = MK_NULL;
+		node->ReadyNext = MK_NULL;
 	}
 	else{
-		node->Next = _MK_ReadyList[node->TaskPrio].Next->Next;
-		node->Prev = _MK_ReadyList[node->TaskPrio].Next;
-		_MK_ReadyList[node->TaskPrio].Next->Next = node;
+		node->ReadyNext = _MK_ReadyList[node->TaskPrio].Next->ReadyNext;
+		node->ReadyPrev = _MK_ReadyList[node->TaskPrio].Next;
+		_MK_ReadyList[node->TaskPrio].Next->ReadyNext = node;
 		_MK_ReadyList[node->TaskPrio].Next = node;
 	}
 	_MK_ReadyList[node->TaskPrio].TaskNum++;
@@ -101,10 +58,10 @@ void MoveHeadToTailInReadList(MK_READY_LIST_NODE *list){
 		return;
 	}
 	mk_TaskTcb *tmpNode = list->Prev;
-	list->Prev = list->Prev->Next;
-	tmpNode->Prev = list->Next;
-	tmpNode->Next = list->Next->Next;
-	list->Next->Next = tmpNode;
+	list->Prev = list->Prev->ReadyNext;
+	tmpNode->ReadyPrev = list->Next;
+	tmpNode->ReadyNext = list->Next->ReadyNext;
+	list->Next->ReadyNext = tmpNode;
 	list->Next = tmpNode;
 }
 
@@ -116,13 +73,13 @@ void RemoveNodeFromReadyList(mk_TaskTcb *node){
 		ClearBitToPrioTable(node->TaskPrio);//从优先级表中删除该线程
 		
 	}else if(_MK_ReadyList[node->TaskPrio].TaskNum > 1){
-		if(node->Prev == MK_NULL){//链表中的首节点
-			_MK_ReadyList[node->TaskPrio].Prev = node->Next;
-		}else if(node->Next == MK_NULL){//链表中的尾节点
-			_MK_ReadyList[node->TaskPrio].Next = node->Prev;
+		if(node->ReadyPrev == MK_NULL){//链表中的首节点
+			_MK_ReadyList[node->TaskPrio].Prev = node->ReadyNext;
+		}else if(node->ReadyNext == MK_NULL){//链表中的尾节点
+			_MK_ReadyList[node->TaskPrio].Next = node->ReadyPrev;
 		}else{
-			node->Prev->Next = node->Next;
-			node->Next->Prev = node->Prev;
+			node->ReadyPrev->ReadyNext = node->ReadyNext;
+			node->ReadyNext->ReadyPrev = node->ReadyPrev;
 		}
 	}else{
 		return;
@@ -220,38 +177,3 @@ mk_code ClearBitToPrioTable(mk_uint32 TaskPrio){
 
 
 /**********************************************************************************/
-
-//初始化延迟列表
-void InitDelayList(void){
-//	mk_uint32 index;
-//	for(index=0; index < MK_DELAYLIST_MAX;index++){
-//		__MK_InitList(_MK_DelayList[index],_MK_LIST_NODE);
-//	}
-}
-
-//将线程块插入延迟列表
-void InsertNodeToDelayList(_MK_LIST_NODE *node){
-//	if(!__MK_FindFromList(_MK_DelayList,node)){
-//		__MK_DeletFromList(node);//从就绪列表中删除
-//		__MK_InsertToListTail(&_MK_DelayList[node->TaskPrio],node);
-//	}
-}
-mk_bool FindFromDelayList(_MK_LIST_NODE *node)
-{
-//	return __MK_FindFromList(_MK_DelayList,node);
-	return MK_FALSE;
-}
-//循环减一
-void SubDelayList(void){
-//	_MK_LIST_NODE *tmpNode;
-//	tmpNode = _MK_DelayList->Next;
-//	while(tmpNode != _MK_DelayList){
-//		if(tmpNode->TaskDelayTicks > 0){
-//			tmpNode->TaskDelayTicks--;
-//		}else{
-//			__MK_DeletFromList(tmpNode);
-//			InsertNodeToReadyList(tmpNode);
-//		}
-//		tmpNode = tmpNode->Next;
-//	}
-}

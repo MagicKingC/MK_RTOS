@@ -87,8 +87,8 @@ void __MK_Main(void){
 	//初始化就绪列表
 	InitReadyList();
 	
-	//初始化延迟列表
-	InitDelayList();
+	//初始化时基列表
+	InitTickSpokeList();
 	
 	//初始化空闲任务
 	_MK_Idle_Init_();
