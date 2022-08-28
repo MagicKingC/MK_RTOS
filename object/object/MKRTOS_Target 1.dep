@@ -1,0 +1,136 @@
+Dependencies for Project 'MKRTOS', Target 'Target 1': (DO NOT MODIFY !)
+CompilerVersion: 6180000::V6.18::ARMCLANG
+F (..\app\main.c)(0x630B6E80)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/main.o -MD)
+I (..\kernel\code\sys\inc\mkrtos.h)(0x630987E9)
+I (..\kernel\code\sys\inc\switch.h)(0x630987FF)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\time_stamp.h)(0x6304E94A)
+I (..\kernel\code\sys\inc\delay.h)(0x630B3122)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+F (..\kernel\code\sys\src\delay.c)(0x630B6C89)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/delay.o -MD)
+I (..\kernel\code\sys\inc\delay.h)(0x630B3122)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\switch.h)(0x630987FF)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+F (..\kernel\code\sys\src\idle.c)(0x630A483F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/idle.o -MD)
+I (..\kernel\code\sys\inc\idle.h)(0x630A47D7)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+F (..\kernel\code\sys\src\mktype.c)(0x630A4C59)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/mktype.o -MD)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\mkrtos.h)(0x630987E9)
+I (..\kernel\code\sys\inc\switch.h)(0x630987FF)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\time_stamp.h)(0x6304E94A)
+I (..\kernel\code\sys\inc\delay.h)(0x630B3122)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+F (..\kernel\code\sys\src\priority.c)(0x630B62E5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/priority.o -MD)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+F (..\kernel\code\sys\src\switch.c)(0x630B6B9E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/switch.o -MD)
+I (..\kernel\code\sys\inc\mkrtos.h)(0x630987E9)
+I (..\kernel\code\sys\inc\switch.h)(0x630987FF)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\time_stamp.h)(0x6304E94A)
+I (..\kernel\code\sys\inc\delay.h)(0x630B3122)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+F (..\kernel\code\sys\src\system.c)(0x630B645A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/system.o -MD)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\libcpu\m3\systick.h)(0x63098818)
+I (..\kernel\code\sys\inc\idle.h)(0x630A47D7)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+I (..\kernel\code\sys\inc\delay.h)(0x630B3122)
+F (..\kernel\code\sys\src\time_stamp.c)(0x63098825)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/time_stamp.o -MD)
+I (..\kernel\code\sys\inc\time_stamp.h)(0x6304E94A)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\ARMCM3.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626F4ADE)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h)(0x626F4ADE)
+F (..\kernel\code\sys\inc\delay.h)(0x630B3122)()
+F (..\kernel\code\sys\inc\idle.h)(0x630A47D7)()
+F (..\kernel\code\sys\inc\mkrtos.h)(0x630987E9)()
+F (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)()
+F (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)()
+F (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)()
+F (..\kernel\code\sys\inc\priority.h)(0x630B671E)()
+F (..\kernel\code\sys\inc\switch.h)(0x630987FF)()
+F (..\kernel\code\sys\inc\system.h)(0x630B315B)()
+F (..\kernel\code\sys\inc\time_stamp.h)(0x6304E94A)()
+F (..\kernel\code\tools\list\list.c)(0x630641FB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/list.o -MD)
+I (..\kernel\code\tools\list\list.h)(0x6304E94A)
+I (..\kernel\code\sys\inc\mkrtos.h)(0x630987E9)
+I (..\kernel\code\sys\inc\switch.h)(0x630987FF)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\time_stamp.h)(0x6304E94A)
+I (..\kernel\code\sys\inc\delay.h)(0x630B3122)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+F (..\kernel\code\tools\str\str.c)(0x630AFAB5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/str.o -MD)
+I (..\kernel\code\tools\str\str.h)(0x630AFA2E)
+I (..\kernel\code\sys\inc\mkrtos.h)(0x630987E9)
+I (..\kernel\code\sys\inc\switch.h)(0x630987FF)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\time_stamp.h)(0x6304E94A)
+I (..\kernel\code\sys\inc\delay.h)(0x630B3122)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+F (..\kernel\libcpu\m3\cpu.s)(0x630B6475)(--cpu Cortex-M3 --li -g-I.\RTE\_Target_1-ID:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include--pd "__UVISION_VERSION SETA 537"--pd "_RTE_ SETA 1"--pd "ARMCM3 SETA 1"--pd "_RTE_ SETA 1"--list .\cpu.lst--xref -o .\object\cpu.o--depend .\object\cpu.d)
+F (..\kernel\libcpu\m3\systick.c)(0x630B6ECA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/systick.o -MD)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\ARMCM3.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626F4ADE)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h)(0x626F4ADE)
+I (..\kernel\libcpu\m3\systick.h)(0x63098818)
+I (..\kernel\code\sys\inc\mktype.h)(0x630A3C63)
+I (..\kernel\code\sys\inc\switch.h)(0x630987FF)
+I (..\kernel\code\sys\inc\system.h)(0x630B315B)
+I (..\kernel\code\sys\inc\mkrtos_inc.h)(0x630B6463)
+I (..\kernel\code\sys\inc\mkrtos_config.h)(0x630A4B45)
+I (..\kernel\code\sys\inc\idle.h)(0x630A47D7)
+I (..\kernel\code\sys\inc\priority.h)(0x630B671E)
+F (..\kernel\libcpu\m3\cpu.asm)(0x6309895D)(--cpu Cortex-M3 --li -g-I.\RTE\_Target_1-ID:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include--pd "__UVISION_VERSION SETA 537"--pd "_RTE_ SETA 1"--pd "ARMCM3 SETA 1"--pd "_RTE_ SETA 1"--list .\cpu.lst--xref -o .\object\cpu_1.o--depend .\object\cpu_1.d)
+F (RTE/Device/ARMCM3/startup_ARMCM3.s)(0x630B01F2)(--cpu Cortex-M3 --li -g-I.\RTE\_Target_1-ID:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include--pd "__UVISION_VERSION SETA 537"--pd "_RTE_ SETA 1"--pd "ARMCM3 SETA 1"--pd "_RTE_ SETA 1"--list .\startup_armcm3.lst--xref -o .\object\startup_armcm3.o--depend .\object\startup_armcm3.d)
+F (RTE/Device/ARMCM3/system_ARMCM3.c)(0x626F4ADE)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-mlittle-endian -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../kernel/libcpu/m3 -I ../kernel/code/sys/inc -I ../kernel/code/tools/list -I ../kernel/code/tools/str-I./RTE/_Target_1-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include-D__UVISION_VERSION="537" -D_RTE_ -DARMCM3 -D_RTE_-o ./object/system_armcm3.o -MD)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\ARMCM3.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626F4ADE)
+I (D:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F4ADE)
+I (D:\Users\magic\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\Device\ARM\ARMCM3\Include\system_ARMCM3.h)(0x626F4ADE)

@@ -7,4 +7,7 @@
 //支持最大的优先级
 #define MK_PRIORITY_MAX	32
 
+//线程名字长度
+#define MK_THREAD_NAME 8
+
 #endif
