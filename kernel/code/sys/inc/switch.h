@@ -3,6 +3,6 @@
 
 #include <mktype.h>
 
-MK_RTOS_EXT void _mk_task_switch_(void);
+MK_RTOS_EXT void _MK_TaskSwitch_(void);
 
 #endif

@@ -2,8 +2,9 @@
 #include "systick.h"
 #include "switch.h"
 #include "system.h"
-#include "idle.h"
+#include <idle.h>
 #include <priority.h>
+#include <tick_spoke.h>
 
 
 void mk_SystickInit(mk_uint32 ms){
@@ -18,22 +19,41 @@ void mk_SystickInit(mk_uint32 ms){
 	
 }
 
-void SysTick_Handler(void){
-	mk_uint32 index = 0;
-	mk_uint32 c_res = mk_critical_enter();
-	for(index = 0;index < MK_PRIORITY_MAX; index++)
-	{
-		if(_MK_ReadyList[index].Prev){
-			if(_MK_ReadyList[index].Prev->TaskDelayTicks > 0){
-				_MK_ReadyList[index].Prev->TaskDelayTicks--;
-				if(_MK_ReadyList[index].Prev->TaskDelayTicks == 0){
-					SetBitToPrioTable(_MK_ReadyList[index].Prev->TaskPrio);
-				}
-			}
-		}
+
+//Ê±¼äÆ¬ÇÐ»»
+static void _MK_TaskTimeSliceSched(MK_READY_LIST_NODE *list){
+	
+	if(!list->Next || list->Next == &idletask)
+		return;
+	
+	if(list->Next->TaskTimeSlice > 0){
+		list->Next->TaskTimeSlice--;
 	}
+	
+	if(list->Next->TaskTimeSlice > 0 || list->TaskNum){
+		return;
+	}
+
+	list->Next->TaskTimeSlice = list->Next->TaskMaxTimeSlice;
+	MoveHeadToTailInReadList(list);
+	
+	
+}
+
+
+void SysTick_Handler(void){
+	
+	mk_uint32 c_res = mk_critical_enter();
+	
+	UpdateToTickSpokeList();
+	
+#if USE_TIME_SLICE
+	_MK_TaskTimeSliceSched(&_MK_ReadyList[_MK_Highest_Prio_Index]);
+#endif
+	
 	mk_critical_exit(c_res);
-	_mk_task_switch_();
+	
+	_MK_TaskSwitch_();
 
 }
 

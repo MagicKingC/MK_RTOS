@@ -3,7 +3,7 @@
 #include <mkrtos_config.h>
 #include <priority.h>
 
-static mk_TaskStack idletaskEnv[128];
+static mk_TaskStack idletaskEnv[32];
 mk_TaskTcb idletask;
 //空闲任务
 void mk_idle_task(void *param){
@@ -13,7 +13,6 @@ void mk_idle_task(void *param){
 }
 
 void _MK_Idle_Init_(void){
-
-	mk_TaskInit("idle",&idletask,mk_idle_task,&idletaskEnv[128],MK_PRIORITY_MAX-1,(void *)1);
+	mk_TaskInit("idle",&idletask,mk_idle_task,MK_NULL,&idletaskEnv[32],MK_PRIORITY_MAX-1,1);
 }
 

@@ -3,6 +3,7 @@
 #include <idle.h>
 #include <mkrtos_config.h>
 #include <priority.h>
+#include <tick_spoke.h>
 #include <delay.h>
 
 static mk_TaskStack * __MK_TaskStackInit(void (*_entry)(void *),void *_param,mk_TaskStack *_TaskStack){
@@ -42,8 +43,10 @@ _entry:程序入口
 _param:传入程序参数
 _TaskStack:堆栈地址
 _TaskPrio:任务优先级
+_TaskTimeSlice:时间片
 */
-mk_code mk_TaskInit(char*TaskName,mk_TaskTcb * TaskTCB,void (*_entry)(void *),mk_TaskStack *_TaskStack,mk_uint8 _TaskPrio,void *_param){
+mk_code mk_TaskInit(char*TaskName, mk_TaskTcb * TaskTCB, void (*_entry)(void *), void *_param, 
+					mk_TaskStack *_TaskStack, mk_uint32 _TaskPrio ,mk_uint32 _TaskTimeSlice){
 
 	mk_uint32 c_res = mk_critical_enter();
 	if(TaskTCB == MK_NULL || _entry == MK_NULL || _TaskStack == MK_NULL){
@@ -53,7 +56,18 @@ mk_code mk_TaskInit(char*TaskName,mk_TaskTcb * TaskTCB,void (*_entry)(void *),mk
 	if(_TaskPrio > MK_PRIORITY_MAX ){
 		return MK_FAIL;
 	}
-	TaskTCB->TaskDelayTicks = 0;
+	//时基参数
+	TaskTCB->WaitTick = 0;
+	TaskTCB->TickCount = 0;
+	TaskTCB->TickPrev = MK_NULL;
+	TaskTCB->TickNext = MK_NULL;
+	
+#if USE_TIME_SLICE
+	//时间片参数
+	TaskTCB->TaskTimeSlice = _TaskTimeSlice;
+	TaskTCB->TaskMaxTimeSlice = _TaskTimeSlice;
+#endif
+	//设置优先级
 	TaskTCB->TaskPrio = _TaskPrio;
 	//初始化栈
 	TaskTCB->TaskStack = __MK_TaskStackInit(_entry,_param,_TaskStack);
@@ -63,6 +77,7 @@ mk_code mk_TaskInit(char*TaskName,mk_TaskTcb * TaskTCB,void (*_entry)(void *),mk
 	SetBitToPrioTable(TaskTCB->TaskPrio);
 	
 	mk_critical_exit(c_res);
+	
 	return MK_SUCCESS;
 	
 }
