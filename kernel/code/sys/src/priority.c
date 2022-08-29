@@ -84,6 +84,8 @@ void RemoveNodeFromReadyList(mk_TaskTcb *node){
 	}else{
 		return;
 	}
+	node->ReadyPrev = MK_NULL;
+	node->ReadyNext = MK_NULL;
 	_MK_ReadyList[node->TaskPrio].TaskNum--;
 }
 
@@ -174,6 +176,5 @@ mk_code ClearBitToPrioTable(mk_uint32 TaskPrio){
 	return MK_SUCCESS;
 }
 
-
-
 /**********************************************************************************/
+

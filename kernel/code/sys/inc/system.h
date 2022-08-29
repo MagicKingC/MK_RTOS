@@ -3,7 +3,8 @@
 
 #include <mkrtos_inc.h>
 
-MK_RTOS_EXT mk_code mk_TaskInit(char*TaskName,mk_TaskTcb * TaskTCB,void (*_entry)(void *),mk_TaskStack *_TaskStack,mk_uint8 _TaskPrio,void *_param);
+MK_RTOS_EXT mk_code mk_TaskInit(char*TaskName, mk_TaskTcb * TaskTCB, void (*_entry)(void *), void *_param,\
+					mk_TaskStack *_TaskStack, mk_uint32 _TaskPrio ,mk_uint32 _TaskTimeSlice);
 
 MK_RTOS_EXT void _MK_RTOS_RUN_(void);
 MK_RTOS_EXT void _TriggerPendSV_(void);

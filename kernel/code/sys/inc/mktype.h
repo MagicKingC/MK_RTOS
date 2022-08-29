@@ -1,6 +1,7 @@
 #ifndef DATA_TYPE_H
 #define DATA_TYPE_H
 
+
 #ifdef	MK_RTOS_GLOBALS
 	#define	MK_RTOS_EXT
 #else
