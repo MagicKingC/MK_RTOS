@@ -59,6 +59,7 @@ void MoveHeadToTailInReadList(MK_READY_LIST_NODE *list){
 	}
 	mk_TaskTcb *tmpNode = list->Prev;
 	list->Prev = list->Prev->ReadyNext;
+	list->Prev->ReadyPrev = MK_NULL;
 	tmpNode->ReadyPrev = list->Next;
 	tmpNode->ReadyNext = list->Next->ReadyNext;
 	list->Next->ReadyNext = tmpNode;

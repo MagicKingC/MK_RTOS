@@ -23,18 +23,18 @@ void mk_SystickInit(mk_uint32 ms){
 //Ê±¼äÆ¬ÇÐ»»
 static void _MK_TaskTimeSliceSched(MK_READY_LIST_NODE *list){
 	
-	if(!list->Next || list->Next == &idletask)
+	if(!list->Prev || list->Prev == &idletask)
 		return;
 	
-	if(list->Next->TaskTimeSlice > 0){
-		list->Next->TaskTimeSlice--;
+	if(list->Prev->TaskTimeSlice > 0){
+		list->Prev->TaskTimeSlice--;
 	}
 	
-	if(list->Next->TaskTimeSlice > 0 || list->TaskNum){
+	if(list->Prev->TaskTimeSlice > 0 || list->TaskNum < 2){
 		return;
 	}
 
-	list->Next->TaskTimeSlice = list->Next->TaskMaxTimeSlice;
+	list->Prev->TaskTimeSlice = list->Prev->TaskMaxTimeSlice;
 	MoveHeadToTailInReadList(list);
 	
 	

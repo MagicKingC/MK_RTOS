@@ -429,6 +429,11 @@
               <FileType>1</FileType>
               <FilePath>..\kernel\code\sys\src\time_stamp.c</FilePath>
             </File>
+            <File>
+              <FileName>tick_spoke.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\kernel\code\sys\src\tick_spoke.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -483,6 +488,11 @@
               <FileName>time_stamp.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\kernel\code\sys\inc\time_stamp.h</FilePath>
+            </File>
+            <File>
+              <FileName>tick_spoke.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\kernel\code\sys\inc\tick_spoke.h</FilePath>
             </File>
           </Files>
         </Group>
