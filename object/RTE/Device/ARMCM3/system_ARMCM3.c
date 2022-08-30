@@ -28,7 +28,7 @@
 /*----------------------------------------------------------------------------
   Define clocks
  *----------------------------------------------------------------------------*/
-#define  XTAL            (50000000UL)     /* Oscillator frequency */
+#define  XTAL            (24000000UL)     /* Oscillator frequency */
 
 #define  SYSTEM_CLOCK    (XTAL / 2U)
 
