@@ -4,4 +4,4 @@
   ..\kernel\code\sys\inc\mkrtos_inc.h \
   ..\kernel\code\sys\inc\mkrtos_config.h \
   ..\kernel\code\sys\inc\time_stamp.h ..\kernel\code\sys\inc\delay.h \
-  ..\kernel\code\sys\inc\priority.h
+  ..\kernel\code\sys\inc\priority.h ..\kernel\code\sys\inc\idle.h

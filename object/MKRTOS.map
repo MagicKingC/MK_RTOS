@@ -4,37 +4,46 @@ Component: Arm Compiler for Embedded 6.18 Tool: armlink [5e4cc100]
 
 Section Cross References
 
+    main.o(.ARM.exidx.text.delay) refers to main.o(.text.delay) for [Anonymous Symbol]
     main.o(.text.task1) refers to main.o(.bss.bit1) for bit1
-    main.o(.text.task1) refers to delay.o(.text.mk_delay_ms) for mk_delay_ms
+    main.o(.text.task1) refers to systick.o(.text.mk_delay_ms) for mk_delay_ms
     main.o(.ARM.exidx.text.task1) refers to main.o(.text.task1) for [Anonymous Symbol]
     main.o(.text.task2) refers to main.o(.bss.bit2) for bit2
-    main.o(.text.task2) refers to delay.o(.text.mk_delay_ms) for mk_delay_ms
     main.o(.ARM.exidx.text.task2) refers to main.o(.text.task2) for [Anonymous Symbol]
     main.o(.text.task3) refers to main.o(.bss.bit3) for bit3
-    main.o(.text.task3) refers to delay.o(.text.mk_delay_ms) for mk_delay_ms
     main.o(.ARM.exidx.text.task3) refers to main.o(.text.task3) for [Anonymous Symbol]
     main.o(.text.main) refers to main.o(.bss.taskEnv1) for taskEnv1
-    main.o(.text.main) refers to main.o(.bss.task_1) for task_1
+    main.o(.text.main) refers to main.o(.bss.task1_s) for task1_s
     main.o(.text.main) refers to main.o(.text.task1) for task1
-    main.o(.text.main) refers to system.o(.text.mk_TaskInit) for mk_TaskInit
     main.o(.text.main) refers to main.o(.bss.taskEnv2) for taskEnv2
-    main.o(.text.main) refers to main.o(.bss.task_2) for task_2
+    main.o(.text.main) refers to main.o(.bss.task2_s) for task2_s
     main.o(.text.main) refers to main.o(.text.task2) for task2
+    main.o(.text.main) refers to main.o(.bss.task3_s) for task3_s
     main.o(.text.main) refers to main.o(.bss.taskEnv3) for taskEnv3
-    main.o(.text.main) refers to main.o(.bss.task_3) for task_3
     main.o(.text.main) refers to main.o(.text.task3) for task3
+    main.o(.text.main) refers to mktask.o(.text.mk_Task_Init) for mk_Task_Init
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
-    delay.o(.text.mk_delay_ms) refers to cpu_1.o(.text) for _MK_SR_Save_
-    delay.o(.text.mk_delay_ms) refers to mktype.o(.bss._MK_Current_Pro_) for _MK_Current_Pro_
-    delay.o(.text.mk_delay_ms) refers to priority.o(.text.ClearBitToPrioTable) for ClearBitToPrioTable
-    delay.o(.text.mk_delay_ms) refers to switch.o(.text._mk_task_switch_) for _mk_task_switch_
-    delay.o(.ARM.exidx.text.mk_delay_ms) refers to delay.o(.text.mk_delay_ms) for [Anonymous Symbol]
     idle.o(.ARM.exidx.text.mk_idle_task) refers to idle.o(.text.mk_idle_task) for [Anonymous Symbol]
     idle.o(.text._MK_Idle_Init_) refers to idle.o(.bss.idletaskEnv) for idletaskEnv
     idle.o(.text._MK_Idle_Init_) refers to idle.o(.bss.idletask) for idletask
     idle.o(.text._MK_Idle_Init_) refers to idle.o(.text.mk_idle_task) for mk_idle_task
-    idle.o(.text._MK_Idle_Init_) refers to system.o(.text.mk_TaskInit) for mk_TaskInit
+    idle.o(.text._MK_Idle_Init_) refers to mktask.o(.text.mk_TaskInit) for mk_TaskInit
     idle.o(.ARM.exidx.text._MK_Idle_Init_) refers to idle.o(.text._MK_Idle_Init_) for [Anonymous Symbol]
+    mktask.o(.text.mk_TaskInit) refers to cpu_1.o(.text) for _MK_SR_Save_
+    mktask.o(.text.mk_TaskInit) refers to priority.o(.text.InsertNodeToReadyListTail) for InsertNodeToReadyListTail
+    mktask.o(.text.mk_TaskInit) refers to priority.o(.text.SetBitToPrioTable) for SetBitToPrioTable
+    mktask.o(.ARM.exidx.text.mk_TaskInit) refers to mktask.o(.text.mk_TaskInit) for [Anonymous Symbol]
+    mktask.o(.text.mk_Task_Init) refers to cpu_1.o(.text) for _MK_SR_Save_
+    mktask.o(.text.mk_Task_Init) refers to mkstr.o(.text.mk_strlen) for mk_strlen
+    mktask.o(.text.mk_Task_Init) refers to mkstr.o(.text.mk_strncpy) for mk_strncpy
+    mktask.o(.text.mk_Task_Init) refers to priority.o(.text.InsertNodeToReadyListTail) for InsertNodeToReadyListTail
+    mktask.o(.text.mk_Task_Init) refers to priority.o(.text.SetBitToPrioTable) for SetBitToPrioTable
+    mktask.o(.ARM.exidx.text.mk_Task_Init) refers to mktask.o(.text.mk_Task_Init) for [Anonymous Symbol]
+    mktask.o(.text.mk_Task_Delete) refers to cpu_1.o(.text) for _MK_SR_Save_
+    mktask.o(.text.mk_Task_Delete) refers to priority.o(.text.RemoveNodeFromReadyList) for RemoveNodeFromReadyList
+    mktask.o(.text.mk_Task_Delete) refers to mktype.o(.bss._MK_Current_Pro_) for _MK_Current_Pro_
+    mktask.o(.text.mk_Task_Delete) refers to scheduler.o(.text._MK_TaskSwitch_) for _MK_TaskSwitch_
+    mktask.o(.ARM.exidx.text.mk_Task_Delete) refers to mktask.o(.text.mk_Task_Delete) for [Anonymous Symbol]
     priority.o(.text.InitReadyList) refers to mktype.o(.bss._MK_ReadyList) for _MK_ReadyList
     priority.o(.text.InitReadyList) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
     priority.o(.ARM.exidx.text.InitReadyList) refers to priority.o(.text.InitReadyList) for [Anonymous Symbol]
@@ -58,56 +67,74 @@ Section Cross References
     priority.o(.ARM.exidx.text._MK_FindFirstBit) refers to priority.o(.text._MK_FindFirstBit) for [Anonymous Symbol]
     priority.o(.text.GetHighestPrioFromPrioTable) refers to mktype.o(.bss._MK_PrioTable) for _MK_PrioTable
     priority.o(.ARM.exidx.text.GetHighestPrioFromPrioTable) refers to priority.o(.text.GetHighestPrioFromPrioTable) for [Anonymous Symbol]
-    priority.o(.ARM.exidx.text.InitDelayList) refers to priority.o(.text.InitDelayList) for [Anonymous Symbol]
-    priority.o(.ARM.exidx.text.InsertNodeToDelayList) refers to priority.o(.text.InsertNodeToDelayList) for [Anonymous Symbol]
-    priority.o(.ARM.exidx.text.FindFromDelayList) refers to priority.o(.text.FindFromDelayList) for [Anonymous Symbol]
-    priority.o(.ARM.exidx.text.SubDelayList) refers to priority.o(.text.SubDelayList) for [Anonymous Symbol]
-    switch.o(.text._mk_task_switch_) refers to cpu_1.o(.text) for _MK_SR_Save_
-    switch.o(.text._mk_task_switch_) refers to priority.o(.text.GetHighestPrioFromPrioTable) for GetHighestPrioFromPrioTable
-    switch.o(.text._mk_task_switch_) refers to mktype.o(.bss._MK_Highest_Prio_Index) for _MK_Highest_Prio_Index
-    switch.o(.text._mk_task_switch_) refers to mktype.o(.bss._MK_ReadyList) for _MK_ReadyList
-    switch.o(.text._mk_task_switch_) refers to mktype.o(.bss._MK_Highest_Pro_) for _MK_Highest_Pro_
-    switch.o(.text._mk_task_switch_) refers to cpu.o(CODE) for _TriggerPendSV_
-    switch.o(.ARM.exidx.text._mk_task_switch_) refers to switch.o(.text._mk_task_switch_) for [Anonymous Symbol]
-    system.o(.text.mk_TaskInit) refers to cpu_1.o(.text) for _MK_SR_Save_
-    system.o(.text.mk_TaskInit) refers to priority.o(.text.InsertNodeToReadyListTail) for InsertNodeToReadyListTail
-    system.o(.text.mk_TaskInit) refers to priority.o(.text.SetBitToPrioTable) for SetBitToPrioTable
-    system.o(.ARM.exidx.text.mk_TaskInit) refers to system.o(.text.mk_TaskInit) for [Anonymous Symbol]
+    scheduler.o(.text._MK_TaskSwitch_) refers to cpu_1.o(.text) for _MK_SR_Save_
+    scheduler.o(.text._MK_TaskSwitch_) refers to priority.o(.text.GetHighestPrioFromPrioTable) for GetHighestPrioFromPrioTable
+    scheduler.o(.text._MK_TaskSwitch_) refers to mktype.o(.bss._MK_Highest_Prio_Index) for _MK_Highest_Prio_Index
+    scheduler.o(.text._MK_TaskSwitch_) refers to mktype.o(.bss._MK_ReadyList) for _MK_ReadyList
+    scheduler.o(.text._MK_TaskSwitch_) refers to mktype.o(.bss._MK_Highest_Pro_) for _MK_Highest_Pro_
+    scheduler.o(.text._MK_TaskSwitch_) refers to cpu.o(CODE) for _TriggerPendSV_
+    scheduler.o(.ARM.exidx.text._MK_TaskSwitch_) refers to scheduler.o(.text._MK_TaskSwitch_) for [Anonymous Symbol]
+    scheduler.o(.text._MK_TaskTimeSliceSched) refers to idle.o(.bss.idletask) for idletask
+    scheduler.o(.text._MK_TaskTimeSliceSched) refers to priority.o(.text.MoveHeadToTailInReadList) for MoveHeadToTailInReadList
+    scheduler.o(.ARM.exidx.text._MK_TaskTimeSliceSched) refers to scheduler.o(.text._MK_TaskTimeSliceSched) for [Anonymous Symbol]
+    system.o(.text.main_task) refers to main.o(.text.main) for main
+    system.o(.text.main_task) refers to mktask.o(.text.mk_Task_Delete) for mk_Task_Delete
+    system.o(.ARM.exidx.text.main_task) refers to system.o(.text.main_task) for [Anonymous Symbol]
     system.o(.text.__MK_Main) refers to cpu_1.o(.text) for _CPU_InterruptDisable_
-    system.o(.text.__MK_Main) refers to systick.o(.text.mk_SystickInit) for mk_SystickInit
+    system.o(.text.__MK_Main) refers to sys_tick.o(.text.mk_SystickInit) for mk_SystickInit
     system.o(.text.__MK_Main) refers to mktype.o(.bss._MK_Current_Pro_) for _MK_Current_Pro_
     system.o(.text.__MK_Main) refers to mktype.o(.bss._MK_Highest_Pro_) for _MK_Highest_Pro_
     system.o(.text.__MK_Main) refers to priority.o(.text.InitPrioTable) for InitPrioTable
     system.o(.text.__MK_Main) refers to priority.o(.text.InitReadyList) for InitReadyList
-    system.o(.text.__MK_Main) refers to priority.o(.text.InitDelayList) for InitDelayList
+    system.o(.text.__MK_Main) refers to systick.o(.text.InitTickSpokeList) for InitTickSpokeList
     system.o(.text.__MK_Main) refers to idle.o(.text._MK_Idle_Init_) for _MK_Idle_Init_
-    system.o(.text.__MK_Main) refers (Weak) to main.o(.text.main) for main
+    system.o(.text.__MK_Main) refers to system.o(.bss.maintaskEnv) for maintaskEnv
+    system.o(.text.__MK_Main) refers to system.o(.bss.maintask) for maintask
+    system.o(.text.__MK_Main) refers to system.o(.text.main_task) for main_task
+    system.o(.text.__MK_Main) refers to mktask.o(.text.mk_TaskInit) for mk_TaskInit
     system.o(.text.__MK_Main) refers to priority.o(.text.GetHighestPrioFromPrioTable) for GetHighestPrioFromPrioTable
     system.o(.text.__MK_Main) refers to mktype.o(.bss._MK_ReadyList) for _MK_ReadyList
     system.o(.text.__MK_Main) refers to mktype.o(.bss._MK_Highest_Prio_Index) for _MK_Highest_Prio_Index
     system.o(.text.__MK_Main) refers to cpu.o(CODE) for _MK_RTOS_RUN_
     system.o(.ARM.exidx.text.__MK_Main) refers to system.o(.text.__MK_Main) for [Anonymous Symbol]
-    list.o(.ARM.exidx.text.InsertNode) refers to list.o(.text.InsertNode) for [Anonymous Symbol]
-    list.o(.ARM.exidx.text.FindNode) refers to list.o(.text.FindNode) for [Anonymous Symbol]
-    list.o(.ARM.exidx.text.DeleteNode) refers to list.o(.text.DeleteNode) for [Anonymous Symbol]
-    str.o(.ARM.exidx.text.mk_Strncopy) refers to str.o(.text.mk_Strncopy) for [Anonymous Symbol]
-    str.o(.ARM.exidx.text.mk_Strlen) refers to str.o(.text.mk_Strlen) for [Anonymous Symbol]
+    systick.o(.text.mk_delay_ms) refers to cpu_1.o(.text) for _MK_SR_Save_
+    systick.o(.text.mk_delay_ms) refers to mktype.o(.bss._MK_Current_Pro_) for _MK_Current_Pro_
+    systick.o(.text.mk_delay_ms) refers to mktype.o(.bss.MK_TickSpokeList) for MK_TickSpokeList
+    systick.o(.text.mk_delay_ms) refers to systick.o(.bss.MK_TickCtr) for MK_TickCtr
+    systick.o(.text.mk_delay_ms) refers to priority.o(.text.RemoveNodeFromReadyList) for RemoveNodeFromReadyList
+    systick.o(.text.mk_delay_ms) refers to scheduler.o(.text._MK_TaskSwitch_) for _MK_TaskSwitch_
+    systick.o(.ARM.exidx.text.mk_delay_ms) refers to systick.o(.text.mk_delay_ms) for [Anonymous Symbol]
+    systick.o(.text.InsertNodeToTickSpokeList) refers to systick.o(.bss.MK_TickCtr) for MK_TickCtr
+    systick.o(.text.InsertNodeToTickSpokeList) refers to mktype.o(.bss.MK_TickSpokeList) for MK_TickSpokeList
+    systick.o(.ARM.exidx.text.InsertNodeToTickSpokeList) refers to systick.o(.text.InsertNodeToTickSpokeList) for [Anonymous Symbol]
+    systick.o(.text.InitTickSpokeList) refers to mktype.o(.bss.MK_TickSpokeList) for MK_TickSpokeList
+    systick.o(.text.InitTickSpokeList) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    systick.o(.ARM.exidx.text.InitTickSpokeList) refers to systick.o(.text.InitTickSpokeList) for [Anonymous Symbol]
+    systick.o(.ARM.exidx.text.RemoveFromTickSpokeList) refers to systick.o(.text.RemoveFromTickSpokeList) for [Anonymous Symbol]
+    systick.o(.text.UpdateToTickSpokeList) refers to systick.o(.bss.MK_TickCtr) for MK_TickCtr
+    systick.o(.text.UpdateToTickSpokeList) refers to mktype.o(.bss.MK_TickSpokeList) for MK_TickSpokeList
+    systick.o(.text.UpdateToTickSpokeList) refers to priority.o(.text.InsertNodeToReadyListTail) for InsertNodeToReadyListTail
+    systick.o(.ARM.exidx.text.UpdateToTickSpokeList) refers to systick.o(.text.UpdateToTickSpokeList) for [Anonymous Symbol]
+    mkstr.o(.ARM.exidx.text.mk_strncpy) refers to mkstr.o(.text.mk_strncpy) for [Anonymous Symbol]
+    mkstr.o(.ARM.exidx.text.mk_strlen) refers to mkstr.o(.text.mk_strlen) for [Anonymous Symbol]
     cpu.o(CODE) refers to mktype.o(.bss._MK_Current_Pro_) for _MK_Current_Pro_
     cpu.o(CODE) refers to mktype.o(.bss._MK_Highest_Pro_) for _MK_Highest_Pro_
-    systick.o(.text.mk_SystickInit) refers to system_armcm3.o(.data.SystemCoreClock) for SystemCoreClock
-    systick.o(.ARM.exidx.text.mk_SystickInit) refers to systick.o(.text.mk_SystickInit) for [Anonymous Symbol]
-    systick.o(.text.SysTick_Handler) refers to cpu_1.o(.text) for _MK_SR_Save_
-    systick.o(.text.SysTick_Handler) refers to mktype.o(.bss._MK_ReadyList) for _MK_ReadyList
-    systick.o(.text.SysTick_Handler) refers to priority.o(.text.SetBitToPrioTable) for SetBitToPrioTable
-    systick.o(.text.SysTick_Handler) refers to switch.o(.text._mk_task_switch_) for _mk_task_switch_
-    systick.o(.ARM.exidx.text.SysTick_Handler) refers to systick.o(.text.SysTick_Handler) for [Anonymous Symbol]
+    sys_tick.o(.text.mk_SystickInit) refers to system_armcm3.o(.data.SystemCoreClock) for SystemCoreClock
+    sys_tick.o(.ARM.exidx.text.mk_SystickInit) refers to sys_tick.o(.text.mk_SystickInit) for [Anonymous Symbol]
+    sys_tick.o(.text.SysTick_Handler) refers to cpu_1.o(.text) for _MK_SR_Save_
+    sys_tick.o(.text.SysTick_Handler) refers to systick.o(.text.UpdateToTickSpokeList) for UpdateToTickSpokeList
+    sys_tick.o(.text.SysTick_Handler) refers to mktype.o(.bss._MK_Highest_Prio_Index) for _MK_Highest_Prio_Index
+    sys_tick.o(.text.SysTick_Handler) refers to mktype.o(.bss._MK_ReadyList) for _MK_ReadyList
+    sys_tick.o(.text.SysTick_Handler) refers to scheduler.o(.text._MK_TaskTimeSliceSched) for _MK_TaskTimeSliceSched
+    sys_tick.o(.text.SysTick_Handler) refers to scheduler.o(.text._MK_TaskSwitch_) for _MK_TaskSwitch_
+    sys_tick.o(.ARM.exidx.text.SysTick_Handler) refers to sys_tick.o(.text.SysTick_Handler) for [Anonymous Symbol]
     startup_armcm3.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_armcm3.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_armcm3.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_armcm3.o(RESET) refers to startup_armcm3.o(STACK) for __initial_sp
     startup_armcm3.o(RESET) refers to startup_armcm3.o(.text) for Reset_Handler
     startup_armcm3.o(RESET) refers to cpu.o(CODE) for PendSV_Handler
-    startup_armcm3.o(RESET) refers to systick.o(.text.SysTick_Handler) for SysTick_Handler
+    startup_armcm3.o(RESET) refers to sys_tick.o(.text.SysTick_Handler) for SysTick_Handler
     startup_armcm3.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_armcm3.o(.text) refers to system_armcm3.o(.text.SystemInit) for SystemInit
     startup_armcm3.o(.text) refers to system.o(.text.__MK_Main) for __MK_Main
@@ -243,28 +270,33 @@ Section Cross References
 Removing Unused input sections from the image.
 
     Removing main.o(.text), (0 bytes).
+    Removing main.o(.text.delay), (2 bytes).
+    Removing main.o(.ARM.exidx.text.delay), (8 bytes).
     Removing main.o(.ARM.exidx.text.task1), (8 bytes).
     Removing main.o(.ARM.exidx.text.task2), (8 bytes).
     Removing main.o(.ARM.exidx.text.task3), (8 bytes).
     Removing main.o(.ARM.exidx.text.main), (8 bytes).
+    Removing main.o(.bss.task_1), (56 bytes).
+    Removing main.o(.bss.task_2), (56 bytes).
+    Removing main.o(.bss.task_3), (56 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
-    Removing delay.o(.text), (0 bytes).
-    Removing delay.o(.ARM.exidx.text.mk_delay_ms), (8 bytes).
     Removing idle.o(.text), (0 bytes).
     Removing idle.o(.ARM.exidx.text.mk_idle_task), (8 bytes).
     Removing idle.o(.ARM.exidx.text._MK_Idle_Init_), (8 bytes).
+    Removing mktask.o(.text), (0 bytes).
+    Removing mktask.o(.ARM.exidx.text.mk_TaskInit), (8 bytes).
+    Removing mktask.o(.ARM.exidx.text.mk_Task_Init), (8 bytes).
+    Removing mktask.o(.ARM.exidx.text.mk_Task_Delete), (8 bytes).
     Removing mktype.o(.text), (0 bytes).
-    Removing mktype.o(.bss._MK_DelayList), (896 bytes).
     Removing priority.o(.text), (0 bytes).
     Removing priority.o(.ARM.exidx.text.InitReadyList), (8 bytes).
     Removing priority.o(.text.InsertNodeToReadyListHead), (94 bytes).
     Removing priority.o(.ARM.exidx.text.InsertNodeToReadyListHead), (8 bytes).
     Removing priority.o(.ARM.exidx.text.SetBitToPrioTable), (8 bytes).
     Removing priority.o(.ARM.exidx.text.InsertNodeToReadyListTail), (8 bytes).
-    Removing priority.o(.text.MoveHeadToTailInReadList), (28 bytes).
     Removing priority.o(.ARM.exidx.text.MoveHeadToTailInReadList), (8 bytes).
-    Removing priority.o(.text.RemoveNodeFromReadyList), (122 bytes).
     Removing priority.o(.ARM.exidx.text.RemoveNodeFromReadyList), (8 bytes).
+    Removing priority.o(.text.ClearBitToPrioTable), (36 bytes).
     Removing priority.o(.ARM.exidx.text.ClearBitToPrioTable), (8 bytes).
     Removing priority.o(.ARM.exidx.text.InitPrioTable), (8 bytes).
     Removing priority.o(.text._MK_FindFirstBit_), (58 bytes).
@@ -272,42 +304,33 @@ Removing Unused input sections from the image.
     Removing priority.o(.text._MK_FindFirstBit), (140 bytes).
     Removing priority.o(.ARM.exidx.text._MK_FindFirstBit), (8 bytes).
     Removing priority.o(.ARM.exidx.text.GetHighestPrioFromPrioTable), (8 bytes).
-    Removing priority.o(.ARM.exidx.text.InitDelayList), (8 bytes).
-    Removing priority.o(.text.InsertNodeToDelayList), (2 bytes).
-    Removing priority.o(.ARM.exidx.text.InsertNodeToDelayList), (8 bytes).
-    Removing priority.o(.text.FindFromDelayList), (4 bytes).
-    Removing priority.o(.ARM.exidx.text.FindFromDelayList), (8 bytes).
-    Removing priority.o(.text.SubDelayList), (2 bytes).
-    Removing priority.o(.ARM.exidx.text.SubDelayList), (8 bytes).
-    Removing switch.o(.text), (0 bytes).
-    Removing switch.o(.ARM.exidx.text._mk_task_switch_), (8 bytes).
-    Removing switch.o(.bss.sw), (4 bytes).
+    Removing scheduler.o(.text), (0 bytes).
+    Removing scheduler.o(.ARM.exidx.text._MK_TaskSwitch_), (8 bytes).
+    Removing scheduler.o(.ARM.exidx.text._MK_TaskTimeSliceSched), (8 bytes).
     Removing system.o(.text), (0 bytes).
-    Removing system.o(.ARM.exidx.text.mk_TaskInit), (8 bytes).
+    Removing system.o(.ARM.exidx.text.main_task), (8 bytes).
     Removing system.o(.ARM.exidx.text.__MK_Main), (8 bytes).
-    Removing time_stamp.o(.text), (0 bytes).
-    Removing list.o(.text), (0 bytes).
-    Removing list.o(.text.InsertNode), (2 bytes).
-    Removing list.o(.ARM.exidx.text.InsertNode), (8 bytes).
-    Removing list.o(.text.FindNode), (2 bytes).
-    Removing list.o(.ARM.exidx.text.FindNode), (8 bytes).
-    Removing list.o(.text.DeleteNode), (2 bytes).
-    Removing list.o(.ARM.exidx.text.DeleteNode), (8 bytes).
-    Removing str.o(.text), (0 bytes).
-    Removing str.o(.text.mk_Strncopy), (50 bytes).
-    Removing str.o(.ARM.exidx.text.mk_Strncopy), (8 bytes).
-    Removing str.o(.text.mk_Strlen), (30 bytes).
-    Removing str.o(.ARM.exidx.text.mk_Strlen), (8 bytes).
     Removing systick.o(.text), (0 bytes).
-    Removing systick.o(.ARM.exidx.text.mk_SystickInit), (8 bytes).
-    Removing systick.o(.ARM.exidx.text.SysTick_Handler), (8 bytes).
+    Removing systick.o(.ARM.exidx.text.mk_delay_ms), (8 bytes).
+    Removing systick.o(.text.InsertNodeToTickSpokeList), (126 bytes).
+    Removing systick.o(.ARM.exidx.text.InsertNodeToTickSpokeList), (8 bytes).
+    Removing systick.o(.ARM.exidx.text.InitTickSpokeList), (8 bytes).
+    Removing systick.o(.text.RemoveFromTickSpokeList), (46 bytes).
+    Removing systick.o(.ARM.exidx.text.RemoveFromTickSpokeList), (8 bytes).
+    Removing systick.o(.ARM.exidx.text.UpdateToTickSpokeList), (8 bytes).
+    Removing mkstr.o(.text), (0 bytes).
+    Removing mkstr.o(.ARM.exidx.text.mk_strncpy), (8 bytes).
+    Removing mkstr.o(.ARM.exidx.text.mk_strlen), (8 bytes).
+    Removing sys_tick.o(.text), (0 bytes).
+    Removing sys_tick.o(.ARM.exidx.text.mk_SystickInit), (8 bytes).
+    Removing sys_tick.o(.ARM.exidx.text.SysTick_Handler), (8 bytes).
     Removing startup_armcm3.o(HEAP), (3072 bytes).
     Removing system_armcm3.o(.text), (0 bytes).
     Removing system_armcm3.o(.text.SystemCoreClockUpdate), (20 bytes).
     Removing system_armcm3.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
     Removing system_armcm3.o(.ARM.exidx.text.SystemInit), (8 bytes).
 
-64 unused section(s) (total 4804 bytes) removed from the image.
+60 unused section(s) (total 4054 bytes) removed from the image.
 
 ==============================================================================
 
@@ -378,18 +401,17 @@ Image Symbol Table
     ..\kernel\libcpu\m3\cpu.s                0x00000000   Number         0  cpu.o ABSOLUTE
     RTE/Device/ARMCM3/startup_ARMCM3.s       0x00000000   Number         0  startup_armcm3.o ABSOLUTE
     dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
-    delay.c                                  0x00000000   Number         0  delay.o ABSOLUTE
     idle.c                                   0x00000000   Number         0  idle.o ABSOLUTE
-    list.c                                   0x00000000   Number         0  list.o ABSOLUTE
     main.c                                   0x00000000   Number         0  main.o ABSOLUTE
+    mkstr.c                                  0x00000000   Number         0  mkstr.o ABSOLUTE
+    mktask.c                                 0x00000000   Number         0  mktask.o ABSOLUTE
     mktype.c                                 0x00000000   Number         0  mktype.o ABSOLUTE
     priority.c                               0x00000000   Number         0  priority.o ABSOLUTE
-    str.c                                    0x00000000   Number         0  str.o ABSOLUTE
-    switch.c                                 0x00000000   Number         0  switch.o ABSOLUTE
+    scheduler.c                              0x00000000   Number         0  scheduler.o ABSOLUTE
+    sys_tick.c                               0x00000000   Number         0  sys_tick.o ABSOLUTE
     system.c                                 0x00000000   Number         0  system.o ABSOLUTE
     system_ARMCM3.c                          0x00000000   Number         0  system_armcm3.o ABSOLUTE
     systick.c                                0x00000000   Number         0  systick.o ABSOLUTE
-    time_stamp.c                             0x00000000   Number         0  time_stamp.o ABSOLUTE
     RESET                                    0x00000000   Section      960  startup_armcm3.o(RESET)
     !!!main                                  0x000003c0   Section        8  __main.o(!!!main)
     !!!scatter                               0x000003c8   Section       52  __scatter.o(!!!scatter)
@@ -447,30 +469,40 @@ Image Symbol Table
     .text                                    0x00000512   Section        2  use_no_semi.o(.text)
     .text                                    0x00000514   Section        0  indicate_semi.o(.text)
     .text                                    0x00000514   Section        0  sys_exit.o(.text)
-    [Anonymous Symbol]                       0x00000520   Section        0  priority.o(.text.ClearBitToPrioTable)
-    [Anonymous Symbol]                       0x00000544   Section        0  priority.o(.text.GetHighestPrioFromPrioTable)
-    [Anonymous Symbol]                       0x00000588   Section        0  priority.o(.text.InitDelayList)
-    [Anonymous Symbol]                       0x0000058c   Section        0  priority.o(.text.InitPrioTable)
-    [Anonymous Symbol]                       0x0000059c   Section        0  priority.o(.text.InitReadyList)
-    [Anonymous Symbol]                       0x000005b0   Section        0  priority.o(.text.InsertNodeToReadyListTail)
-    [Anonymous Symbol]                       0x00000614   Section        0  priority.o(.text.SetBitToPrioTable)
-    [Anonymous Symbol]                       0x00000638   Section        0  systick.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x0000067c   Section        0  system_armcm3.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x000006a4   Section        0  idle.o(.text._MK_Idle_Init_)
-    [Anonymous Symbol]                       0x000006e4   Section        0  system.o(.text.__MK_Main)
-    [Anonymous Symbol]                       0x00000744   Section        0  switch.o(.text._mk_task_switch_)
-    [Anonymous Symbol]                       0x00000780   Section        0  main.o(.text.main)
-    [Anonymous Symbol]                       0x0000081c   Section        0  systick.o(.text.mk_SystickInit)
-    [Anonymous Symbol]                       0x0000085c   Section        0  system.o(.text.mk_TaskInit)
-    [Anonymous Symbol]                       0x000008fc   Section        0  delay.o(.text.mk_delay_ms)
-    [Anonymous Symbol]                       0x00000924   Section        0  idle.o(.text.mk_idle_task)
-    [Anonymous Symbol]                       0x00000928   Section        0  main.o(.text.task1)
-    [Anonymous Symbol]                       0x00000948   Section        0  main.o(.text.task2)
-    [Anonymous Symbol]                       0x00000968   Section        0  main.o(.text.task3)
-    CODE                                     0x00000988   Section       92  cpu.o(CODE)
-    idletaskEnv                              0x200001c0   Data         512  idle.o(.bss.idletaskEnv)
-    [Anonymous Symbol]                       0x200001c0   Section        0  idle.o(.bss.idletaskEnv)
-    STACK                                    0x20001c18   Section     1024  startup_armcm3.o(STACK)
+    [Anonymous Symbol]                       0x00000520   Section        0  priority.o(.text.GetHighestPrioFromPrioTable)
+    [Anonymous Symbol]                       0x00000564   Section        0  priority.o(.text.InitPrioTable)
+    [Anonymous Symbol]                       0x00000574   Section        0  priority.o(.text.InitReadyList)
+    [Anonymous Symbol]                       0x00000588   Section        0  systick.o(.text.InitTickSpokeList)
+    [Anonymous Symbol]                       0x0000059c   Section        0  priority.o(.text.InsertNodeToReadyListTail)
+    [Anonymous Symbol]                       0x00000600   Section        0  priority.o(.text.MoveHeadToTailInReadList)
+    [Anonymous Symbol]                       0x00000628   Section        0  priority.o(.text.RemoveNodeFromReadyList)
+    [Anonymous Symbol]                       0x000006b0   Section        0  priority.o(.text.SetBitToPrioTable)
+    [Anonymous Symbol]                       0x000006d4   Section        0  sys_tick.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x0000070c   Section        0  system_armcm3.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x00000734   Section        0  systick.o(.text.UpdateToTickSpokeList)
+    [Anonymous Symbol]                       0x000007a8   Section        0  idle.o(.text._MK_Idle_Init_)
+    [Anonymous Symbol]                       0x000007e8   Section        0  scheduler.o(.text._MK_TaskSwitch_)
+    [Anonymous Symbol]                       0x00000824   Section        0  scheduler.o(.text._MK_TaskTimeSliceSched)
+    [Anonymous Symbol]                       0x00000858   Section        0  system.o(.text.__MK_Main)
+    [Anonymous Symbol]                       0x000008f0   Section        0  main.o(.text.main)
+    [Anonymous Symbol]                       0x000009b4   Section        0  system.o(.text.main_task)
+    [Anonymous Symbol]                       0x000009c4   Section        0  sys_tick.o(.text.mk_SystickInit)
+    [Anonymous Symbol]                       0x00000a04   Section        0  mktask.o(.text.mk_TaskInit)
+    [Anonymous Symbol]                       0x00000ab0   Section        0  mktask.o(.text.mk_Task_Delete)
+    [Anonymous Symbol]                       0x00000ae0   Section        0  mktask.o(.text.mk_Task_Init)
+    [Anonymous Symbol]                       0x00000bac   Section        0  systick.o(.text.mk_delay_ms)
+    [Anonymous Symbol]                       0x00000c48   Section        0  idle.o(.text.mk_idle_task)
+    [Anonymous Symbol]                       0x00000c4c   Section        0  mkstr.o(.text.mk_strlen)
+    [Anonymous Symbol]                       0x00000c6c   Section        0  mkstr.o(.text.mk_strncpy)
+    [Anonymous Symbol]                       0x00000ca0   Section        0  main.o(.text.task1)
+    [Anonymous Symbol]                       0x00000cc0   Section        0  main.o(.text.task2)
+    [Anonymous Symbol]                       0x00000cd4   Section        0  main.o(.text.task3)
+    CODE                                     0x00000ce8   Section       92  cpu.o(CODE)
+    idletaskEnv                              0x200002a0   Data         128  idle.o(.bss.idletaskEnv)
+    [Anonymous Symbol]                       0x200002a0   Section        0  idle.o(.bss.idletaskEnv)
+    maintaskEnv                              0x20000358   Data        2048  system.o(.bss.maintaskEnv)
+    [Anonymous Symbol]                       0x20000358   Section        0  system.o(.bss.maintaskEnv)
+    STACK                                    0x20002460   Section     1024  startup_armcm3.o(STACK)
 
     Global Symbols
 
@@ -594,49 +626,60 @@ Image Symbol Table
     __use_no_semihosting_swi                 0x00000513   Thumb Code     2  use_no_semi.o(.text)
     __semihosting_library_function           0x00000515   Thumb Code     0  indicate_semi.o(.text)
     _sys_exit                                0x00000515   Thumb Code     8  sys_exit.o(.text)
-    ClearBitToPrioTable                      0x00000521   Thumb Code    36  priority.o(.text.ClearBitToPrioTable)
-    GetHighestPrioFromPrioTable              0x00000545   Thumb Code    68  priority.o(.text.GetHighestPrioFromPrioTable)
-    InitDelayList                            0x00000589   Thumb Code     2  priority.o(.text.InitDelayList)
-    InitPrioTable                            0x0000058d   Thumb Code    14  priority.o(.text.InitPrioTable)
-    InitReadyList                            0x0000059d   Thumb Code    20  priority.o(.text.InitReadyList)
-    InsertNodeToReadyListTail                0x000005b1   Thumb Code    98  priority.o(.text.InsertNodeToReadyListTail)
-    SetBitToPrioTable                        0x00000615   Thumb Code    36  priority.o(.text.SetBitToPrioTable)
-    SysTick_Handler                          0x00000639   Thumb Code    66  systick.o(.text.SysTick_Handler)
-    SystemInit                               0x0000067d   Thumb Code    38  system_armcm3.o(.text.SystemInit)
-    _MK_Idle_Init_                           0x000006a5   Thumb Code    56  idle.o(.text._MK_Idle_Init_)
-    __MK_Main                                0x000006e5   Thumb Code    96  system.o(.text.__MK_Main)
-    _mk_task_switch_                         0x00000745   Thumb Code    60  switch.o(.text._mk_task_switch_)
-    main                                     0x00000781   Thumb Code   132  main.o(.text.main)
-    mk_SystickInit                           0x0000081d   Thumb Code    64  systick.o(.text.mk_SystickInit)
-    mk_TaskInit                              0x0000085d   Thumb Code   160  system.o(.text.mk_TaskInit)
-    mk_delay_ms                              0x000008fd   Thumb Code    40  delay.o(.text.mk_delay_ms)
-    mk_idle_task                             0x00000925   Thumb Code     2  idle.o(.text.mk_idle_task)
-    task1                                    0x00000929   Thumb Code    30  main.o(.text.task1)
-    task2                                    0x00000949   Thumb Code    30  main.o(.text.task2)
-    task3                                    0x00000969   Thumb Code    30  main.o(.text.task3)
-    _MK_RTOS_RUN_                            0x00000989   Thumb Code    24  cpu.o(CODE)
-    _TriggerPendSV_                          0x000009a1   Thumb Code     8  cpu.o(CODE)
-    PendSV_Handler                           0x000009a9   Thumb Code    16  cpu.o(CODE)
-    Region$$Table$$Base                      0x000009e4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000a04   Number         0  anon$$obj.o(Region$$Table)
+    GetHighestPrioFromPrioTable              0x00000521   Thumb Code    68  priority.o(.text.GetHighestPrioFromPrioTable)
+    InitPrioTable                            0x00000565   Thumb Code    14  priority.o(.text.InitPrioTable)
+    InitReadyList                            0x00000575   Thumb Code    20  priority.o(.text.InitReadyList)
+    InitTickSpokeList                        0x00000589   Thumb Code    18  systick.o(.text.InitTickSpokeList)
+    InsertNodeToReadyListTail                0x0000059d   Thumb Code    98  priority.o(.text.InsertNodeToReadyListTail)
+    MoveHeadToTailInReadList                 0x00000601   Thumb Code    38  priority.o(.text.MoveHeadToTailInReadList)
+    RemoveNodeFromReadyList                  0x00000629   Thumb Code   136  priority.o(.text.RemoveNodeFromReadyList)
+    SetBitToPrioTable                        0x000006b1   Thumb Code    36  priority.o(.text.SetBitToPrioTable)
+    SysTick_Handler                          0x000006d5   Thumb Code    54  sys_tick.o(.text.SysTick_Handler)
+    SystemInit                               0x0000070d   Thumb Code    38  system_armcm3.o(.text.SystemInit)
+    UpdateToTickSpokeList                    0x00000735   Thumb Code   114  systick.o(.text.UpdateToTickSpokeList)
+    _MK_Idle_Init_                           0x000007a9   Thumb Code    56  idle.o(.text._MK_Idle_Init_)
+    _MK_TaskSwitch_                          0x000007e9   Thumb Code    60  scheduler.o(.text._MK_TaskSwitch_)
+    _MK_TaskTimeSliceSched                   0x00000825   Thumb Code    52  scheduler.o(.text._MK_TaskTimeSliceSched)
+    __MK_Main                                0x00000859   Thumb Code   144  system.o(.text.__MK_Main)
+    main                                     0x000008f1   Thumb Code   172  main.o(.text.main)
+    main_task                                0x000009b5   Thumb Code    14  system.o(.text.main_task)
+    mk_SystickInit                           0x000009c5   Thumb Code    64  sys_tick.o(.text.mk_SystickInit)
+    mk_TaskInit                              0x00000a05   Thumb Code   170  mktask.o(.text.mk_TaskInit)
+    mk_Task_Delete                           0x00000ab1   Thumb Code    46  mktask.o(.text.mk_Task_Delete)
+    mk_Task_Init                             0x00000ae1   Thumb Code   202  mktask.o(.text.mk_Task_Init)
+    mk_delay_ms                              0x00000bad   Thumb Code   154  systick.o(.text.mk_delay_ms)
+    mk_idle_task                             0x00000c49   Thumb Code     2  idle.o(.text.mk_idle_task)
+    mk_strlen                                0x00000c4d   Thumb Code    30  mkstr.o(.text.mk_strlen)
+    mk_strncpy                               0x00000c6d   Thumb Code    50  mkstr.o(.text.mk_strncpy)
+    task1                                    0x00000ca1   Thumb Code    30  main.o(.text.task1)
+    task2                                    0x00000cc1   Thumb Code    18  main.o(.text.task2)
+    task3                                    0x00000cd5   Thumb Code    18  main.o(.text.task3)
+    _MK_RTOS_RUN_                            0x00000ce9   Thumb Code    24  cpu.o(CODE)
+    _TriggerPendSV_                          0x00000d01   Thumb Code     8  cpu.o(CODE)
+    PendSV_Handler                           0x00000d09   Thumb Code    16  cpu.o(CODE)
+    Region$$Table$$Base                      0x00000d44   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00000d64   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_armcm3.o(.data.SystemCoreClock)
-    _MK_Current_Pro_                         0x20000008   Data           4  mktype.o(.bss._MK_Current_Pro_)
-    _MK_Highest_Prio_Index                   0x2000000c   Data           4  mktype.o(.bss._MK_Highest_Prio_Index)
-    _MK_Highest_Pro_                         0x20000010   Data           4  mktype.o(.bss._MK_Highest_Pro_)
-    _MK_PrioTable                            0x20000014   Data           4  mktype.o(.bss._MK_PrioTable)
-    _MK_ReadyList                            0x20000018   Data         384  mktype.o(.bss._MK_ReadyList)
-    bit1                                     0x20000198   Data           4  main.o(.bss.bit1)
-    bit2                                     0x2000019c   Data           4  main.o(.bss.bit2)
-    bit3                                     0x200001a0   Data           4  main.o(.bss.bit3)
-    idletask                                 0x200001a4   Data          28  idle.o(.bss.idletask)
-    taskEnv1                                 0x200003c0   Data        2048  main.o(.bss.taskEnv1)
-    taskEnv2                                 0x20000bc0   Data        2048  main.o(.bss.taskEnv2)
-    taskEnv3                                 0x200013c0   Data        2048  main.o(.bss.taskEnv3)
-    task_1                                   0x20001bc0   Data          28  main.o(.bss.task_1)
-    task_2                                   0x20001bdc   Data          28  main.o(.bss.task_2)
-    task_3                                   0x20001bf8   Data          28  main.o(.bss.task_3)
-    __stack_limit                            0x20001c18   Data           0  startup_armcm3.o(STACK)
-    __initial_sp                             0x20002018   Data           0  startup_armcm3.o(STACK)
+    MK_TickCtr                               0x20000008   Data           4  systick.o(.bss.MK_TickCtr)
+    MK_TickSpokeList                         0x2000000c   Data         192  mktype.o(.bss.MK_TickSpokeList)
+    _MK_Current_Pro_                         0x200000cc   Data           4  mktype.o(.bss._MK_Current_Pro_)
+    _MK_Highest_Prio_Index                   0x200000d0   Data           4  mktype.o(.bss._MK_Highest_Prio_Index)
+    _MK_Highest_Pro_                         0x200000d4   Data           4  mktype.o(.bss._MK_Highest_Pro_)
+    _MK_PrioTable                            0x200000d8   Data           4  mktype.o(.bss._MK_PrioTable)
+    _MK_ReadyList                            0x200000dc   Data         384  mktype.o(.bss._MK_ReadyList)
+    bit1                                     0x2000025c   Data           4  main.o(.bss.bit1)
+    bit2                                     0x20000260   Data           4  main.o(.bss.bit2)
+    bit3                                     0x20000264   Data           4  main.o(.bss.bit3)
+    idletask                                 0x20000268   Data          56  idle.o(.bss.idletask)
+    maintask                                 0x20000320   Data          56  system.o(.bss.maintask)
+    task1_s                                  0x20000b58   Data          88  main.o(.bss.task1_s)
+    task2_s                                  0x20000bb0   Data          88  main.o(.bss.task2_s)
+    task3_s                                  0x20000c08   Data          88  main.o(.bss.task3_s)
+    taskEnv1                                 0x20000c60   Data        2048  main.o(.bss.taskEnv1)
+    taskEnv2                                 0x20001460   Data        2048  main.o(.bss.taskEnv2)
+    taskEnv3                                 0x20001c60   Data        2048  main.o(.bss.taskEnv3)
+    __stack_limit                            0x20002460   Data           0  startup_armcm3.o(STACK)
+    __initial_sp                             0x20002860   Data           0  startup_armcm3.o(STACK)
 
 
 
@@ -646,127 +689,147 @@ Memory Map of the image
 
   Image Entry point : 0x000003c1
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00000a10, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00000d70, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000a04, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000d64, Max: 0x00040000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x000003c0   Data   RO          170    RESET               startup_armcm3.o
-    0x000003c0   0x000003c0   0x00000008   Code   RO          193  * !!!main             c_w.l(__main.o)
-    0x000003c8   0x000003c8   0x00000034   Code   RO          371    !!!scatter          c_w.l(__scatter.o)
-    0x000003fc   0x000003fc   0x0000001a   Code   RO          373    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x00000000   0x00000000   0x000003c0   Data   RO          179    RESET               startup_armcm3.o
+    0x000003c0   0x000003c0   0x00000008   Code   RO          202  * !!!main             c_w.l(__main.o)
+    0x000003c8   0x000003c8   0x00000034   Code   RO          380    !!!scatter          c_w.l(__scatter.o)
+    0x000003fc   0x000003fc   0x0000001a   Code   RO          382    !!handler_copy      c_w.l(__scatter_copy.o)
     0x00000416   0x00000416   0x00000002   PAD
-    0x00000418   0x00000418   0x0000001c   Code   RO          375    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x00000434   0x00000434   0x00000002   Code   RO          225    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          236    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          238    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          240    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          243    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          245    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          247    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          250    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          252    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          254    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          256    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          258    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          260    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          262    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          264    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          266    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          268    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          270    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          274    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          276    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          278    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000000   Code   RO          280    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
-    0x00000436   0x00000436   0x00000002   Code   RO          281    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
-    0x00000438   0x00000438   0x00000002   Code   RO          310    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x0000043a   0x0000043a   0x00000000   Code   RO          322    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x0000043a   0x0000043a   0x00000000   Code   RO          324    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x0000043a   0x0000043a   0x00000000   Code   RO          327    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x0000043a   0x0000043a   0x00000000   Code   RO          330    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x0000043a   0x0000043a   0x00000000   Code   RO          332    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x0000043a   0x0000043a   0x00000000   Code   RO          335    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x0000043a   0x0000043a   0x00000002   Code   RO          336    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x0000043c   0x0000043c   0x00000000   Code   RO          195    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x0000043c   0x0000043c   0x00000000   Code   RO          197    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x0000043c   0x0000043c   0x00000004   Code   RO          211    .ARM.Collect$$rtentry$$00000005  c_w.l(__rtentry5.o)
-    0x00000440   0x00000440   0x00000000   Code   RO          199    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x00000440   0x00000440   0x00000004   Code   RO          200    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x00000444   0x00000444   0x00000000   Code   RO          202    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x00000444   0x00000444   0x00000008   Code   RO          203    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x0000044c   0x0000044c   0x00000004   Code   RO          212    .ARM.Collect$$rtentry$$00002716  c_w.l(__rtentry5.o)
-    0x00000450   0x00000450   0x00000002   Code   RO          233    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x00000452   0x00000452   0x00000000   Code   RO          290    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x00000452   0x00000452   0x00000004   Code   RO          291    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x00000456   0x00000456   0x00000006   Code   RO          292    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
-    0x0000045c   0x0000045c   0x00000016   Code   RO          164    .text               cpu_1.o
+    0x00000418   0x00000418   0x0000001c   Code   RO          384    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x00000434   0x00000434   0x00000002   Code   RO          234    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          245    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          247    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          249    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          252    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          254    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          256    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          259    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          261    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          263    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          265    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          267    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          269    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          271    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          273    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          275    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          277    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          279    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          283    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          285    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          287    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000000   Code   RO          289    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
+    0x00000436   0x00000436   0x00000002   Code   RO          290    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
+    0x00000438   0x00000438   0x00000002   Code   RO          319    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x0000043a   0x0000043a   0x00000000   Code   RO          331    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x0000043a   0x0000043a   0x00000000   Code   RO          333    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x0000043a   0x0000043a   0x00000000   Code   RO          336    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x0000043a   0x0000043a   0x00000000   Code   RO          339    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x0000043a   0x0000043a   0x00000000   Code   RO          341    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x0000043a   0x0000043a   0x00000000   Code   RO          344    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x0000043a   0x0000043a   0x00000002   Code   RO          345    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x0000043c   0x0000043c   0x00000000   Code   RO          204    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x0000043c   0x0000043c   0x00000000   Code   RO          206    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x0000043c   0x0000043c   0x00000004   Code   RO          220    .ARM.Collect$$rtentry$$00000005  c_w.l(__rtentry5.o)
+    0x00000440   0x00000440   0x00000000   Code   RO          208    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x00000440   0x00000440   0x00000004   Code   RO          209    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x00000444   0x00000444   0x00000000   Code   RO          211    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x00000444   0x00000444   0x00000008   Code   RO          212    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x0000044c   0x0000044c   0x00000004   Code   RO          221    .ARM.Collect$$rtentry$$00002716  c_w.l(__rtentry5.o)
+    0x00000450   0x00000450   0x00000002   Code   RO          242    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x00000452   0x00000452   0x00000000   Code   RO          299    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x00000452   0x00000452   0x00000004   Code   RO          300    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x00000456   0x00000456   0x00000006   Code   RO          301    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x0000045c   0x0000045c   0x00000016   Code   RO          161    .text               cpu_1.o
     0x00000472   0x00000472   0x00000002   PAD
-    0x00000474   0x00000474   0x00000038   Code   RO          171    .text               startup_armcm3.o
-    0x000004ac   0x000004ac   0x0000004e   Code   RO          189    .text               c_w.l(rt_memclr_w.o)
-    0x000004fa   0x000004fa   0x00000006   Code   RO          191    .text               c_w.l(heapauxi.o)
-    0x00000500   0x00000500   0x00000012   Code   RO          218    .text               c_w.l(exit.o)
-    0x00000512   0x00000512   0x00000002   Code   RO          286    .text               c_w.l(use_no_semi.o)
-    0x00000514   0x00000514   0x00000000   Code   RO          288    .text               c_w.l(indicate_semi.o)
-    0x00000514   0x00000514   0x0000000c   Code   RO          300    .text               c_w.l(sys_exit.o)
-    0x00000520   0x00000520   0x00000024   Code   RO           73    .text.ClearBitToPrioTable  priority.o
-    0x00000544   0x00000544   0x00000044   Code   RO           81    .text.GetHighestPrioFromPrioTable  priority.o
-    0x00000588   0x00000588   0x00000002   Code   RO           83    .text.InitDelayList  priority.o
-    0x0000058a   0x0000058a   0x00000002   PAD
-    0x0000058c   0x0000058c   0x0000000e   Code   RO           75    .text.InitPrioTable  priority.o
+    0x00000474   0x00000474   0x00000038   Code   RO          180    .text               startup_armcm3.o
+    0x000004ac   0x000004ac   0x0000004e   Code   RO          198    .text               c_w.l(rt_memclr_w.o)
+    0x000004fa   0x000004fa   0x00000006   Code   RO          200    .text               c_w.l(heapauxi.o)
+    0x00000500   0x00000500   0x00000012   Code   RO          227    .text               c_w.l(exit.o)
+    0x00000512   0x00000512   0x00000002   Code   RO          295    .text               c_w.l(use_no_semi.o)
+    0x00000514   0x00000514   0x00000000   Code   RO          297    .text               c_w.l(indicate_semi.o)
+    0x00000514   0x00000514   0x0000000c   Code   RO          309    .text               c_w.l(sys_exit.o)
+    0x00000520   0x00000520   0x00000044   Code   RO           90    .text.GetHighestPrioFromPrioTable  priority.o
+    0x00000564   0x00000564   0x0000000e   Code   RO           84    .text.InitPrioTable  priority.o
+    0x00000572   0x00000572   0x00000002   PAD
+    0x00000574   0x00000574   0x00000014   Code   RO           70    .text.InitReadyList  priority.o
+    0x00000588   0x00000588   0x00000012   Code   RO          129    .text.InitTickSpokeList  systick.o
     0x0000059a   0x0000059a   0x00000002   PAD
-    0x0000059c   0x0000059c   0x00000014   Code   RO           61    .text.InitReadyList  priority.o
-    0x000005b0   0x000005b0   0x00000062   Code   RO           67    .text.InsertNodeToReadyListTail  priority.o
-    0x00000612   0x00000612   0x00000002   PAD
-    0x00000614   0x00000614   0x00000024   Code   RO           65    .text.SetBitToPrioTable  priority.o
-    0x00000638   0x00000638   0x00000042   Code   RO          155    .text.SysTick_Handler  systick.o
-    0x0000067a   0x0000067a   0x00000002   PAD
-    0x0000067c   0x0000067c   0x00000026   Code   RO          178    .text.SystemInit    system_armcm3.o
-    0x000006a2   0x000006a2   0x00000002   PAD
-    0x000006a4   0x000006a4   0x00000040   Code   RO           39    .text._MK_Idle_Init_  idle.o
-    0x000006e4   0x000006e4   0x00000060   Code   RO          111    .text.__MK_Main     system.o
-    0x00000744   0x00000744   0x0000003c   Code   RO           99    .text._mk_task_switch_  switch.o
-    0x00000780   0x00000780   0x0000009c   Code   RO            8    .text.main          main.o
-    0x0000081c   0x0000081c   0x00000040   Code   RO          153    .text.mk_SystickInit  systick.o
-    0x0000085c   0x0000085c   0x000000a0   Code   RO          109    .text.mk_TaskInit   system.o
-    0x000008fc   0x000008fc   0x00000028   Code   RO           27    .text.mk_delay_ms   delay.o
-    0x00000924   0x00000924   0x00000002   Code   RO           37    .text.mk_idle_task  idle.o
-    0x00000926   0x00000926   0x00000002   PAD
-    0x00000928   0x00000928   0x0000001e   Code   RO            2    .text.task1         main.o
-    0x00000946   0x00000946   0x00000002   PAD
-    0x00000948   0x00000948   0x0000001e   Code   RO            4    .text.task2         main.o
-    0x00000966   0x00000966   0x00000002   PAD
-    0x00000968   0x00000968   0x0000001e   Code   RO            6    .text.task3         main.o
-    0x00000986   0x00000986   0x00000002   PAD
-    0x00000988   0x00000988   0x0000005c   Code   RO          146    CODE                cpu.o
-    0x000009e4   0x000009e4   0x00000020   Data   RO          370    Region$$Table       anon$$obj.o
+    0x0000059c   0x0000059c   0x00000062   Code   RO           76    .text.InsertNodeToReadyListTail  priority.o
+    0x000005fe   0x000005fe   0x00000002   PAD
+    0x00000600   0x00000600   0x00000026   Code   RO           78    .text.MoveHeadToTailInReadList  priority.o
+    0x00000626   0x00000626   0x00000002   PAD
+    0x00000628   0x00000628   0x00000088   Code   RO           80    .text.RemoveNodeFromReadyList  priority.o
+    0x000006b0   0x000006b0   0x00000024   Code   RO           74    .text.SetBitToPrioTable  priority.o
+    0x000006d4   0x000006d4   0x00000036   Code   RO          168    .text.SysTick_Handler  sys_tick.o
+    0x0000070a   0x0000070a   0x00000002   PAD
+    0x0000070c   0x0000070c   0x00000026   Code   RO          187    .text.SystemInit    system_armcm3.o
+    0x00000732   0x00000732   0x00000002   PAD
+    0x00000734   0x00000734   0x00000072   Code   RO          133    .text.UpdateToTickSpokeList  systick.o
+    0x000007a6   0x000007a6   0x00000002   PAD
+    0x000007a8   0x000007a8   0x00000040   Code   RO           34    .text._MK_Idle_Init_  idle.o
+    0x000007e8   0x000007e8   0x0000003c   Code   RO          100    .text._MK_TaskSwitch_  scheduler.o
+    0x00000824   0x00000824   0x00000034   Code   RO          102    .text._MK_TaskTimeSliceSched  scheduler.o
+    0x00000858   0x00000858   0x00000098   Code   RO          114    .text.__MK_Main     system.o
+    0x000008f0   0x000008f0   0x000000c4   Code   RO           10    .text.main          main.o
+    0x000009b4   0x000009b4   0x0000000e   Code   RO          112    .text.main_task     system.o
+    0x000009c2   0x000009c2   0x00000002   PAD
+    0x000009c4   0x000009c4   0x00000040   Code   RO          166    .text.mk_SystickInit  sys_tick.o
+    0x00000a04   0x00000a04   0x000000aa   Code   RO           45    .text.mk_TaskInit   mktask.o
+    0x00000aae   0x00000aae   0x00000002   PAD
+    0x00000ab0   0x00000ab0   0x0000002e   Code   RO           49    .text.mk_Task_Delete  mktask.o
+    0x00000ade   0x00000ade   0x00000002   PAD
+    0x00000ae0   0x00000ae0   0x000000ca   Code   RO           47    .text.mk_Task_Init  mktask.o
+    0x00000baa   0x00000baa   0x00000002   PAD
+    0x00000bac   0x00000bac   0x0000009a   Code   RO          125    .text.mk_delay_ms   systick.o
+    0x00000c46   0x00000c46   0x00000002   PAD
+    0x00000c48   0x00000c48   0x00000002   Code   RO           32    .text.mk_idle_task  idle.o
+    0x00000c4a   0x00000c4a   0x00000002   PAD
+    0x00000c4c   0x00000c4c   0x0000001e   Code   RO          146    .text.mk_strlen     mkstr.o
+    0x00000c6a   0x00000c6a   0x00000002   PAD
+    0x00000c6c   0x00000c6c   0x00000032   Code   RO          144    .text.mk_strncpy    mkstr.o
+    0x00000c9e   0x00000c9e   0x00000002   PAD
+    0x00000ca0   0x00000ca0   0x0000001e   Code   RO            4    .text.task1         main.o
+    0x00000cbe   0x00000cbe   0x00000002   PAD
+    0x00000cc0   0x00000cc0   0x00000012   Code   RO            6    .text.task2         main.o
+    0x00000cd2   0x00000cd2   0x00000002   PAD
+    0x00000cd4   0x00000cd4   0x00000012   Code   RO            8    .text.task3         main.o
+    0x00000ce6   0x00000ce6   0x00000002   PAD
+    0x00000ce8   0x00000ce8   0x0000005c   Code   RO          155    CODE                cpu.o
+    0x00000d44   0x00000d44   0x00000020   Data   RO          379    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x00000a08, Size: 0x00002018, Max: 0x00020000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x00000d68, Size: 0x00002860, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00000a08   0x00000004   Data   RW          180    .data.SystemCoreClock  system_armcm3.o
-    0x20000004   0x00000a0c   0x00000004   PAD
-    0x20000008        -       0x00000004   Zero   RW           51    .bss._MK_Current_Pro_  mktype.o
-    0x2000000c        -       0x00000004   Zero   RW           50    .bss._MK_Highest_Prio_Index  mktype.o
-    0x20000010        -       0x00000004   Zero   RW           52    .bss._MK_Highest_Pro_  mktype.o
-    0x20000014        -       0x00000004   Zero   RW           55    .bss._MK_PrioTable  mktype.o
-    0x20000018        -       0x00000180   Zero   RW           54    .bss._MK_ReadyList  mktype.o
-    0x20000198        -       0x00000004   Zero   RW           10    .bss.bit1           main.o
-    0x2000019c        -       0x00000004   Zero   RW           11    .bss.bit2           main.o
-    0x200001a0        -       0x00000004   Zero   RW           12    .bss.bit3           main.o
-    0x200001a4        -       0x0000001c   Zero   RW           41    .bss.idletask       idle.o
-    0x200001c0        -       0x00000200   Zero   RW           42    .bss.idletaskEnv    idle.o
-    0x200003c0        -       0x00000800   Zero   RW           14    .bss.taskEnv1       main.o
-    0x20000bc0        -       0x00000800   Zero   RW           16    .bss.taskEnv2       main.o
-    0x200013c0        -       0x00000800   Zero   RW           18    .bss.taskEnv3       main.o
-    0x20001bc0        -       0x0000001c   Zero   RW           13    .bss.task_1         main.o
-    0x20001bdc        -       0x0000001c   Zero   RW           15    .bss.task_2         main.o
-    0x20001bf8        -       0x0000001c   Zero   RW           17    .bss.task_3         main.o
-    0x20001c14   0x00000a0c   0x00000004   PAD
-    0x20001c18        -       0x00000400   Zero   RW          168    STACK               startup_armcm3.o
+    0x20000000   0x00000d68   0x00000004   Data   RW          189    .data.SystemCoreClock  system_armcm3.o
+    0x20000004   0x00000d6c   0x00000004   PAD
+    0x20000008        -       0x00000004   Zero   RW          135    .bss.MK_TickCtr     systick.o
+    0x2000000c        -       0x000000c0   Zero   RW           64    .bss.MK_TickSpokeList  mktype.o
+    0x200000cc        -       0x00000004   Zero   RW           60    .bss._MK_Current_Pro_  mktype.o
+    0x200000d0        -       0x00000004   Zero   RW           59    .bss._MK_Highest_Prio_Index  mktype.o
+    0x200000d4        -       0x00000004   Zero   RW           61    .bss._MK_Highest_Pro_  mktype.o
+    0x200000d8        -       0x00000004   Zero   RW           63    .bss._MK_PrioTable  mktype.o
+    0x200000dc        -       0x00000180   Zero   RW           62    .bss._MK_ReadyList  mktype.o
+    0x2000025c        -       0x00000004   Zero   RW           12    .bss.bit1           main.o
+    0x20000260        -       0x00000004   Zero   RW           13    .bss.bit2           main.o
+    0x20000264        -       0x00000004   Zero   RW           14    .bss.bit3           main.o
+    0x20000268        -       0x00000038   Zero   RW           36    .bss.idletask       idle.o
+    0x200002a0        -       0x00000080   Zero   RW           37    .bss.idletaskEnv    idle.o
+    0x20000320        -       0x00000038   Zero   RW          116    .bss.maintask       system.o
+    0x20000358        -       0x00000800   Zero   RW          117    .bss.maintaskEnv    system.o
+    0x20000b58        -       0x00000058   Zero   RW           15    .bss.task1_s        main.o
+    0x20000bb0        -       0x00000058   Zero   RW           16    .bss.task2_s        main.o
+    0x20000c08        -       0x00000058   Zero   RW           17    .bss.task3_s        main.o
+    0x20000c60        -       0x00000800   Zero   RW           18    .bss.taskEnv1       main.o
+    0x20001460        -       0x00000800   Zero   RW           19    .bss.taskEnv2       main.o
+    0x20001c60        -       0x00000800   Zero   RW           20    .bss.taskEnv3       main.o
+    0x20002460        -       0x00000400   Zero   RW          177    STACK               startup_armcm3.o
 
 
 ==============================================================================
@@ -776,23 +839,25 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        92         16          0          0          0        504   cpu.o
-        22          0          0          0          0        472   cpu_1.o
-        40          0          0          0          0        788   delay.o
-        66          8          0          0        540       1225   idle.o
-       246         24          0          0       6240       1569   main.o
-         0          0          0          0        400       1106   mktype.o
-       274          0          0          0          0       5111   priority.o
-        56         10        960          0       1024       1160   startup_armcm3.o
-        60          0          0          0          0        662   switch.o
-       256          0          0          0          0       2269   system.o
-        38          0          0          4          0       1386   system_armcm3.o
-       130          0          0          0          0       3104   systick.o
+        92         16          0          0          0        500   cpu.o
+        22          0          0          0          0        468   cpu_1.o
+        66          8          0          0        184       1583   idle.o
+       262         24          0          0       6420       2455   main.o
+        80          0          0          0          0       1069   mkstr.o
+       418          0          0          0          0       3831   mktask.o
+         0          0          0          0        592       1484   mktype.o
+       410          0          0          0          0       4981   priority.o
+       112          0          0          0          0       1727   scheduler.o
+        56         10        960          0       1024       1156   startup_armcm3.o
+       118          0          0          0          0       2897   sys_tick.o
+       166          8          0          0       2104       1643   system.o
+        38          0          0          4          0       1383   system_armcm3.o
+       286          0          0          0          4       3915   systick.o
 
     ----------------------------------------------------------------------
-      1300         58        992          4       8212      19356   Object Totals
+      2164         66        992          4      10332      29092   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        20          0          0          0          8          0   (incl. Padding)
+        38          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -838,15 +903,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1572         74        992          4       8212      19572   Grand Totals
-      1572         74        992          4       8212      19572   ELF Image Totals
-      1572         74        992          4          0          0   ROM Totals
+      2436         82        992          4      10332      29268   Grand Totals
+      2436         82        992          4      10332      29268   ELF Image Totals
+      2436         82        992          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 2564 (   2.50kB)
-    Total RW  Size (RW Data + ZI Data)              8216 (   8.02kB)
-    Total ROM Size (Code + RO Data + RW Data)       2568 (   2.51kB)
+    Total RO  Size (Code + RO Data)                 3428 (   3.35kB)
+    Total RW  Size (RW Data + ZI Data)             10336 (  10.09kB)
+    Total ROM Size (Code + RO Data + RW Data)       3432 (   3.35kB)
 
 ==============================================================================
 
