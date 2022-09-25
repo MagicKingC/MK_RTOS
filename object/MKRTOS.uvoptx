@@ -138,24 +138,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>116</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>2330</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\kernel\code\sys\src\system.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\MKRTOS\../kernel/code/sys/src/system.c\116</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -170,62 +153,52 @@
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>task_1</ItemText>
+          <ItemText>_MK_Current_Pro_</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>task_2</ItemText>
+          <ItemText>_MK_Highest_Pro_</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>_MK_Current_Pro_</ItemText>
+          <ItemText>_MK_Highest_Prio_Index</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>_MK_Highest_Pro_</ItemText>
+          <ItemText>bit3</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>_MK_Highest_Prio_Index</ItemText>
+          <ItemText>MK_TickCtr</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>bit3</ItemText>
+          <ItemText>_MK_ReadyList</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>MK_TickCtr</ItemText>
+          <ItemText>_MK_PrioTable</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>1</WinNumber>
-          <ItemText>_MK_ReadyList</ItemText>
+          <ItemText>MK_TickSpokeList</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
           <WinNumber>1</WinNumber>
-          <ItemText>_MK_PrioTable</ItemText>
+          <ItemText>idletask</ItemText>
         </Ww>
         <Ww>
           <count>11</count>
           <WinNumber>1</WinNumber>
-          <ItemText>MK_TickSpokeList</ItemText>
-        </Ww>
-        <Ww>
-          <count>12</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>idletask</ItemText>
-        </Ww>
-        <Ww>
-          <count>13</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>task_3</ItemText>
+          <ItemText>tttt</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -274,17 +247,17 @@
         <Wi>
           <IntNumber>0</IntNumber>
           <FirstString>`bit1</FirstString>
-          <SecondString>FF0000000000000000000000000000000000F03F0000000000000000000000000000000062697431000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000700000001000000555555555555D53F0F00000000000000000000000000000000000000B4070000</SecondString>
+          <SecondString>FF0000000000000000000000000000000000F03F0100000000000000000000000000000062697431000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000700000001000000565555555555D53F1B00000000000000000000000000000000000000B4070000</SecondString>
         </Wi>
         <Wi>
           <IntNumber>1</IntNumber>
-          <FirstString>`bit2</FirstString>
-          <SecondString>008000000000000000000000000000000000F03F0000000000000000000000000000000062697432000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000700000002000000555555555555D53F0F00000000000000000000000000000000000000B0070000</SecondString>
+          <FirstString>`bit3</FirstString>
+          <SecondString>00800000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000062697433000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000565555555555D53F1B00000000000000000000000000000000000000CC0B0000</SecondString>
         </Wi>
         <Wi>
           <IntNumber>2</IntNumber>
-          <FirstString>`bit3</FirstString>
-          <SecondString>000080000000000000000000000000000000F03F0000000000000000000000000000000062697433000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000700000003000000555555555555D53F0F0000000000000000000000000000000000000074040000</SecondString>
+          <FirstString>`bit2</FirstString>
+          <SecondString>00008000000000000000E0410000C0FFFFFFDF410100000000000000000000000000000062697432000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000003000000555555555555D53F1B00000000000000000000000000000000000000BC0B0000</SecondString>
         </Wi>
       </LogicAnalyzers>
     </TargetOption>
@@ -311,7 +284,7 @@
   </Group>
 
   <Group>
-    <GroupName>kernel/code/sys/src</GroupName>
+    <GroupName>kernel/code/src</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -323,8 +296,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\src\delay.c</PathWithFileName>
-      <FilenameWithoutPath>delay.c</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\src\idle.c</PathWithFileName>
+      <FilenameWithoutPath>idle.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -335,8 +308,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\src\idle.c</PathWithFileName>
-      <FilenameWithoutPath>idle.c</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\src\mktask.c</PathWithFileName>
+      <FilenameWithoutPath>mktask.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -347,7 +320,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\src\mktype.c</PathWithFileName>
+      <PathWithFileName>..\kernel\code\src\mktype.c</PathWithFileName>
       <FilenameWithoutPath>mktype.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -359,7 +332,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\src\priority.c</PathWithFileName>
+      <PathWithFileName>..\kernel\code\src\priority.c</PathWithFileName>
       <FilenameWithoutPath>priority.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -371,8 +344,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\src\switch.c</PathWithFileName>
-      <FilenameWithoutPath>switch.c</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\src\scheduler.c</PathWithFileName>
+      <FilenameWithoutPath>scheduler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -383,7 +356,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\src\system.c</PathWithFileName>
+      <PathWithFileName>..\kernel\code\src\system.c</PathWithFileName>
       <FilenameWithoutPath>system.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -395,31 +368,31 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\src\time_stamp.c</PathWithFileName>
-      <FilenameWithoutPath>time_stamp.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>9</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\src\tick_spoke.c</PathWithFileName>
-      <FilenameWithoutPath>tick_spoke.c</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\src\systick.c</PathWithFileName>
+      <FilenameWithoutPath>systick.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
-    <GroupName>kernel/code/sys/inc</GroupName>
+    <GroupName>kernel/code/include</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>9</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\kernel\code\include\idle.h</PathWithFileName>
+      <FilenameWithoutPath>idle.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
     <File>
       <GroupNumber>3</GroupNumber>
       <FileNumber>10</FileNumber>
@@ -427,8 +400,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\delay.h</PathWithFileName>
-      <FilenameWithoutPath>delay.h</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\include\mkrtos.h</PathWithFileName>
+      <FilenameWithoutPath>mkrtos.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -439,8 +412,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\idle.h</PathWithFileName>
-      <FilenameWithoutPath>idle.h</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\include\mkrtos_config.h</PathWithFileName>
+      <FilenameWithoutPath>mkrtos_config.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -451,8 +424,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\mkrtos.h</PathWithFileName>
-      <FilenameWithoutPath>mkrtos.h</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\include\mktask.h</PathWithFileName>
+      <FilenameWithoutPath>mktask.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -463,8 +436,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\mkrtos_config.h</PathWithFileName>
-      <FilenameWithoutPath>mkrtos_config.h</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\include\mktype.h</PathWithFileName>
+      <FilenameWithoutPath>mktype.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -475,8 +448,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\mkrtos_inc.h</PathWithFileName>
-      <FilenameWithoutPath>mkrtos_inc.h</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\include\priority.h</PathWithFileName>
+      <FilenameWithoutPath>priority.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -487,8 +460,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\mktype.h</PathWithFileName>
-      <FilenameWithoutPath>mktype.h</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\include\scheduler.h</PathWithFileName>
+      <FilenameWithoutPath>scheduler.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -499,8 +472,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\priority.h</PathWithFileName>
-      <FilenameWithoutPath>priority.h</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\include\system.h</PathWithFileName>
+      <FilenameWithoutPath>system.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -511,84 +484,48 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\switch.h</PathWithFileName>
-      <FilenameWithoutPath>switch.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>18</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\system.h</PathWithFileName>
-      <FilenameWithoutPath>system.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>19</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\time_stamp.h</PathWithFileName>
-      <FilenameWithoutPath>time_stamp.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>20</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\sys\inc\tick_spoke.h</PathWithFileName>
-      <FilenameWithoutPath>tick_spoke.h</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\include\systick.h</PathWithFileName>
+      <FilenameWithoutPath>systick.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
-    <GroupName>kernel/code/tool/list</GroupName>
+    <GroupName>kernel/code/tools/src</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>21</FileNumber>
+      <FileNumber>18</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\tools\list\list.c</PathWithFileName>
-      <FilenameWithoutPath>list.c</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\tools\src\mkstr.c</PathWithFileName>
+      <FilenameWithoutPath>mkstr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
-    <GroupName>kernel/code/tool/str</GroupName>
+    <GroupName>kernel/code/tools/include</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>22</FileNumber>
-      <FileType>1</FileType>
+      <FileNumber>19</FileNumber>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\code\tools\str\str.c</PathWithFileName>
-      <FilenameWithoutPath>str.c</FilenameWithoutPath>
+      <PathWithFileName>..\kernel\code\tools\include\mkstr.h</PathWithFileName>
+      <FilenameWithoutPath>mkstr.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -602,7 +539,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>23</FileNumber>
+      <FileNumber>20</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -614,25 +551,25 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>24</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\kernel\libcpu\m3\systick.c</PathWithFileName>
-      <FilenameWithoutPath>systick.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>6</GroupNumber>
-      <FileNumber>25</FileNumber>
+      <FileNumber>21</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\kernel\libcpu\m3\cpu.asm</PathWithFileName>
       <FilenameWithoutPath>cpu.asm</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>22</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\kernel\libcpu\m3\sys_tick.c</PathWithFileName>
+      <FilenameWithoutPath>sys_tick.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -648,7 +585,7 @@
 
   <Group>
     <GroupName>::Device</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>

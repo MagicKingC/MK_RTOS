@@ -106,7 +106,10 @@ Reset_Handler   PROC
                 IMPORT   SystemInit
                 IMPORT   __MK_Main
 
-                LDR      R0, =SystemInit
+
+
+
+				LDR      R0, =SystemInit
                 BLX      R0
                 LDR      R0, =__MK_Main
                 BX       R0
