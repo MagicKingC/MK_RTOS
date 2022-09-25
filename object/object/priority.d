@@ -1,5 +1,4 @@
-./object/priority.o: ..\kernel\code\sys\src\priority.c \
-  ..\kernel\code\sys\inc\priority.h \
-  ..\kernel\code\sys\inc\mkrtos_config.h \
-  ..\kernel\code\sys\inc\mkrtos_inc.h ..\kernel\code\sys\inc\mktype.h \
-  ..\kernel\code\sys\inc\system.h
+./object/priority.o: ..\kernel\code\src\priority.c \
+  ..\kernel\code\include\priority.h \
+  ..\kernel\code\include\mkrtos_config.h ..\kernel\code\include\mktask.h \
+  ..\kernel\code\include\mktype.h ..\kernel\code\include\system.h

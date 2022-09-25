@@ -1,6 +1,5 @@
-./object/main.o: ..\app\main.c ..\kernel\code\sys\inc\mkrtos.h \
-  ..\kernel\code\sys\inc\switch.h ..\kernel\code\sys\inc\mktype.h \
-  ..\kernel\code\sys\inc\system.h ..\kernel\code\sys\inc\mkrtos_inc.h \
-  ..\kernel\code\sys\inc\mkrtos_config.h \
-  ..\kernel\code\sys\inc\time_stamp.h ..\kernel\code\sys\inc\delay.h \
-  ..\kernel\code\sys\inc\priority.h
+./object/main.o: ..\app\main.c ..\kernel\code\include\mkrtos.h \
+  ..\kernel\code\include\scheduler.h ..\kernel\code\include\mktype.h \
+  ..\kernel\code\include\mktask.h ..\kernel\code\include\mkrtos_config.h \
+  ..\kernel\code\include\system.h ..\kernel\code\include\priority.h \
+  ..\kernel\code\include\systick.h ..\kernel\code\tools\include\mkstr.h

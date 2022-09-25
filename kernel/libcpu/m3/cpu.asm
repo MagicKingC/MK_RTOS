@@ -31,4 +31,5 @@ _MK_SR_Restore_ PROC
 	MSR 	PRIMASK,R0
 	BX      LR
 	ENDP
-
+		
+	END
