@@ -13,7 +13,7 @@ MK_RTOS_EXT void _MK_SR_Restore_(mk_uint32_t reg_value);
 
 
 /**
- * @brief ½øÈëÁÙ½çÇø
+ * @brief è¿›å…¥ä¸´ç•ŒåŒº
  */
 #define mk_critical_enter() (\
 	{mk_uint32_t reg_val;\

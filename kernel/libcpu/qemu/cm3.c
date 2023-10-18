@@ -9,8 +9,22 @@ char mk_putc(mk_uint8_t *ch)
     return *ch;
 }
 
-void init_systick()
+extern mk_uint32_t _bss;
+extern mk_uint32_t _ebss;
+
+static inline void clear_bss(void)
 {
+    mk_uint8_t *start = (mk_uint8_t *)_bss;
+    while ((mk_uint32_t)start < _ebss)
+    {
+        *start = 0;
+        start++;
+    }
+}
+
+__weak void mk_SystickInit(mk_uint32_t ms)
+{
+    clear_bss();
     systick_t *systick_p = (systick_t *)SYSTICK_BASE;
     mk_uint8_t *sys_prio_p = (mk_uint8_t *)SYSTICK_PRIO_REG;
     *sys_prio_p = 0xf0;
@@ -22,6 +36,18 @@ void init_systick()
 void systick_handler(void)
 {
     mk_printk("systick_handler\n");
+    mk_uint32_t c_res = mk_critical_enter();
+
+    UpdateToTickSpokeList();
+
+#if USE_TIME_SLICE
+    _MK_TaskTimeSliceSched(&_MK_ReadyList[_MK_Highest_Prio_Index]);
+#endif
+
+    mk_critical_exit(c_res);
+
+    _MK_TaskSwitch_();
+    
 }
 
 // void trigger_pend_sv(void)

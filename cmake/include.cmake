@@ -3,8 +3,7 @@ set(kernel_head "kernel/code/include"
 "kernel/code/tools/include"
 )
 # qemu
-set(mcu_asm "kernel/libcpu/qemu/cm3_s.s" 
-            "kernel/libcpu/qemu/mcu_mc3.asm"
+set(mcu_asm "kernel/libcpu/qemu/cm3_s.s"
             "kernel/libcpu/qemu/mcu_mc3.s"
 )
 

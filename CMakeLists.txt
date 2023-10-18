@@ -26,10 +26,10 @@ project(mkrtos)
 set(root_dir ${CMAKE_SOURCE_DIR})
 
 # 编译参数
-set(flags "-Wall -g -fno-builtin -gdwarf-2 -gstrict-dwarf -mcpu=cortex-m3 -mthumb -nostartfiles  --specs=nosys.specs -std=c11")
+set(COM_FLAGS "${MCPU_FLAGS} ${VFP_FLAGS} -Wall -g -fno-builtin -gdwarf-2 -gstrict-dwarf -mcpu=cortex-m3 -mthumb -nostartfiles  --specs=nosys.specs -std=c11")
 
 #设置编译参数
-set(CMAKE_C_FLAGS ${flags})
+set(CMAKE_C_FLAGS ${COM_FLAGS})
 
 # 设置链接脚本
 set(link_scripts ${CMAKE_SOURCE_DIR}/cmake/rtos.ld)
@@ -37,7 +37,7 @@ set(CMAKE_EXE_LINKER_FLAGS "-T ${link_scripts}")
 
 # 支持汇编指令编译
 enable_language(ASM)
-set(CMAKE_ASM_FLAGS ${flags})
+set(CMAKE_ASM_FLAGS ${COM_FLAGS})
 
 #源文件
 include(${CMAKE_SOURCE_DIR}/cmake/include.cmake)

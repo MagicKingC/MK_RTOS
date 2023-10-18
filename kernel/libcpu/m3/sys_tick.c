@@ -2,13 +2,13 @@
 #include <mkrtos.h>
 
 void mk_SystickInit(mk_uint32 ms){
-	//…Ë÷√ ±º‰Ω⁄≈ƒ
+	//ËÆæÁΩÆÊó∂Èó¥ËäÇÊãç
 	SysTick->LOAD = (ms * SystemCoreClock/1000)-1;
-	//≈‰÷√”≈œ»º∂
+	//ÈÖçÁΩÆ‰ºòÂÖàÁ∫ß
 	NVIC_SetPriority(SysTick_IRQn,(1<<__NVIC_PRIO_BITS) -1);
-	//∏¥Œªµ±«∞º∆ ˝∆˜µƒ÷µ
+	//Â§ç‰ΩçÂΩìÂâçËÆ°Êï∞Âô®ÁöÑÂÄº
 	SysTick->VAL = 0;
-	//—°‘Ò ±÷”‘¥, πƒ‹÷–∂œ∫Õº∆ ˝∆˜
+	//ÈÄâÊã©Êó∂ÈíüÊ∫ê,‰ΩøËÉΩ‰∏≠Êñ≠ÂíåËÆ°Êï∞Âô®
 	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk|SysTick_CTRL_TICKINT_Msk|SysTick_CTRL_ENABLE_Msk;
 	
 }
