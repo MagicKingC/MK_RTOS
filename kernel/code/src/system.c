@@ -1,51 +1,52 @@
 #include <mkrtos.h>
 #include <idle.h>
 
-/* mainº¯Êı */
+/* mainå‡½æ•° */
 static mk_TaskStack maintaskEnv[MAIN_TASK_STACK_SIZE];
 mk_TaskTcb maintask;
 void main_task(void *param){
+	mk_printk("main_task\n");
 	main();
-	//´Ómainº¯ÊıÍË³ö£¬Ö÷¶¯É¾³ı¸ÃÈÎÎñ
+	//ä»mainå‡½æ•°é€€å‡ºï¼Œä¸»åŠ¨åˆ é™¤è¯¥ä»»åŠ¡
 	mk_Task_Delete(MK_NULL);
 }
 
 void __MK_Main(void){
-	//¹ØÖĞ¶Ï
+	//å…³ä¸­æ–­
 	_CPU_InterruptDisable_();
 	
-	//³õÊ¼»¯ÏµÍ³¶¨Ê±Æ÷
+	//åˆå§‹åŒ–ç³»ç»Ÿå®šæ—¶å™¨
 	mk_SystickInit(1);
 	
 #if USE_TIME_STAMP
-	//³õÊ¼»¯Ê±¼ä´Á
+	//åˆå§‹åŒ–æ—¶é—´æˆ³
 	mk_time_stamp_init();
 #endif
 	_MK_Current_Pro_ = MK_NULL;
 	_MK_Highest_Pro_ = MK_NULL;
-	
-	//³õÊ¼»¯ÓÅÏÈ¼¶±í
+
+	//åˆå§‹åŒ–ä¼˜å…ˆçº§è¡¨
 	InitPrioTable();
 	
-	//³õÊ¼»¯¾ÍĞ÷ÁĞ±í
+	//åˆå§‹åŒ–å°±ç»ªåˆ—è¡¨
 	InitReadyList();
 	
-	//³õÊ¼»¯Ê±»ùÁĞ±í
+	//åˆå§‹åŒ–æ—¶åŸºåˆ—è¡¨
 	InitTickSpokeList();
 	
-	//³õÊ¼»¯¿ÕÏĞÈÎÎñ
+	//åˆå§‹åŒ–ç©ºé—²ä»»åŠ¡
 	_MK_Idle_Init_();
-	
-	//main();
-	mk_TaskInit("main",&maintask,(void *)main_task,MK_NULL,&maintaskEnv[512],MAIN_TASK_PRIORITY,1);
+
+	main();
+	// mk_TaskInit("main",&maintask,(void *)main_task,MK_NULL,&maintaskEnv[512],MAIN_TASK_PRIORITY,1);
 	
 	_MK_Highest_Prio_Index = GetHighestPrioFromPrioTable();
 	_MK_Highest_Pro_ = _MK_ReadyList[_MK_Highest_Prio_Index].Prev;
 
-	//¿ªÊ¼ÔËĞĞÏµÍ³,²¢ÇÒ´ò¿ªÖĞ¶Ï
+	//å¼€å§‹è¿è¡Œç³»ç»Ÿ,å¹¶ä¸”æ‰“å¼€ä¸­æ–­
 	_CPU_InterruptEnable_();
 	_MK_RTOS_RUN_();
-	
+
 }
 
 

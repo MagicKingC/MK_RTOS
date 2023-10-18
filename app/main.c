@@ -1,7 +1,7 @@
 // #include <mkrtos.h>
 
 
-// //´´½¨ÈÎÎñ
+// //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // mk_TaskStack taskEnv1[512];
 // mk_TaskStack taskEnv2[512];
 // mk_TaskStack taskEnv3[512];
@@ -96,20 +96,11 @@
 extern mk_uint32_t _bss;
 extern mk_uint32_t _ebss;
 
-static inline void clear_bss(void)
-{
-    mk_uint8_t *start = (mk_uint8_t *)_bss;
-    while ((mk_uint32_t)start < _ebss) {
-        *start = 0;
-        start++;
-    }
-}
 
 int main()
 {
-    systick_t *systick_p = (systick_t *)SYSTICK_BASE;
-    clear_bss();
-	init_systick();
+
+
     mk_printk("Hello RTOS\n");
     mk_printk("psp:0x%x\n", get_psp());
     mk_printk("msp:0x%x\n", get_msp());
