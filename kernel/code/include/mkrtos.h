@@ -8,5 +8,6 @@
 #include <mktask.h>
 #include <mkrtos_config.h>
 #include <mkstr.h>
+#include <mkprintk.h>
 
 #endif

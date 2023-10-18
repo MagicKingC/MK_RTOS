@@ -3,8 +3,8 @@
 
 #include <mktype.h>
 
-MK_RTOS_EXT mk_int32 mk_strncpy(char * drc,const char *src,mk_uint32 len);
-MK_RTOS_EXT mk_int32 mk_strlen(const char *src);
+MK_RTOS_EXT mk_int32_t mk_strncpy(char * _drc,const char *_src, mk_uint32_t _len);
+MK_RTOS_EXT mk_int32_t mk_strlen(const char *_src);
 
 
 
