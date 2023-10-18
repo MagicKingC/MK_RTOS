@@ -1,0 +1,11 @@
+object/object
+object/DebugConfig
+object/RTE
+object/cpu.lst
+object/EventRecorderStub.scvd
+object/JLinkLog.txt
+object/JLinkSettings.ini
+object/MKRTOS.map
+object/MKRTOS.uvguix.MagicKingC
+object/MKRTOS.uvoptx
+object/startup_stm32f10x_md.lst

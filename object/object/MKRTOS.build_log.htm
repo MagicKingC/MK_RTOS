@@ -3,48 +3,30 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.37.0.0
-Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: ccc ccc, ccc, LIC=X96CK-Z6KHY-DY8V3-AAW6K-NW0ZF-B12I8
+IDE-Version: ¦ÌVision V5.29.0.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: magicking c, c, LIC=CZLZX-HI4U4-TGI7T-RKMIW-Q76GZ-3NRW7
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.37.0.0
+Toolchain:       MDK-ARM Plus  Version: 5.29.0.0
 Toolchain Path:  D:\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.18
-Assembler:       Armasm.exe V6.18
-Linker/Locator:  ArmLink.exe V6.18
-Library Manager: ArmAr.exe V6.18
-Hex Converter:   FromElf.exe V6.18
-CPU DLL:         SARMCM3.DLL V5.37.0.0
-Dialog DLL:      DCM.DLL V1.17.5.0
-Target DLL:      UL2CM3.DLL V1.164.7.0
-Dialog DLL:      TCM.DLL V1.56.1.0
+C Compiler:      ArmClang.exe V6.13.1
+Assembler:       Armasm.exe V6.13.1
+Linker/Locator:  ArmLink.exe V6.13.1
+Library Manager: ArmAr.exe V6.13.1
+Hex Converter:   FromElf.exe V6.13.1
+CPU DLL:         SARMCM3.DLL V5.29.0.0
+Dialog DLL:      DARMSTM.DLL V1.68.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.36.0
+Dialog DLL:      TARMSTM.DLL V1.66.0.0
  
 <h2>Project:</h2>
-D:\ProjectFile\stu\MK\MK_RTOS\object\MKRTOS.uvprojx
-Project File Date:  09/25/2022
+E:\Users\MagicKingC\Desktop\WorkFileSpace\MCU\MK_RTOS\object\MKRTOS.uvprojx
+Project File Date:  12/31/2022
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.18', folder: 'D:\Keil_v5\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.13.1', folder: 'D:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-Note: source file '..\kernel\libcpu\m3\cpu.asm' - object file renamed from '.\object\cpu.o' to '.\object\cpu_1.o'.
-compiling idle.c...
-assembling startup_ARMCM3.s...
-assembling cpu.s...
-compiling main.c...
-assembling cpu.asm...
-compiling mktask.c...
-compiling system.c...
-compiling sys_tick.c...
-compiling system_ARMCM3.c...
-compiling mktype.c...
-compiling systick.c...
-compiling scheduler.c...
-compiling mkstr.c...
-compiling priority.c...
-linking...
-Program Size: Code=2436 RO-data=992 RW-data=4 ZI-data=10332  
-FromELF: creating hex file...
 ".\object\MKRTOS.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -54,21 +36,34 @@ Package Vendor: ARM
                 ARM.CMSIS.5.9.0
                 CMSIS (Common Microcontroller Software Interface Standard)
    * Component: CORE Version: 5.6.0
-   * Component: Startup Version: 1.2.2
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.3.0.pack
+                Keil.STM32F1xx_DFP.2.3.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+   * Component: GPIO Version: 1.3
+   * Component: Startup Version: 1.0.0
 
 <h2>Collection of Component include folders:</h2>
-  ./RTE/_Target_1
-  D:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
-  D:/Users/magic/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/Device/ARM/ARMCM3/Include
+  .\RTE\Device\STM32F103C8
+  .\RTE\_Target_1
+  D:\Users\MagicKingC\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include
+  D:\Users\MagicKingC\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include
+  D:\Users\MagicKingC\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\RTE_Driver
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
 
-   * Component: ARM::Device:Startup:1.2.2
-      Source file:   Device/ARM/ARMCM3/Source/ARM/startup_ARMCM3.s
-      Source file:   Device/ARM/ARMCM3/Source/system_ARMCM3.c
-      Include file:  Device/ARM/ARMCM3/Include/ARMCM3.h
+   * Component: Keil::Device:GPIO:1.3
+      Include file:  RTE_Driver\GPIO_STM32F10x.h
+      Source file:   RTE_Driver\GPIO_STM32F10x.c
+
+   * Component: Keil::Device:Startup:1.0.0
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
+      Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\system_stm32f10x.c
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

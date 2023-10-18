@@ -1,4 +1,5 @@
 #include <mkrtos.h>
+#include "GPIO_STM32F10x.h"
 
 
 //创建任务
@@ -10,7 +11,7 @@ mk_TaskTcb task_1;
 mk_TaskTcb task_2;
 mk_TaskTcb task_3;
 
-int bit1 = 0;
+ int bit1 = 0;
 volatile int bit2 = 0;
 volatile int bit3 = 0;
 
@@ -21,15 +22,22 @@ void delay(mk_uint32 count )
 
 
 void task1(void *param){
+	GPIO_PortClock(GPIOC, true);
+	GPIO_PinConfigure(GPIOC, 13, GPIO_OUT_PUSH_PULL,GPIO_MODE_OUT50MHZ);
+	GPIO_PinWrite(GPIOC, 13, 1);
 	while(1){
 		bit1=0;
+		GPIO_PinWrite(GPIOC, 13, 0);
 		mk_delay_ms(2);
 		bit1=1;
+		GPIO_PinWrite(GPIOC, 13, 1);
 		mk_delay_ms(2);
+		
 	}
 }
 
 void task2(void *param){
+
 	while(1){
 		bit2=0;
 		delay(0xff);

@@ -36,7 +36,6 @@ void __MK_Main(void){
 	//初始化空闲任务
 	_MK_Idle_Init_();
 	
-	//main();
 	mk_TaskInit("main",&maintask,(void *)main_task,MK_NULL,&maintaskEnv[512],MAIN_TASK_PRIORITY,1);
 	
 	_MK_Highest_Prio_Index = GetHighestPrioFromPrioTable();

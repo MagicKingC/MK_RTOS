@@ -11,8 +11,9 @@
 ".\object\cpu.o"
 ".\object\cpu_1.o"
 ".\object\sys_tick.o"
-".\object\startup_armcm3.o"
-".\object\system_armcm3.o"
+".\object\gpio_stm32f10x.o"
+".\object\startup_stm32f10x_md.o"
+".\object\system_stm32f10x.o"
 --strict --scatter ".\object\MKRTOS.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

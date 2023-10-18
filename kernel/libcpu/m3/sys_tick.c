@@ -1,11 +1,13 @@
-#include "ARMCM3.h"
+//#include "ARMCM3.h"
+#include "stm32f10x.h"
 #include <mkrtos.h>
 
 void mk_SystickInit(mk_uint32 ms){
-	//设置时间节拍
-	SysTick->LOAD = (ms * SystemCoreClock/1000)-1;
+	SystemCoreClockUpdate();
 	//配置优先级
 	NVIC_SetPriority(SysTick_IRQn,(1<<__NVIC_PRIO_BITS) -1);
+	//设置时间节拍
+	SysTick->LOAD = (ms * SystemCoreClock/1000)-1;
 	//复位当前计数器的值
 	SysTick->VAL = 0;
 	//选择时钟源,使能中断和计数器

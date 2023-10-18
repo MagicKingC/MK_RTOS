@@ -144,7 +144,11 @@ mk_code_t mk_Task_Init(mk_task_t *_task_struct){
 	return MK_SUCCESS;
 }
 
-
+/******************************************
+*   mk_Task_Delete
+*    功能：任务删除函数
+*	参数：线程函数块
+******************************************/
 void mk_Task_Delete(mk_TaskTcb *_task){
 	mk_uint32 c_res = mk_critical_enter();
 	if(_task == MK_NULL){
