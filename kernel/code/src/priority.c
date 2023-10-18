@@ -7,7 +7,7 @@
 #define __MK_InitList(list,node_type) list = (node_type)_LIST_HEAD_INIT_(list)
 
 void InitReadyList(void){
-	mk_uint32 index;
+	mk_uint32_t index;
 	for(index=0; index < MK_READYLIST_MAX;index++){
 		__MK_InitList(_MK_ReadyList[index],MK_READY_LIST_NODE);
 	}
@@ -99,16 +99,16 @@ void RemoveNodeFromReadyList(mk_TaskTcb *node){
 /***********************优先级表*****************************/
 //初始化优先级表
 void InitPrioTable(void){
-	mk_uint32 index;
+	mk_uint32_t index;
 	for(index = 0;index < MK_PRIORITY_TABLE_SIZE;index++){
 		_MK_PrioTable[index] = 0;
 	}
 }
 
 //查找第一个不为0的数据 (后用CLZ指令代替这个函数)
-mk_uint8 _MK_FindFirstBit_(mk_uint32 _MK_Priority)
+mk_uint8_t _MK_FindFirstBit_(mk_uint32_t _MK_Priority)
 {
-	mk_uint8 index=0;
+	mk_uint8_t index=0;
 	if((_MK_Priority & 0xFFFF) == 0){
 		index += 16;
 		_MK_Priority >>=16;
@@ -136,9 +136,9 @@ mk_uint8 _MK_FindFirstBit_(mk_uint32 _MK_Priority)
 	return index;
 }
 
-mk_uint32 _MK_FindFirstBit(const mk_uint32 *_bitMap){
-	mk_uint32 index=0;
-	mk_uint32 i;
+mk_uint32_t _MK_FindFirstBit(const mk_uint32_t *_bitMap){
+	mk_uint32_t index=0;
+	mk_uint32_t i;
 	
 	for(i=0;i < 2;i++){
 		if(_bitMap[i]){
@@ -152,9 +152,9 @@ mk_uint32 _MK_FindFirstBit(const mk_uint32 *_bitMap){
 
 
 //获取最高优先级
-mk_uint32 GetHighestPrioFromPrioTable(void){
-	mk_uint32 res = 0;
-	mk_uint32 index = 0;
+mk_uint32_t GetHighestPrioFromPrioTable(void){
+	mk_uint32_t res = 0;
+	mk_uint32_t index = 0;
 	for(index = 0;index < MK_PRIORITY_TABLE_SIZE; index++){
 		res = _MK_FindFirstBit_(_MK_PrioTable[index]);
 		if(res){
@@ -166,17 +166,17 @@ mk_uint32 GetHighestPrioFromPrioTable(void){
 }
 
 //设置优先级
-mk_code_t SetBitToPrioTable(mk_uint32 TaskPrio){
-	mk_uint32 index = TaskPrio/MK_PRIORITY_MAX;
-	mk_uint32 bit = TaskPrio%32;
+mk_code_t SetBitToPrioTable(mk_uint32_t TaskPrio){
+	mk_uint32_t index = TaskPrio/MK_PRIORITY_MAX;
+	mk_uint32_t bit = TaskPrio%32;
 	_MK_PrioTable[index] |= 1<< bit; 
 	return MK_SUCCESS;
 }
 
 //清除优先级
-mk_code_t ClearBitToPrioTable(mk_uint32 TaskPrio){
-	mk_uint32 index = TaskPrio/MK_PRIORITY_MAX;
-	mk_uint32 bit = TaskPrio%32;
+mk_code_t ClearBitToPrioTable(mk_uint32_t TaskPrio){
+	mk_uint32_t index = TaskPrio/MK_PRIORITY_MAX;
+	mk_uint32_t bit = TaskPrio%32;
 	_MK_PrioTable[index] &= ~(1<< bit); 
 	return MK_SUCCESS;
 }

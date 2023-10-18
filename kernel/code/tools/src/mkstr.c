@@ -1,22 +1,23 @@
 #include <mkstr.h>
 
-mk_int32 mk_strncpy(char * drc,const char *src,mk_uint32 len)
+mk_int32_t mk_strncpy(char * _drc,const char *_src, mk_uint32_t _len)
 {
-	mk_uint32 i = 0;
-	if(drc==MK_NULL || src == MK_NULL){
+	mk_int32_t i = 0;
+	if(_drc==MK_NULL || _src == MK_NULL){
 		return -1;
 	}
 	
-	while((*(drc++)=(*src++)!='\0')&&((++i)<len));
+	while((*(_drc++)=(*_src++)!='\0')&&((++i)<_len));
 	
 	return i;
 }
 
-mk_int32 mk_strlen(const char *src){
-	mk_uint32 i = 0;
-	if(src == MK_NULL){
+mk_int32_t mk_strlen(const char *_src)
+{
+	mk_int32_t i = 0;
+	if(_src == MK_NULL){
 		return -1;
 	}
-	while(*(src+(i++)) != '\0');
+	while(*(_src+(i++)) != '\0');
 	return i;
 }

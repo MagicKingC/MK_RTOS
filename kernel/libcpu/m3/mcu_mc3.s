@@ -18,7 +18,7 @@ NVIC_PENDSV_PRI	EQU			  0xFF
 		
 _MK_RTOS_RUN_ PROC
 
-	;����pendsv���ȼ�
+	;设置pendsv优先级
 	LDR		R0,=NVIC_SYSPRI14
 	LDR		R1,=NVIC_PENDSV_PRI
 	STRB	R1,[R0]
@@ -26,7 +26,7 @@ _MK_RTOS_RUN_ PROC
 	MOVS  R0,#0
 	MSR	  PSP,R0
 
-	;����pendsv�ж�
+	;触发pendsv中断
 	LDR	  R0,=NVIC_INT_CTRL
 	LDR	  R1,=NVIC_PENDSVSET
 	STR   R1,[R0]
@@ -35,37 +35,37 @@ _MK_RTOS_RUN_ PROC
 	ENDP
 		
 _TriggerPendSV_ PROC
-	;����pendsv�ж�
+	;触发pendsv中断
 	LDR	  R0,=NVIC_INT_CTRL
 	LDR	  R1,=NVIC_PENDSVSET
 	STR   R1,[R0]
 	ENDP
 		
 PendSV_Handler PROC
-	;�ж�psp�Ƿ�Ϊ0��Ĭ��ϵͳ��ʼ��ʱ�Ὣpsp��ֵ��ֵΪ0
-	MRS	  R0,PSP				;ȡ����ǰջָ���ֵ
-	CBZ	  R0,PRO_SWITCH			;���������л�
+	;判断psp是否为0，默认系统初始化时会将psp的值赋值为0
+	MRS	  R0,PSP				;取出当前栈指针的值
+	CBZ	  R0,PRO_SWITCH			;跳到下文切换
 	
-	;��������
+	;保存上文
 	STMDB R0!,{R4-R11}
-	;����ջָ�룬����ǰջ�������´������л�ʹ��
-	LDR	  R1,=_MK_Current_Pro_	;��ָ��ǰ�Ľ��̿��ƿ�ĵ�ַ���ص�R1
-	LDR	  R1,[R1]				;����ǰ�Ľ��̿��ƿ��ַָ���ֵ���ص�R1
-	STR	  R0,[R1]				;����ǰ�Ľ��̿��ƿ��ַָ���ֵ������ַ��Ȼ���������R1��ֵΪ��ַ����R0��ֵ
+	;保存栈指针，到当前栈，用于下次任务切换使用
+	LDR	  R1,=_MK_Current_Pro_	;将指向当前的进程控制块的地址加载到R1
+	LDR	  R1,[R1]				;将当前的进程控制块地址指向的值加载到R1
+	STR	  R0,[R1]				;将当前的进程控制块地址指向的值当作地址，然后往这个以R1的值为地址填入R0的值
 	
 	ENDP
 	
 PRO_SWITCH PROC
-	;�����л�
+	;下文切换
 	LDR	  R0,=_MK_Current_Pro_
 	LDR   R1,=_MK_Highest_Pro_
 	LDR   R2,[R1]
 	STR	  R2,[R0]
 	
 	LDR	  R0,[R2]
-	LDMIA R0!,{R4-R11}			;���洢����������R0��ʼ��ַ�������ַд�ص�R4��R11�Ĵ�����
+	LDMIA R0!,{R4-R11}			;将存储器的数据以R0开始地址的往后地址写回到R4到R11寄存器中
 	MSR	  PSP,R0
-	ORR	  LR,LR,#0x04			;���˳��ж�֮��ʹ��PSP��ջ
+	ORR	  LR,LR,#0x04			;是退出中断之后使用PSP堆栈
 	BX    LR
 	NOP
 	ENDP

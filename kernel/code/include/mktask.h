@@ -4,20 +4,20 @@
 #include <mktype.h>
 #include <mkrtos_config.h>
 
-//ÈÎÎñ×´Ì¬
-#define MK_TASK_STATE_BIT_DLY			0x01u //ÑÓ³Ù/³¬Ê±Î»
-#define MK_TASK_STATE_BIT_PEND			0x02u //µÈ´ıÎ»
-#define MK_TASK_STATE_BIT_SUSPENDED		0x04u //¹ÒÆğÎ»
+//ä»»åŠ¡çŠ¶æ€
+#define MK_TASK_STATE_BIT_DLY			0x01u //å»¶è¿Ÿ/è¶…æ—¶ä½
+#define MK_TASK_STATE_BIT_PEND			0x02u //ç­‰å¾…ä½
+#define MK_TASK_STATE_BIT_SUSPENDED		0x04u //æŒ‚èµ·ä½
 
-#define MK_TASK_STATY_RDY						0u //¾ÍĞ÷
-#define MK_TASK_STATY_DLY						1u //ÑÓÊ±/³¬Ê±
-#define MK_TASK_STATY_PEND						2u //µÈ´ı
-#define MK_TASK_STATY__PEND_TIMEOUT				3u //µÈ´ı+³¬Ê±
-#define MK_TASK_STATY_SUSPEND					4u //¹ÒÆğ
-#define MK_TASK_STATY_DLY_SUSPEND				5u //¹ÒÆğ+ÑÓÊ±/³¬Ê±
-#define MK_TASK_STATY_PEND_SUSPENDED			6u //¹ÒÆğ+µÈ´ı
-#define MK_TASK_STATY_PEND_TIMEOUT_SUSPENDED	7u //¹ÒÆğ+µÈ´ı+³¬Ê±
-#define MK_TASK_STATY_DEL						255u //É¾³ı
+#define MK_TASK_STATY_RDY						0u //å°±ç»ª
+#define MK_TASK_STATY_DLY						1u //å»¶æ—¶/è¶…æ—¶
+#define MK_TASK_STATY_PEND						2u //ç­‰å¾…
+#define MK_TASK_STATY__PEND_TIMEOUT				3u //ç­‰å¾…+è¶…æ—¶
+#define MK_TASK_STATY_SUSPEND					4u //æŒ‚èµ·
+#define MK_TASK_STATY_DLY_SUSPEND				5u //æŒ‚èµ·+å»¶æ—¶/è¶…æ—¶
+#define MK_TASK_STATY_PEND_SUSPENDED			6u //æŒ‚èµ·+ç­‰å¾…
+#define MK_TASK_STATY_PEND_TIMEOUT_SUSPENDED	7u //æŒ‚èµ·+ç­‰å¾…+è¶…æ—¶
+#define MK_TASK_STATY_DEL						255u //åˆ é™¤
 
 typedef struct __MK_TICK_SPOKE__ MK_TICK_SPOKE;
 typedef struct _MK_Task_TCB_ mk_TaskTcb;
@@ -25,69 +25,69 @@ typedef mk_TaskTcb _MK_LIST_NODE;
 
 struct _MK_Task_TCB_{
 	
-	volatile mk_TaskStack *TaskStack;//Ïß³ÌÕ»
-	char TaskName[MK_TASK_NAME_LEN];//Ïß³ÌÃû
-	mk_TaskPrio  TaskPrio;//Ïß³ÌÓÅÏÈ¼¶
+	volatile mk_TaskStack *TaskStack;//çº¿ç¨‹æ ˆ
+	char TaskName[MK_TASK_NAME_LEN];//çº¿ç¨‹å
+	mk_TaskPrio  TaskPrio;//çº¿ç¨‹ä¼˜å…ˆçº§
 	
-	//¾ÍĞ÷ÁĞ±í
+	//å°±ç»ªåˆ—è¡¨
 	struct _MK_Task_TCB_ *ReadyPrev;
 	struct _MK_Task_TCB_ *ReadyNext;
 	
-	//Ê±»ùÁĞ±í
+	//æ—¶åŸºåˆ—è¡¨
 	struct _MK_Task_TCB_ *TickPrev;
 	struct _MK_Task_TCB_ *TickNext;
 	struct __MK_TICK_SPOKE__ *TickSpoke;
 	mk_TaskTick WaitTick;
 	mk_TaskTick TickCount;
 	
-	//Ê±¼äÆ¬
-	mk_TaskTime TaskTimeSlice;	/*Ê£ÓàÊ±¼äÆ¬*/
-	mk_TaskTime TaskMaxTimeSlice;/*×ÜÊ±¼äÆ¬*/
+	//æ—¶é—´ç‰‡
+	mk_TaskTime TaskTimeSlice;	/*å‰©ä½™æ—¶é—´ç‰‡*/
+	mk_TaskTime TaskMaxTimeSlice;/*æ€»æ—¶é—´ç‰‡*/
 	
 	
-	mk_TaskStatus TaskStatus;/*ÈÎÎñ×´Ì¬*/
+	mk_TaskStatus TaskStatus;/*ä»»åŠ¡çŠ¶æ€*/
 	
-	//¹ÒÆğ´ÎÊı
+	//æŒ‚èµ·æ¬¡æ•°
 	
 };
 
-/* Ê±¼äÆ¬ÁĞ±í */
+/* æ—¶é—´ç‰‡åˆ—è¡¨ */
 struct __MK_TICK_SPOKE__{
 	mk_TaskTcb *Next;
-	mk_uint32 TickSpokeNodeNum;
-	mk_uint32 TickSpokeNodeMax;
+	mk_uint32_t TickSpokeNodeNum;
+	mk_uint32_t TickSpokeNodeMax;
 };
 
-/* ¾ÍĞ÷ÓÅÏÈ¼¶ÁĞ±í */
+/* å°±ç»ªä¼˜å…ˆçº§åˆ—è¡¨ */
 typedef struct _MK_READY_LIST_NODE_ MK_READY_LIST_NODE;
 struct _MK_READY_LIST_NODE_{
 	mk_TaskTcb *Prev;
 	mk_TaskTcb *Next;
-	mk_uint32 TaskNum;
+	mk_uint32_t TaskNum;
 };
 
 
-MK_RTOS_EXT mk_uint32 _MK_Highest_Prio_Index;/* ×î¸ßÈÎÎñÓÅÏÈ¼¶µÄÑ¡Ïî */
+MK_RTOS_EXT mk_uint32_t _MK_Highest_Prio_Index;/* æœ€é«˜ä»»åŠ¡ä¼˜å…ˆçº§çš„é€‰é¡¹ */
 
-MK_RTOS_EXT mk_TaskTcb *_MK_Current_Pro_;/* µ±Ç°ÈÎÎñ¿é */
-MK_RTOS_EXT mk_TaskTcb *_MK_Highest_Pro_;/* ×î¸ßÓÅÏÈ¼¶ÈÎÎñ */
+MK_RTOS_EXT mk_TaskTcb *_MK_Current_Pro_;/* å½“å‰ä»»åŠ¡å— */
+MK_RTOS_EXT mk_TaskTcb *_MK_Highest_Pro_;/* æœ€é«˜ä¼˜å…ˆçº§ä»»åŠ¡ */
 
 typedef struct _MK_TASK_{
-	mk_TaskTcb task_tcb;		/* ÈÎÎñ¿ØÖÆ¿é */
-	mk_TaskStack *task_stack;	/* ÈÎÎñ¶ÑÕ» */
-	mk_TaskPrio task_prio;		/* ÈÎÎñÓÅÏÈ¼¶ */
-	mk_TaskTime task_time_slice;/* ÈÎÎñÊ±¼äÆ¬ */
-	mk_bool 	is_auto_stck;	/* ÊÇ·ñ×Ô¶¯·ÖÅäÈÎÎñÕ» MK_FALSE:²»×Ô¶¯·ÖÅä MK_TRUE:×Ô¶¯·ÖÅä */
-	mk_uint32	task_stck_size; /* ÊÇ·ñÈÎÎñÕ»´óĞ¡£¬Èç¹û²ÉÓÃµÄÊÇ¾²Ì¬¶ÑÕ»£¬¸Ã×Ö¶Î²»±ØÉèÖÃ */
-	char *task_name;			/* ÈÎÎñÃû×Ö£¬×î´ó³¤¶ÈÓÉmkrtos_config.hµÄMK_TASK_NAME_LEN¾ö¶¨ */
-	void (*task_entry)(void *); /* ÈÎÎñÈë¿Úº¯Êı */
-	void * param;				/* ÈÎÎñ²ÎÊı */
+	mk_TaskTcb task_tcb;		/* ä»»åŠ¡æ§åˆ¶å— */
+	mk_TaskStack *task_stack;	/* ä»»åŠ¡å †æ ˆ */
+	mk_TaskPrio task_prio;		/* ä»»åŠ¡ä¼˜å…ˆçº§ */
+	mk_TaskTime task_time_slice;/* ä»»åŠ¡æ—¶é—´ç‰‡ */
+	mk_bool_t 	is_auto_stck;	/* æ˜¯å¦è‡ªåŠ¨åˆ†é…ä»»åŠ¡æ ˆ MK_FALSE:ä¸è‡ªåŠ¨åˆ†é… MK_TRUE:è‡ªåŠ¨åˆ†é… */
+	mk_uint32_t	task_stck_size; /* æ˜¯å¦ä»»åŠ¡æ ˆå¤§å°ï¼Œå¦‚æœé‡‡ç”¨çš„æ˜¯é™æ€å †æ ˆï¼Œè¯¥å­—æ®µä¸å¿…è®¾ç½® */
+	char *task_name;			/* ä»»åŠ¡åå­—ï¼Œæœ€å¤§é•¿åº¦ç”±mkrtos_config.hçš„MK_TASK_NAME_LENå†³å®š */
+	void (*task_entry)(void *); /* ä»»åŠ¡å…¥å£å‡½æ•° */
+	void * param;				/* ä»»åŠ¡å‚æ•° */
 }mk_task_t;
 
-/*ÈÎÎñ³õÊ¼»¯*/
-//¾É°æÈÎÎñ³õÊ¼»¯
+/*ä»»åŠ¡åˆå§‹åŒ–*/
+//æ—§ç‰ˆä»»åŠ¡åˆå§‹åŒ–
 MK_RTOS_EXT mk_code_t mk_TaskInit(char * TaskName, mk_TaskTcb * TaskTCB, void (*_entry)(void *), void *_param,\
-					mk_TaskStack *_TaskStack, mk_uint32 _TaskPrio ,mk_uint32 _TaskTimeSlice);
+					mk_TaskStack *_TaskStack, mk_uint32_t _TaskPrio ,mk_uint32_t _TaskTimeSlice);
 
 MK_RTOS_EXT mk_code_t mk_Task_Init(mk_task_t *_task_struct);
 

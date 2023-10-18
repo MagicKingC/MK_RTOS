@@ -8,13 +8,15 @@ MK_RTOS_EXT void _TriggerPendSV_(void);
 MK_RTOS_EXT	void _CPU_InterruptEnable_(void);
 MK_RTOS_EXT	void _CPU_InterruptDisable_(void);
 
-MK_RTOS_EXT mk_uint32 _MK_SR_Save_(void);
-MK_RTOS_EXT void _MK_SR_Restore_(mk_uint32 reg_value);
+MK_RTOS_EXT mk_uint32_t _MK_SR_Save_(void);
+MK_RTOS_EXT void _MK_SR_Restore_(mk_uint32_t reg_value);
 
 
-//临界段
+/**
+ * @brief 进入临界区
+ */
 #define mk_critical_enter() (\
-	{mk_uint32 reg_val;\
+	{mk_uint32_t reg_val;\
 	reg_val = _MK_SR_Save_();\
 	reg_val;\
 	})

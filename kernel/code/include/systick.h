@@ -8,27 +8,27 @@
 
 MK_RTOS_EXT MK_TICK_SPOKE MK_TickSpokeList[MK_TickWheelSize];
 
-/*Ê±¼äÆ¬*/
-//³õÊ¼»¯Ê±»ùÁĞ±í
+/*æ—¶é—´ç‰‡*/
+//åˆå§‹åŒ–æ—¶åŸºåˆ—è¡¨
 MK_RTOS_EXT void InitTickSpokeList();
-//½«Ïß³Ì¿é²åÈëÊ±»ùÁĞ±í
-MK_RTOS_EXT mk_code_t InsertNodeToTickSpokeList(mk_TaskTcb *TaskTCB, mk_uint32 _time);
-//½«Ïß³Ì¿é´ÓÊ±»ùÁĞ±íÒÆ³ı
+//å°†çº¿ç¨‹å—æ’å…¥æ—¶åŸºåˆ—è¡¨
+MK_RTOS_EXT mk_code_t InsertNodeToTickSpokeList(mk_TaskTcb *TaskTCB, mk_uint32_t _time);
+//å°†çº¿ç¨‹å—ä»æ—¶åŸºåˆ—è¡¨ç§»é™¤
 MK_RTOS_EXT void RemoveFromTickSpokeList(mk_TaskTcb *TaskTCB);
-//¸üĞÂÊ±»ùÁĞ±í
+//æ›´æ–°æ—¶åŸºåˆ—è¡¨
 MK_RTOS_EXT void UpdateToTickSpokeList(void);
 
 
-/* ÑÓÊ± */
-MK_RTOS_EXT void mk_delay_ms(mk_uint32 ms);
+/* å»¶æ—¶ */
+MK_RTOS_EXT void mk_delay_ms(mk_uint32_t ms);
 
-/* ³õÊ¼»¯ */
-MK_RTOS_EXT void mk_SystickInit(mk_uint32 ms);
+/* åˆå§‹åŒ– */
+MK_RTOS_EXT void mk_SystickInit(mk_uint32_t ms);
 
-/* Ê±¼ä´Á */
+/* æ—¶é—´æˆ³ */
 #if USE_TIME_STAMP
 MK_RTOS_EXT void mk_time_stamp_init(void);
-MK_RTOS_EXT mk_uint32 mk_get_time_stamp(void);
+MK_RTOS_EXT mk_uint32_t mk_get_time_stamp(void);
 #endif
 
 #endif

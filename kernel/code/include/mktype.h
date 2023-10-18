@@ -17,24 +17,24 @@ enum _MK_CODE_{
 	MK_SUCCESS = 0,
 };
 	
-//RTOS的自定义数据类型
-typedef unsigned int   mk_uint32;
-typedef unsigned short mk_uint16;
-typedef unsigned char  mk_uint8;
+//RTOS鐨勮嚜瀹氫箟鏁版嵁绫诲瀷
+typedef unsigned int   mk_uint32_t;
+typedef unsigned short mk_uint16_t;
+typedef unsigned char  mk_uint8_t;
 
-typedef int   mk_int32;
-typedef short mk_int16;
-typedef char  mk_int8;
+typedef int   mk_int32_t;
+typedef short mk_int16_t;
+typedef char  mk_int8_t;
 
 	
-typedef mk_uint32 mk_TaskStack;
-typedef mk_uint32 mk_TaskStatus;
-typedef mk_uint32 mk_TaskTime;
-typedef mk_uint32 mk_TaskTick;
-typedef mk_uint8  mk_TaskPrio;
+typedef mk_uint32_t mk_TaskStack;
+typedef mk_uint32_t mk_TaskStatus;
+typedef mk_uint32_t mk_TaskTime;
+typedef mk_uint32_t mk_TaskTick;
+typedef mk_uint8_t  mk_TaskPrio;
 
 
-typedef mk_uint8 mk_bool;
+typedef mk_uint8_t mk_bool_t;
 typedef enum _MK_CODE_  mk_code_t;
 
 

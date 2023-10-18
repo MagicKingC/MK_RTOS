@@ -1,15 +1,15 @@
 #include <systick.h>
 #include <mkrtos.h>
 
-mk_uint32 MK_TickCtr;
+mk_uint32_t MK_TickCtr;
 
 /*
   延时
 */
 
-void mk_delay_ms(mk_uint32 ms){
+void mk_delay_ms(mk_uint32_t ms){
 	
-	mk_uint32 c_res = mk_critical_enter();
+	mk_uint32_t c_res = mk_critical_enter();
 	InsertNodeToTickSpokeList(_MK_Current_Pro_,ms);
 	RemoveNodeFromReadyList(_MK_Current_Pro_);
 	mk_critical_exit(c_res);
@@ -23,15 +23,15 @@ void mk_delay_ms(mk_uint32 ms){
 */
 #if USE_TIME_STAMP
 
-#define	DWT_DEMCR_REG	(*(volatile mk_uint32 *)0XE000EDFC)
-#define DWT_CTRL_REG	(*(volatile mk_uint32 *)0XE0001000)
-#define DWT_CYCCNT_REG	(*(volatile mk_uint32 *)0XE0001004)
+#define	DWT_DEMCR_REG	(*(volatile mk_uint32_t *)0XE000EDFC)
+#define DWT_CTRL_REG	(*(volatile mk_uint32_t *)0XE0001000)
+#define DWT_CYCCNT_REG	(*(volatile mk_uint32_t *)0XE0001004)
 	
 #define DWT_ENABLE		(1<<24)
 #define DWT_CYCCNTENA	(1<<0)
 
-static mk_uint32 BSP_CPU_ClkFrep(void){
-	mk_uint32 system_clock;
+static mk_uint32_t BSP_CPU_ClkFrep(void){
+	mk_uint32_t system_clock;
 	
 	system_clock = SystemCoreClock;
 	
@@ -39,18 +39,18 @@ static mk_uint32 BSP_CPU_ClkFrep(void){
 }
 
 void mk_time_stamp_init(void){
-	mk_uint32 fclk_frep;
+	mk_uint32_t fclk_frep;
 	fclk_frep = BSP_CPU_ClkFrep();
 	//初始化DWT
-	DWT_DEMCR_REG |= (mk_uint32)DWT_ENABLE;
-	DWT_CYCCNT_REG = (mk_uint32)0u;
-	DWT_CTRL_REG  &= (~((mk_uint32)DWT_CYCCNTENA));
+	DWT_DEMCR_REG |= (mk_uint32_t)DWT_ENABLE;
+	DWT_CYCCNT_REG = (mk_uint32_t)0u;
+	DWT_CTRL_REG  &= (~((mk_uint32_t)DWT_CYCCNTENA));
 }
 
-mk_uint32 mk_get_time_stamp(void){
-	mk_uint32 time = 0;
+mk_uint32_t mk_get_time_stamp(void){
+	mk_uint32_t time = 0;
 	
-	time = (mk_uint32)DWT_CYCCNT_REG;
+	time = (mk_uint32_t)DWT_CYCCNT_REG;
 	
 	return time;
 }
@@ -62,15 +62,15 @@ mk_uint32 mk_get_time_stamp(void){
 */
 //初始化时基列表
 void InitTickSpokeList(){
-	mk_uint32 index = 0;
+	mk_uint32_t index = 0;
 	for(index = 0; index < MK_TickWheelSize;index++){
 		MK_TickSpokeList[index] = (MK_TICK_SPOKE){ MK_NULL, 0, 0 };
 	}
 }
 
 //将线程块插入时基列表 从小到大排序
-mk_code_t InsertNodeToTickSpokeList(mk_TaskTcb *TaskTCB, mk_uint32 _time){
-	mk_uint32 index = 0;
+mk_code_t InsertNodeToTickSpokeList(mk_TaskTcb *TaskTCB, mk_uint32_t _time){
+	mk_uint32_t index = 0;
 	mk_TaskTcb *tmpNode;
 	mk_TaskTcb *endNode;
 	
@@ -146,7 +146,7 @@ void UpdateToTickSpokeList(void){
 	
 	mk_TaskTcb *tmpNode;
 	mk_TaskTcb *tmpNode2;
-	mk_uint32 index = 0;
+	mk_uint32_t index = 0;
 	
 	MK_TickCtr++;
 	

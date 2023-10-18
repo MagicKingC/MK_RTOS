@@ -8,28 +8,28 @@
 #define MK_READYLIST_MAX MK_PRIORITY_MAX
 
 
-//ÏµÍ³±í
-MK_RTOS_EXT MK_READY_LIST_NODE _MK_ReadyList[MK_READYLIST_MAX];//¾ÍĞ÷ÁĞ±í
-MK_RTOS_EXT mk_uint32 _MK_PrioTable[MK_PRIORITY_TABLE_SIZE];//ÓÅÏÈ¼¶±í
+//ç³»ç»Ÿè¡¨
+MK_RTOS_EXT MK_READY_LIST_NODE _MK_ReadyList[MK_READYLIST_MAX];//å°±ç»ªåˆ—è¡¨
+MK_RTOS_EXT mk_uint32_t _MK_PrioTable[MK_PRIORITY_TABLE_SIZE];//ä¼˜å…ˆçº§è¡¨
 
-//³õÊ¼»¯ÓÅÏÈ¼¶±í
+//åˆå§‹åŒ–ä¼˜å…ˆçº§è¡¨
 MK_RTOS_EXT void InitPrioTable(void);
-//»ñÈ¡×î¸ßÓÅÏÈ¼¶
-MK_RTOS_EXT mk_uint32 GetHighestPrioFromPrioTable(void);
-//ÉèÖÃÓÅÏÈ¼¶
-MK_RTOS_EXT mk_code_t SetBitToPrioTable(mk_uint32 TaskPrio);
-//Çå³ıÓÅÏÈ¼¶
-MK_RTOS_EXT mk_code_t ClearBitToPrioTable(mk_uint32 TaskPrio);
+//è·å–æœ€é«˜ä¼˜å…ˆçº§
+MK_RTOS_EXT mk_uint32_t GetHighestPrioFromPrioTable(void);
+//è®¾ç½®ä¼˜å…ˆçº§
+MK_RTOS_EXT mk_code_t SetBitToPrioTable(mk_uint32_t TaskPrio);
+//æ¸…é™¤ä¼˜å…ˆçº§
+MK_RTOS_EXT mk_code_t ClearBitToPrioTable(mk_uint32_t TaskPrio);
 
-//³õÊ¼»¯¾ÍĞ÷ÁĞ±í
+//åˆå§‹åŒ–å°±ç»ªåˆ—è¡¨
 MK_RTOS_EXT void InitReadyList(void);
-//½«Ïß³Ì¿é²åÈë¾ÍĞ÷ÁĞ±í(Í·²å·¨)
+//å°†çº¿ç¨‹å—æ’å…¥å°±ç»ªåˆ—è¡¨(å¤´æ’æ³•)
 MK_RTOS_EXT void InsertNodeToReadyListHead(mk_TaskTcb *node);
-//½«Ïß³Ì¿é²åÈë¾ÍĞ÷ÁĞ±í(Î²²å·¨)
+//å°†çº¿ç¨‹å—æ’å…¥å°±ç»ªåˆ—è¡¨(å°¾æ’æ³•)
 MK_RTOS_EXT void InsertNodeToReadyListTail(mk_TaskTcb *node);
-//½«¾ÍĞ÷ÁĞ±íµÄÍ·ÒÆ¶¯µ½Î²²¿
+//å°†å°±ç»ªåˆ—è¡¨çš„å¤´ç§»åŠ¨åˆ°å°¾éƒ¨
 MK_RTOS_EXT void MoveHeadToTailInReadList(MK_READY_LIST_NODE *list);
-//½«Ïß³Ì¿é´Ó¾ÍĞ÷ÁĞ±íÖĞÉ¾³ı
+//å°†çº¿ç¨‹å—ä»å°±ç»ªåˆ—è¡¨ä¸­åˆ é™¤
 MK_RTOS_EXT void RemoveNodeFromReadyList(mk_TaskTcb *node);
 
 
