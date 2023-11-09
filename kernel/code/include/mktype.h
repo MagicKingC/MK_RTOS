@@ -25,7 +25,6 @@ typedef unsigned char  mk_uint8_t;
 typedef int   mk_int32_t;
 typedef short mk_int16_t;
 typedef char  mk_int8_t;
-
 	
 typedef mk_uint32_t mk_TaskStack;
 typedef mk_uint32_t mk_TaskStatus;
@@ -37,8 +36,9 @@ typedef mk_uint8_t  mk_TaskPrio;
 typedef mk_uint8_t mk_bool_t;
 typedef enum _MK_CODE_  mk_code_t;
 
-
 #define __weak __attribute__((weak))
-
+#define __IO 	volatile mk_uint32_t
+#define __IO8 	volatile mk_uint8_t
+#define __IO32 	volatile mk_uint32_t
 
 #endif
