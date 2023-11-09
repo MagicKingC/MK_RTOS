@@ -31,14 +31,16 @@ void task1(void *param){
 void task2(void *param){
 	while(1){
 		mk_printk("%s\n",__func__);
-		delay(0xFFFF);
+		// delay(0xFFFF);
+        mk_delay_ms(1000);
 	}
 }
 
 void task3(void *param){
 	while(1){
 		mk_printk("%s\n",__func__);
-		delay(0xFFFF);
+		// delay(0xFFFF);
+        mk_delay_ms(2000);
 	}
 }
 
@@ -49,8 +51,8 @@ mk_task_t task3_s={0};
 int main()
 {
     mk_printk("Hello RTOS\n");
-    mk_printk("psp:0x%x\n", get_psp());
-    mk_printk("msp:0x%x\n", get_msp());
+    mk_printk("psp:0x%x\n", _MK_GET_PSP());
+    mk_printk("msp:0x%x\n", _MK_GET_MSP());
 
     mk_TaskInit("task2",&task_2,task2,MK_NULL,&taskEnv2[512],2,1);
     mk_TaskInit("task3",&task_3,task3,MK_NULL,&taskEnv3[512],2,1);

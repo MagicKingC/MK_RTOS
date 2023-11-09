@@ -50,21 +50,3 @@ void __MK_Main(void) {
 
     while (MK_TRUE);
 }
-
-/**
- * @brief 首次运行
- */
-void _MK_RTOS_RUN_() {
-    mk_printk("%s\n", __func__);
-    set_psp(0);
-    MEM8(NVIC_SYSPRI14) = NVIC_PENDSV_PRI;
-    _CPU_InterruptEnable_();
-    MEM32(NVIC_INT_CTRL) = NVIC_PENDSVSET;
-}
-
-/**
- * @brief 触发pendSV中断
- */
-void _TriggerPendSV_(void) {
-    MEM32(NVIC_INT_CTRL) = NVIC_PENDSVSET;
-}
