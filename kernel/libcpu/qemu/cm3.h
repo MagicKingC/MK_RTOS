@@ -26,6 +26,7 @@ typedef struct systick_tag {
 
 extern mk_uint32_t get_psp(void);
 extern mk_uint32_t get_msp(void);
-extern void set_psp(mk_uint32_t psp);
+extern void _MK_SET_PSP(mk_uint32_t psp);
+extern void _MK_SET_MSP(mk_uint32_t psp);
 extern mk_uint32_t get_control_reg(void);
 #endif /*CM3_H*/

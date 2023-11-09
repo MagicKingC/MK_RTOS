@@ -18,10 +18,15 @@ MK_RTOS_EXT void _MK_SR_Restore_(mk_uint32_t reg_value);
 #define mk_critical_enter() ({\
 	mk_uint32_t reg_val;\
 	reg_val = _MK_SR_Save_();\
+	_CPU_InterruptDisable_();\
 	reg_val;\
 })
-	
+
+/**
+ * @brief 退出临界区
+ */
 #define mk_critical_exit(reg_val) do{\
+	_CPU_InterruptEnable_();\
 	_MK_SR_Restore_(reg_val);\
 } while(0)
 

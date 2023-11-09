@@ -3,7 +3,7 @@
 
 volatile unsigned int * const UART0DR = (unsigned int *)0x4000C000;
 
-char mk_putc(mk_uint8_t *ch)
+__weak char mk_putc(mk_uint8_t *ch)
 {
     *UART0DR = *ch;
     return *ch;
@@ -30,7 +30,7 @@ static inline void ClearBSS(void)
  * @param ms 
  * @return __weak 
  */
-void mk_SystickInit(mk_uint32_t ms)
+__weak void mk_SystickInit(mk_uint32_t ms)
 {
     ClearBSS();
     mk_systick_t *SysTick = (mk_systick_t *)SYSTICK_BASE;
@@ -45,7 +45,7 @@ void mk_SystickInit(mk_uint32_t ms)
     SysTick->ctrl = 0x07;
 }
 
-void SysTick_Handler(void)
+__weak void SysTick_Handler(void)
 {
     mk_uint32_t c_res = mk_critical_enter();
     UpdateToTickSpokeList();
@@ -54,4 +54,23 @@ void SysTick_Handler(void)
 #endif
     mk_critical_exit(c_res);
     _MK_TaskSwitch_();    
+}
+
+
+/**
+ * @brief 首次运行
+ */
+__weak void _MK_RTOS_RUN_() {
+    mk_printk("%s\n", __func__);
+    _MK_SET_PSP(0);
+    MEM8(NVIC_SYSPRI14) = NVIC_PENDSV_PRI;
+    _CPU_InterruptEnable_();
+    MEM32(NVIC_INT_CTRL) = NVIC_PENDSVSET;
+}
+
+/**
+ * @brief 触发pendSV中断
+ */
+__weak void _TriggerPendSV_(void) {
+    MEM32(NVIC_INT_CTRL) = NVIC_PENDSVSET;
 }
