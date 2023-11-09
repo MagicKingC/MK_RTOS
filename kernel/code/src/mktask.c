@@ -61,9 +61,7 @@ static mk_TaskStack * __MK_TaskStackInit(void (*_entry)(void *),void *_param,mk_
 mk_code_t mk_TaskInit(char * TaskName, mk_TaskTcb * TaskTCB, void (*_entry)(void *), void *_param, 
 					mk_TaskStack *_TaskStack, mk_uint32_t _TaskPrio ,mk_uint32_t _TaskTimeSlice){
 
-	mk_uint32_t c_res = mk_critical_enter();
 	if(TaskTCB == MK_NULL || _entry == MK_NULL || _TaskStack == MK_NULL){
-		mk_critical_exit(c_res);
 		return MK_FAIL;
 	}
 	if(_TaskPrio > MK_PRIORITY_MAX ){
@@ -88,8 +86,6 @@ mk_code_t mk_TaskInit(char * TaskName, mk_TaskTcb * TaskTCB, void (*_entry)(void
 	InsertNodeToReadyListTail(TaskTCB);
 	//设置优先级
 	SetBitToPrioTable(TaskTCB->TaskPrio);
-	
-	mk_critical_exit(c_res);
 	
 	return MK_SUCCESS;
 	

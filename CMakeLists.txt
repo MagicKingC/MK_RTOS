@@ -1,5 +1,5 @@
 # cmake版本
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 
 
 
@@ -55,6 +55,7 @@ add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -Oihex ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.elf ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.hex
     COMMAND ${CMAKE_OBJCOPY} -Obinary -S ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.elf ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin
 )
+
 message("=================编译成功=================")
 message("")
 message("")
@@ -80,5 +81,20 @@ add_custom_target(run
     COMMAND echo -e "===========                                                           ==========="
     COMMAND echo -e "================================================================================="
     COMMAND echo -e ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin
-    COMMAND qemu-system-arm -M lm3s6965evb --kernel ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin -nographic
+    COMMAND ${CMAKE_SOURCE_DIR}/kernel/libcpu/qemu/tools/qemu-system-arm -M lm3s6965evb --kernel ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin -nographic
+)
+
+add_custom_target(debug
+    COMMAND echo -e "================================================================================="
+    COMMAND echo -e "===========                                                           ==========="
+    COMMAND echo -e "===========                                                           ==========="
+    COMMAND echo -e "===========                    欢迎使用MK_RTOS                        ==========="
+    COMMAND echo -e "===========                                                           ==========="
+    COMMAND echo -e "===========                                               --板凳      ==========="
+    COMMAND echo -e "===========                                                           ==========="
+    COMMAND echo -e "===========                     系统开始调试！！！                    ==========="
+    COMMAND echo -e "===========                                                           ==========="
+    COMMAND echo -e "================================================================================="
+    COMMAND echo -e ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin
+    COMMAND ${CMAKE_SOURCE_DIR}/kernel/libcpu/qemu/tools/qemu-system-arm -M lm3s6965evb --kernel ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin -nographic -s -S
 )
