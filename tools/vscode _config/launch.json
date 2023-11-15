@@ -1,0 +1,43 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MK_RTOS Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/output/bin/mkrtos.elf",
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath":"/usr/bin/arm-none-eabi-gdb",
+            "miDebuggerServerAddress": "localhost:1234",
+            "stopAtEntry":true
+        },
+        {
+            "name": "MK_RTOS Build And Debug Run",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/echo",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build and debug run"
+        },
+        {
+            "name": "MK_RTOS Build And Run",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/echo",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build and run"
+        },
+        {
+            "name": "MK_RTOS Stop",
+            "type": "cppdbg",
+            "request": "launch",
+            "program":"${workspaceRoot}/a.out",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "stop"
+        }
+    ]
+}
