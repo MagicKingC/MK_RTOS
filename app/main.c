@@ -55,7 +55,7 @@ int main()
     mk_printk("msp:0x%x\n", _MK_GET_MSP());
 
     mk_TaskInit("task2",&task_2,task2,MK_NULL,&taskEnv2[512],2,1);
-    mk_TaskInit("task3",&task_3,task3,MK_NULL,&taskEnv3[512],2,1);
+    mk_TaskInit("task3",&task_3,task3,MK_NULL,&taskEnv3[512],2,3);
     mk_TaskInit("task1",&task_1,task1,MK_NULL,&taskEnv1[512],1,1);
 
     while(1) {
