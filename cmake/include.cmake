@@ -1,19 +1,20 @@
-set(libcpu_head "kernel/libcpu/qemu")
-set(kernel_head "kernel/code/include"
-"kernel/code/tools/include"
+set(libcpu_head "mk-rtos/libcpu/qemu")
+set(kernel_head "mk-rtos/kernel/inc"
+                "mk-rtos/tools/inc"
+                "app"
 )
 # qemu
-set(mcu_asm "kernel/libcpu/qemu/mcu_cm3.s"
+set(mcu_asm "mk-rtos/libcpu/qemu/mcu_cm3.s"
 )
 
 
 aux_source_directory("app" main_src)
-aux_source_directory("kernel/libcpu/qemu" libcpu_qemu_src)
+aux_source_directory("mk-rtos/libcpu/qemu" libcpu_qemu_src)
 
-aux_source_directory("kernel/code/tools/src" kernel_code_tools)
-aux_source_directory("kernel/code/src" kernel_code_src)
+aux_source_directory("mk-rtos/tools/src" mk_rtos_tools_src)
+aux_source_directory("mk-rtos/kernel/src" mk_rtos_kernel_src)
 
-set(kernel_code ${kernel_code_tools} ${kernel_code_src})
+set(kernel_code ${mk_rtos_tools_src} ${mk_rtos_kernel_src})
 
 set(C_INCLUDES 
     ${libcpu_head}

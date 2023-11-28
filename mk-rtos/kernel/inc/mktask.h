@@ -1,7 +1,7 @@
 #ifndef RT_TASK_H
 #define RT_TASK_H
 
-#include <mktype.h>
+#include <mkdef.h>
 #include <mkrtos_config.h>
 
 //任务状态
@@ -92,5 +92,42 @@ MK_RTOS_EXT mk_code_t mk_TaskInit(char * TaskName, mk_TaskTcb * TaskTCB, void (*
 MK_RTOS_EXT mk_code_t mk_Task_Init(mk_task_t *_task_struct);
 
 MK_RTOS_EXT void mk_Task_Delete(mk_TaskTcb *_task);
+
+/**
+ * 任务切换
+*/
+MK_RTOS_EXT void _MK_TaskSwitch_(void);
+MK_RTOS_EXT void _MK_TaskTimeSliceSched(MK_READY_LIST_NODE *list);
+
+MK_RTOS_EXT void _MK_RTOS_RUN_(void);
+MK_RTOS_EXT void _TriggerPendSV_(void);
+MK_RTOS_EXT void _CPU_InterruptEnable_(void);
+MK_RTOS_EXT void _CPU_InterruptDisable_(void);
+
+MK_RTOS_EXT mk_uint32_t _MK_SR_Save_(void);
+MK_RTOS_EXT void _MK_SR_Restore_(mk_uint32_t reg_value);
+
+/**
+ * @brief 进入临界区
+ */
+#define mk_critical_enter() ({ \
+	mk_uint32_t reg_val;       \
+	reg_val = _MK_SR_Save_();  \
+	_CPU_InterruptDisable_();  \
+	reg_val;                   \
+})
+
+/**
+ * @brief 退出临界区
+ */
+#define mk_critical_exit(reg_val) \
+	do                            \
+	{                             \
+		_CPU_InterruptEnable_();  \
+		_MK_SR_Restore_(reg_val); \
+	} while (0)
+
+MK_RTOS_EXT void __MK_Main(void);
+MK_RTOS_EXT int main(void);
 
 #endif

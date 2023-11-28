@@ -1,6 +1,5 @@
-#ifndef DATA_TYPE_H
-#define DATA_TYPE_H
-
+#ifndef MKDEF_H
+#define MKDEF_H
 
 #ifdef	MK_RTOS_GLOBALS
 	#define	MK_RTOS_EXT
@@ -16,7 +15,8 @@ enum _MK_CODE_{
 	MK_FAIL = -1,
 	MK_SUCCESS = 0,
 };
-	
+
+
 //RTOS的自定义数据类型
 typedef unsigned int   mk_uint32_t;
 typedef unsigned short mk_uint16_t;

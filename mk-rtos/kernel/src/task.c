@@ -1,21 +1,21 @@
 #include <mktask.h>
-#include <system.h>
-#include <priority.h>
 #include <mkstr.h>
-#include <scheduler.h>
+#include <mkrtos.h>
+#include <mkidle.h>
 
+#include <priority.h>
 
 /******************************************************************
-*	¼Ä´æÆ÷ËµÃ÷
-*	PC¼Ä´æÆ÷:Ö¸ÏòµÄÊ±cpu¼´½«Ö´ĞĞµÄµØÖ·
-*	LR¼Ä´æÆ÷£º´æ´¢×Ó³ÌĞòÌø×ªµØÖ·
-*	R3¡¢R2¡¢R1¡¢R0£º×Ó³ÌĞòÖ®¼ä´«µİÊı¾İ
-*	R4µ½R11ÓÃÓÚ´æ´¢¾Ö²¿±äÁ¿
-*	Ó²¼ş×Ô¶¯½«xPSP¼Ä´æÆ÷¡¢R15(PC)¡¢LR(R14)¡¢R12¡¢R3¡¢R2¡¢R1¡¢R0Ñ¹ÈëÕ»
+*	å¯„å­˜å™¨è¯´æ˜
+*	PCå¯„å­˜å™¨:æŒ‡å‘çš„æ—¶cpuå³å°†æ‰§è¡Œçš„åœ°å€
+*	LRå¯„å­˜å™¨ï¼šå­˜å‚¨å­ç¨‹åºè·³è½¬åœ°å€
+*	R3ã€R2ã€R1ã€R0ï¼šå­ç¨‹åºä¹‹é—´ä¼ é€’æ•°æ®
+*	R4åˆ°R11ç”¨äºå­˜å‚¨å±€éƒ¨å˜é‡
+*	ç¡¬ä»¶è‡ªåŠ¨å°†xPSPå¯„å­˜å™¨ã€R15(PC)ã€LR(R14)ã€R12ã€R3ã€R2ã€R1ã€R0å‹å…¥æ ˆ
 *******************************************************************/
 
 /**
- * @brief ÈÎÎñÕ»³õÊ¼»¯
+ * @brief ä»»åŠ¡æ ˆåˆå§‹åŒ–
  * @param _entry 
  * @param _param 
  * @param _TaskStack 
@@ -23,16 +23,16 @@
  */
 static mk_TaskStack * __MK_TaskStackInit(void (*_entry)(void *),void *_param,mk_TaskStack *_TaskStack){
 
-	*(--_TaskStack) = (mk_uint32_t)(1<<24);//±ØĞëÖÃÎª1£¬·ñÔò½øÈëarmÄ£Ê½£¬ÔËĞĞÒì³£
+	*(--_TaskStack) = (mk_uint32_t)(1<<24);//å¿…é¡»ç½®ä¸º1ï¼Œå¦åˆ™è¿›å…¥armæ¨¡å¼ï¼Œè¿è¡Œå¼‚å¸¸
 	*(--_TaskStack) = (mk_uint32_t)(_entry);//R15
-	//Ó²¼ş×Ô¶¯±£´æ
+	//ç¡¬ä»¶è‡ªåŠ¨ä¿å­˜
 	*(--_TaskStack) = (mk_uint32_t)(0x00000014ul);//R14
 	*(--_TaskStack) = (mk_uint32_t)(0x00000012ul);//R12
 	*(--_TaskStack) = (mk_uint32_t)(0x00000003ul);//R3
 	*(--_TaskStack) = (mk_uint32_t)(0x00000002ul);//R2
 	*(--_TaskStack) = (mk_uint32_t)(0x00000001ul);//R1
 	*(--_TaskStack) = (mk_uint32_t)(_param);//R0
-	//ÊÖ¶¯±£´æ
+	//æ‰‹åŠ¨ä¿å­˜
 	*(--_TaskStack) = (mk_uint32_t)(0x00000011ul);//R11
 	*(--_TaskStack) = (mk_uint32_t)(0x00000010ul);//R10
 	*(--_TaskStack) = (mk_uint32_t)(0x00000009ul);//R9
@@ -48,14 +48,14 @@ static mk_TaskStack * __MK_TaskStackInit(void (*_entry)(void *),void *_param,mk_
 
 
 /**
- * @brief ¾²Ì¬·½·¨´´½¨ÈÎÎñ
- * @param TaskName Ïß³ÌÃû×Ö
- * @param TaskTCB  ³ÌĞò¿ØÖÆ¿é
- * @param _entry ³ÌĞòÈë¿Ú
- * @param _param ´«Èë³ÌĞò²ÎÊı
- * @param _TaskStack ¶ÑÕ»µØÖ·
- * @param _TaskPrio ÈÎÎñÓÅÏÈ¼¶
- * @param _TaskTimeSlice Ê±¼äÆ¬
+ * @brief é™æ€æ–¹æ³•åˆ›å»ºä»»åŠ¡
+ * @param TaskName çº¿ç¨‹åå­—
+ * @param TaskTCB  ç¨‹åºæ§åˆ¶å—
+ * @param _entry ç¨‹åºå…¥å£
+ * @param _param ä¼ å…¥ç¨‹åºå‚æ•°
+ * @param _TaskStack å †æ ˆåœ°å€
+ * @param _TaskPrio ä»»åŠ¡ä¼˜å…ˆçº§
+ * @param _TaskTimeSlice æ—¶é—´ç‰‡
  * @return mk_code_t 
  */
 mk_code_t mk_TaskInit(char * TaskName, mk_TaskTcb * TaskTCB, void (*_entry)(void *), void *_param, 
@@ -67,24 +67,24 @@ mk_code_t mk_TaskInit(char * TaskName, mk_TaskTcb * TaskTCB, void (*_entry)(void
 	if(_TaskPrio > MK_PRIORITY_MAX ){
 		return MK_FAIL;
 	}
-	//Ê±»ù²ÎÊı
+	//æ—¶åŸºå‚æ•°
 	TaskTCB->WaitTick = 0;
 	TaskTCB->TickCount = 0;
 	TaskTCB->TickPrev = MK_NULL;
 	TaskTCB->TickNext = MK_NULL;
 	
 #if USE_TIME_SLICE
-	//Ê±¼äÆ¬²ÎÊı
+	//æ—¶é—´ç‰‡å‚æ•°
 	TaskTCB->TaskTimeSlice = _TaskTimeSlice;
 	TaskTCB->TaskMaxTimeSlice = _TaskTimeSlice;
 #endif
-	//ÉèÖÃÓÅÏÈ¼¶
+	//è®¾ç½®ä¼˜å…ˆçº§
 	TaskTCB->TaskPrio = _TaskPrio;
-	//³õÊ¼»¯Õ»
+	//åˆå§‹åŒ–æ ˆ
 	TaskTCB->TaskStack = __MK_TaskStackInit(_entry,_param,_TaskStack);
-	//²åÈë¾ÍĞ÷ÁĞ±í
+	//æ’å…¥å°±ç»ªåˆ—è¡¨
 	InsertNodeToReadyListTail(TaskTCB);
-	//ÉèÖÃÓÅÏÈ¼¶
+	//è®¾ç½®ä¼˜å…ˆçº§
 	SetBitToPrioTable(TaskTCB->TaskPrio);
 	
 	return MK_SUCCESS;
@@ -92,7 +92,7 @@ mk_code_t mk_TaskInit(char * TaskName, mk_TaskTcb * TaskTCB, void (*_entry)(void
 }
 
 /**
- * @brief ÈÎÎñ³õÊ¼»¯
+ * @brief ä»»åŠ¡åˆå§‹åŒ–
  * @param _task_struct 
  * @return mk_code_t 
  */
@@ -102,7 +102,7 @@ mk_code_t mk_Task_Init(mk_task_t *_task_struct){
 		mk_critical_exit(c_res);
 		return MK_FAIL;
 	}
-	//ÅĞ¶ÏÊÇ¾²Ì¬Õ»»¹ÊÇ¶¯Ì¬Õ»
+	//åˆ¤æ–­æ˜¯é™æ€æ ˆè¿˜æ˜¯åŠ¨æ€æ ˆ
 	if(_task_struct->is_auto_stck){
 		//_task_struct->task_stack = malloc()
 	}
@@ -123,29 +123,29 @@ mk_code_t mk_Task_Init(mk_task_t *_task_struct){
 		mk_critical_exit(c_res);
 		return MK_FAIL;
 	}
-	//Ê±»ù²ÎÊı
+	//æ—¶åŸºå‚æ•°
 	_task_struct->task_tcb.WaitTick = 0;
 	_task_struct->task_tcb.TickCount = 0;
 	_task_struct->task_tcb.TickPrev = MK_NULL;
 	_task_struct->task_tcb.TickNext = MK_NULL;
 	
 #if USE_TIME_SLICE
-	//Ê±¼äÆ¬²ÎÊı
+	//æ—¶é—´ç‰‡å‚æ•°
 	_task_struct->task_tcb.TaskTimeSlice = _task_struct->task_time_slice;
 	_task_struct->task_tcb.TaskMaxTimeSlice = _task_struct->task_time_slice;
 #endif
-	//ÉèÖÃÓÅÏÈ¼¶
+	//è®¾ç½®ä¼˜å…ˆçº§
 	_task_struct->task_tcb.TaskPrio = _task_struct->task_prio;
 	
-	//³õÊ¼»¯Õ»
+	//åˆå§‹åŒ–æ ˆ
 	_task_struct->task_tcb.TaskStack =
 							__MK_TaskStackInit(_task_struct->task_entry,
 											   _task_struct->param,
 											   _task_struct->task_stack);
 	
-	//²åÈë¾ÍĞ÷ÁĞ±í
+	//æ’å…¥å°±ç»ªåˆ—è¡¨
 	InsertNodeToReadyListTail(&(_task_struct->task_tcb));
-	//ÉèÖÃÓÅÏÈ¼¶
+	//è®¾ç½®ä¼˜å…ˆçº§
 	SetBitToPrioTable(_task_struct->task_tcb.TaskPrio);
 	
 	mk_critical_exit(c_res);
@@ -154,8 +154,8 @@ mk_code_t mk_Task_Init(mk_task_t *_task_struct){
 }
 
 /**
- * @brief ÈÎÎñÉ¾³ı
- * @param _task ÈÎÎñ¾ä±ú
+ * @brief ä»»åŠ¡åˆ é™¤
+ * @param _task ä»»åŠ¡å¥æŸ„
  */
 void mk_Task_Delete(mk_TaskTcb *_task){
 	mk_uint32_t c_res = mk_critical_enter();
@@ -167,3 +167,4 @@ void mk_Task_Delete(mk_TaskTcb *_task){
 	mk_critical_exit(c_res);
 	_MK_TaskSwitch_();
 }
+

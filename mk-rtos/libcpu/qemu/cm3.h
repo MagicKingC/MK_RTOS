@@ -1,7 +1,7 @@
 #ifndef CM3_H
 #define CM3_H
 
-#include <mktype.h>
+#include <mkdef.h>
 
 #define SCS_BASE            (0xE000E000)         /*System Control Space Base Address */
 #define SYSTICK_BASE        (SCS_BASE + 0x0010) /*SysTick Base Address*/

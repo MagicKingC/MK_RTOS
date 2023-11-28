@@ -1,3 +1,3 @@
 #define MK_RTOS_GLOBALS
-#include <mktype.h>
+#include <mkdef.h>
 #include <mkrtos.h>

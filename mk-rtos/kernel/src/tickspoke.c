@@ -4,7 +4,7 @@
 mk_uint32_t MK_TickCtr;
 
 /**
- * @brief Èí¼şÑÓ³Ùº¯Êı
+ * @brief è½¯ä»¶å»¶è¿Ÿå‡½æ•°
  * @param ms 
  */
 void mk_delay_ms(mk_uint32_t ms){
@@ -13,13 +13,13 @@ void mk_delay_ms(mk_uint32_t ms){
 	InsertNodeToTickSpokeList(_MK_Current_Pro_,ms);
 	RemoveNodeFromReadyList(_MK_Current_Pro_);
 	mk_critical_exit(c_res);
-	//·ÅÆúÔËĞĞÈ¨
+	//æ”¾å¼ƒè¿è¡Œæƒ
 	_MK_TaskSwitch_();
 }
 
 
 /**
- * @brief Ê±¼ä´Á
+ * @brief æ—¶é—´æˆ³
  */
 #if USE_TIME_STAMP
 
@@ -41,7 +41,7 @@ static mk_uint32_t BSP_CPU_ClkFrep(void){
 void mk_time_stamp_init(void){
 	mk_uint32_t fclk_frep;
 	fclk_frep = BSP_CPU_ClkFrep();
-	//³õÊ¼»¯DWT
+	//åˆå§‹åŒ–DWT
 	DWT_DEMCR_REG |= (mk_uint32_t)DWT_ENABLE;
 	DWT_CYCCNT_REG = (mk_uint32_t)0u;
 	DWT_CTRL_REG  &= (~((mk_uint32_t)DWT_CYCCNTENA));
@@ -58,9 +58,9 @@ mk_uint32_t mk_get_time_stamp(void){
 #endif
 
 /*
-	Ê±¼äÆ¬
+	æ—¶é—´ç‰‡
 */
-//³õÊ¼»¯Ê±»ùÁĞ±í
+//åˆå§‹åŒ–æ—¶åŸºåˆ—è¡¨
 void InitTickSpokeList(){
 	mk_uint32_t index = 0;
 	for(index = 0; index < MK_TickWheelSize;index++){
@@ -68,7 +68,7 @@ void InitTickSpokeList(){
 	}
 }
 
-//½«Ïß³Ì¿é²åÈëÊ±»ùÁĞ±í ´ÓĞ¡µ½´óÅÅĞò
+//å°†çº¿ç¨‹å—æ’å…¥æ—¶åŸºåˆ—è¡¨ ä»å°åˆ°å¤§æ’åº
 mk_code_t InsertNodeToTickSpokeList(mk_TaskTcb *TaskTCB, mk_uint32_t _time){
 	mk_uint32_t index = 0;
 	mk_TaskTcb *tmpNode;
@@ -82,14 +82,14 @@ mk_code_t InsertNodeToTickSpokeList(mk_TaskTcb *TaskTCB, mk_uint32_t _time){
 	
 	tmpNode = MK_TickSpokeList[index].Next;
 	
-	if(tmpNode == MK_NULL){//²åÈëÊ×¸ö½Úµã
+	if(tmpNode == MK_NULL){//æ’å…¥é¦–ä¸ªèŠ‚ç‚¹
 		MK_TickSpokeList[index].Next = TaskTCB;
 		TaskTCB->TickNext = MK_NULL;
 	}else{
 		while(tmpNode){
 			if(tmpNode->WaitTick > TaskTCB->WaitTick){
-				//ÅĞ¶Ï²åÈëµÄÎ»ÖÃ
-				if(tmpNode->TickSpoke->TickSpokeNodeNum == 1){//Ê×Î»
+				//åˆ¤æ–­æ’å…¥çš„ä½ç½®
+				if(tmpNode->TickSpoke->TickSpokeNodeNum == 1){//é¦–ä½
 					tmpNode->TickSpoke->Next = TaskTCB;
 				}
 				
@@ -104,7 +104,7 @@ mk_code_t InsertNodeToTickSpokeList(mk_TaskTcb *TaskTCB, mk_uint32_t _time){
 			endNode = tmpNode;
 			tmpNode = tmpNode->TickNext;
 		}
-		//²åÈëÏß³Ì¿éÎª×î´óµÄÒ»¸ö
+		//æ’å…¥çº¿ç¨‹å—ä¸ºæœ€å¤§çš„ä¸€ä¸ª
 		endNode->TickNext = TaskTCB;
 		TaskTCB->TickPrev = endNode;
 		TaskTCB->TickNext = MK_NULL;
@@ -118,9 +118,9 @@ mk_code_t InsertNodeToTickSpokeList(mk_TaskTcb *TaskTCB, mk_uint32_t _time){
 	return MK_SUCCESS;
 }
 
-//½«Ïß³Ì¿é´ÓÊ±»ùÁĞ±íÒÆ³ı
+//å°†çº¿ç¨‹å—ä»æ—¶åŸºåˆ—è¡¨ç§»é™¤
 void RemoveFromTickSpokeList(mk_TaskTcb *TaskTCB){	
-	if(TaskTCB == TaskTCB->TickSpoke->Next){//Ê×½Úµã
+	if(TaskTCB == TaskTCB->TickSpoke->Next){//é¦–èŠ‚ç‚¹
 		TaskTCB->TickSpoke->Next = TaskTCB->TickNext;
 		if(TaskTCB->TickNext){
 			TaskTCB->TickNext->TickPrev = MK_NULL;
@@ -136,10 +136,10 @@ void RemoveFromTickSpokeList(mk_TaskTcb *TaskTCB){
 	TaskTCB->TickSpoke->TickSpokeNodeNum--;
 }
 
-//¸üĞÂÊ±»ùÁĞ±í
+//æ›´æ–°æ—¶åŸºåˆ—è¡¨
 static void __MK_InsertReady(mk_TaskTcb *TaskTCB){
 	RemoveFromTickSpokeList(TaskTCB);
-	InsertNodeToReadyListTail(TaskTCB);//²åÈë¾ÍĞ÷ÁĞ±í
+	InsertNodeToReadyListTail(TaskTCB);//æ’å…¥å°±ç»ªåˆ—è¡¨
 }
 
 void UpdateToTickSpokeList(void){

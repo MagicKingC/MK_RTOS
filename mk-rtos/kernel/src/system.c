@@ -1,5 +1,5 @@
 #include <cm3.h>
-#include <idle.h>
+#include <mkidle.h>
 #include <mkrtos.h>
 
 /* main函数 */
@@ -38,7 +38,7 @@ void __MK_Main(void) {
     InitTickSpokeList();
 
     // 初始化空闲任务
-    _MK_Idle_Init_();
+    mk_Idle_Task_Init();
 
     mk_TaskInit("main", &maintask, (void*)main_task, MK_NULL, &maintaskEnv[512], MAIN_TASK_PRIORITY, 1);
 

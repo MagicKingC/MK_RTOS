@@ -3,7 +3,7 @@
 
 #include <mktask.h>
 
-MK_RTOS_EXT void _MK_Idle_Init_(void); 
+MK_RTOS_EXT void mk_Idle_Task_Init(void); 
 MK_RTOS_EXT mk_TaskTcb idletask;
 
 #endif

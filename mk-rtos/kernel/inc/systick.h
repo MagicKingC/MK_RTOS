@@ -1,7 +1,7 @@
 #ifndef TICK_SPOKE_H
 #define TICK_SPOKE_H
 
-#include <mktype.h>
+#include <mkdef.h>
 #include <mktask.h>
 
 #define MK_TickWheelSize MK_TICK_WHEEL_SIZE

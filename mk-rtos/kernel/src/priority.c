@@ -1,8 +1,7 @@
 #include <priority.h>
-#include <system.h>
 
-/**********************************¾ÍĞ÷ÁĞ±í********************************/
-//³õÊ¼»¯¾ÍĞ÷ÁĞ±í
+/**********************************å°±ç»ªåˆ—è¡¨********************************/
+//åˆå§‹åŒ–å°±ç»ªåˆ—è¡¨
 #define _LIST_HEAD_INIT_(list) { .Prev=MK_NULL, .Next=MK_NULL,.TaskNum=0};
 #define __MK_InitList(list,node_type) list = (node_type)_LIST_HEAD_INIT_(list)
 
@@ -13,7 +12,7 @@ void InitReadyList(void){
 	}
 }
 
-//½«Ïß³Ì¿é²åÈë¾ÍĞ÷ÁĞ±í(Í·²å·¨)
+//å°†çº¿ç¨‹å—æ’å…¥å°±ç»ªåˆ—è¡¨(å¤´æ’æ³•)
 void InsertNodeToReadyListHead(mk_TaskTcb *node){
 	node->TaskStatus |= MK_TASK_STATY_RDY;
 	SetBitToPrioTable(node->TaskPrio);
@@ -34,7 +33,7 @@ void InsertNodeToReadyListHead(mk_TaskTcb *node){
 }
 
 
-//½«Ïß³Ì¿é²åÈë¾ÍĞ÷ÁĞ±í(Î²²å·¨)
+//å°†çº¿ç¨‹å—æ’å…¥å°±ç»ªåˆ—è¡¨(å°¾æ’æ³•)
 void InsertNodeToReadyListTail(mk_TaskTcb *node){
 	node->TaskStatus |= MK_TASK_STATY_RDY;
 	SetBitToPrioTable(node->TaskPrio);
@@ -54,7 +53,7 @@ void InsertNodeToReadyListTail(mk_TaskTcb *node){
 	_MK_ReadyList[node->TaskPrio].TaskNum++;
 }
 
-//½«¾ÍĞ÷ÁĞ±íµÄÍ·ÒÆ¶¯µ½Î²²¿
+//å°†å°±ç»ªåˆ—è¡¨çš„å¤´ç§»åŠ¨åˆ°å°¾éƒ¨
 void MoveHeadToTailInReadList(MK_READY_LIST_NODE *list){
 	if(list->TaskNum <= 1){
 		return;
@@ -68,18 +67,18 @@ void MoveHeadToTailInReadList(MK_READY_LIST_NODE *list){
 	list->Next = tmpNode;
 }
 
-//½«Ïß³Ì¿é´Ó¾ÍĞ÷ÁĞ±íÖĞÉ¾³ı
+//å°†çº¿ç¨‹å—ä»å°±ç»ªåˆ—è¡¨ä¸­åˆ é™¤
 void RemoveNodeFromReadyList(mk_TaskTcb *node){
 	node->TaskStatus |= MK_TASK_STATY_DEL;
 	if(_MK_ReadyList[node->TaskPrio].TaskNum == 1){
 		_MK_ReadyList[node->TaskPrio].Prev = MK_NULL;
 		_MK_ReadyList[node->TaskPrio].Next = MK_NULL;
-		ClearBitToPrioTable(node->TaskPrio);//´ÓÓÅÏÈ¼¶±íÖĞÉ¾³ı¸ÃÏß³Ì
+		ClearBitToPrioTable(node->TaskPrio);//ä»ä¼˜å…ˆçº§è¡¨ä¸­åˆ é™¤è¯¥çº¿ç¨‹
 		
 	}else if(_MK_ReadyList[node->TaskPrio].TaskNum > 1){
-		if(node->ReadyPrev == MK_NULL){//Á´±íÖĞµÄÊ×½Úµã
+		if(node->ReadyPrev == MK_NULL){//é“¾è¡¨ä¸­çš„é¦–èŠ‚ç‚¹
 			_MK_ReadyList[node->TaskPrio].Prev = node->ReadyNext;
-		}else if(node->ReadyNext == MK_NULL){//Á´±íÖĞµÄÎ²½Úµã
+		}else if(node->ReadyNext == MK_NULL){//é“¾è¡¨ä¸­çš„å°¾èŠ‚ç‚¹
 			_MK_ReadyList[node->TaskPrio].Next = node->ReadyPrev;
 		}else{
 			node->ReadyPrev->ReadyNext = node->ReadyNext;
@@ -96,8 +95,8 @@ void RemoveNodeFromReadyList(mk_TaskTcb *node){
 
 /************************************************************/
 
-/***********************ÓÅÏÈ¼¶±í*****************************/
-//³õÊ¼»¯ÓÅÏÈ¼¶±í
+/***********************ä¼˜å…ˆçº§è¡¨*****************************/
+//åˆå§‹åŒ–ä¼˜å…ˆçº§è¡¨
 void InitPrioTable(void){
 	mk_uint32_t index;
 	for(index = 0;index < MK_PRIORITY_TABLE_SIZE;index++){
@@ -105,7 +104,7 @@ void InitPrioTable(void){
 	}
 }
 
-//²éÕÒµÚÒ»¸ö²»Îª0µÄÊı¾İ (ºóÓÃCLZÖ¸Áî´úÌæÕâ¸öº¯Êı)
+//æŸ¥æ‰¾ç¬¬ä¸€ä¸ªä¸ä¸º0çš„æ•°æ® (åç”¨CLZæŒ‡ä»¤ä»£æ›¿è¿™ä¸ªå‡½æ•°)
 mk_uint8_t _MK_FindFirstBit_(mk_uint32_t _MK_Priority)
 {
 	mk_uint8_t index=0;
@@ -151,7 +150,7 @@ mk_uint32_t _MK_FindFirstBit(const mk_uint32_t *_bitMap){
 }
 
 
-//»ñÈ¡×î¸ßÓÅÏÈ¼¶
+//è·å–æœ€é«˜ä¼˜å…ˆçº§
 mk_uint32_t GetHighestPrioFromPrioTable(void){
 	mk_uint32_t res = 0;
 	mk_uint32_t index = 0;
@@ -165,7 +164,7 @@ mk_uint32_t GetHighestPrioFromPrioTable(void){
 	return res;
 }
 
-//ÉèÖÃÓÅÏÈ¼¶
+//è®¾ç½®ä¼˜å…ˆçº§
 mk_code_t SetBitToPrioTable(mk_uint32_t TaskPrio){
 	mk_uint32_t index = TaskPrio/MK_PRIORITY_MAX;
 	mk_uint32_t bit = TaskPrio%32;
@@ -173,7 +172,7 @@ mk_code_t SetBitToPrioTable(mk_uint32_t TaskPrio){
 	return MK_SUCCESS;
 }
 
-//Çå³ıÓÅÏÈ¼¶
+//æ¸…é™¤ä¼˜å…ˆçº§
 mk_code_t ClearBitToPrioTable(mk_uint32_t TaskPrio){
 	mk_uint32_t index = TaskPrio/MK_PRIORITY_MAX;
 	mk_uint32_t bit = TaskPrio%32;
