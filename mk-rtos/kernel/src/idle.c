@@ -1,4 +1,4 @@
-#include <idle.h>
+#include <mkidle.h>
 #include <mkrtos.h>
 
 static mk_TaskStack idletaskEnv[32];
@@ -10,7 +10,7 @@ void mk_idle_task(void *param){
 	}
 }
 
-void _MK_Idle_Init_(void){
+void mk_Idle_Task_Init(void)
+{
 	mk_TaskInit("idle",&idletask,mk_idle_task,MK_NULL,&idletaskEnv[32],MK_PRIORITY_MAX-1,1);
 }
-

@@ -7,7 +7,7 @@
  *
  *
  */
-#include <mktype.h>
+#include <mkdef.h>
 
 // void ResetISR(void);
 static void NmiISR(void);
