@@ -1,68 +1,41 @@
-#include "cm3.h"
-#include "mkrtos.h"
+#include <mkrtos.h>
 
-extern mk_uint32_t _bss;
-extern mk_uint32_t _ebss;
+mk_task_t task1;
+mk_task_t task2;
 
-mk_TaskStack taskEnv1[512];
-mk_TaskStack taskEnv2[512];
-mk_TaskStack taskEnv3[512];
+static mk_stack_t task1_stk[1024];
+static mk_stack_t task2_stk[1024];
 
-mk_TaskTcb task_1;
-mk_TaskTcb task_2;
-mk_TaskTcb task_3;
-
-int bit1 = 0;
-volatile int bit2 = 0;
-volatile int bit3 = 0;
-
-void delay(mk_uint32_t count )
-{
- for (; count!=0; count--);
-}
-
-void task1(void *param){
-	while(1){
-		mk_printk("%s\n",__func__);
-		mk_delay_ms(1000);
-	}
-}
-
-void task2(void *param){
-	while(1){
-		mk_printk("%s\n",__func__);
-		// delay(0xFFFF);
-        mk_delay_ms(1000);
-	}
-}
-
-void task3(void *param){
-	while(1){
-		mk_printk("%s\n",__func__);
-		// delay(0xFFFF);
-        mk_delay_ms(2000);
-	}
-}
-
-mk_task_t task1_s={0};
-mk_task_t task2_s={0};
-mk_task_t task3_s={0};
-
-int main()
-{
-    mk_printk("Hello RTOS\n");
-    mk_printk("psp:0x%x\n", _MK_GET_PSP());
-    mk_printk("msp:0x%x\n", _MK_GET_MSP());
-
-    mk_TaskInit("task2",&task_2,task2,MK_NULL,&taskEnv2[512],2,1);
-    mk_TaskInit("task3",&task_3,task3,MK_NULL,&taskEnv3[512],2,3);
-    mk_TaskInit("task1",&task_1,task1,MK_NULL,&taskEnv1[512],1,1);
-
-    while(1) {
-        mk_printk("%s\n",__func__);
-        mk_delay_ms(50);
+void task1_entry(void* param) {
+    mkprintk("%s\r\n", __func__);
+    for (;;) {
+        mkprintk("now task name: %s\r\n", mk_get_current_task_name());
+        mk_task_delay_ms(300);
+        mk_task_resume(&task2);
     }
-
-    return 0;
 }
-	
+
+void task2_entry(void* param) {
+    mkprintk("%s\r\n", __func__);
+    for (;;) {
+         mkprintk("now task name: %s\r\n", mk_get_current_task_name());
+         mk_task_suspend(g_current_task);
+    }
+}
+
+int main(void) {
+
+    mkprintk("entry main\r\n");
+    mkprintk("now task name: %s\r\n", mk_get_current_task_name());
+
+    mk_task_init("test1", &task1, task1_entry, (void*)0x0, task1_stk, 1024, 2, 10);
+    mk_task_init("test2", &task2, task2_entry, (void*)0x0, task2_stk, 1024, 2, 10);
+
+    mk_task_start(&task1);
+    mk_task_start(&task2);
+
+    while (1) {
+        mkprintk("run main\r\n");
+        mk_task_delay_ms(100);
+    }
+}

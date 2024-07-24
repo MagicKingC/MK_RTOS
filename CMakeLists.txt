@@ -1,9 +1,6 @@
 # cmake版本
 cmake_minimum_required(VERSION 3.5)
 
-
-
-
 message("")
 message("")
 
@@ -18,7 +15,11 @@ set(CMAKE_OBJCOPY ${CROSS_COMPILE_PREFIX}-objcopy)
 set(CMAKE_OBJDUMP ${CROSS_COMPILE_PREFIX}-objdump)
 set(CMAKE_SIZE ${CROSS_COMPILE_PREFIX}-size)
 set(CMAKE_AR ${CROSS_COMPILE_PREFIX}-ar)
+
+set(QMENU_ARM ${CMAKE_SOURCE_DIR}/tools/qemu-system-arm)
+
 message("=================项目配置=================")
+
 # 项目名
 project(mkrtos)
 
@@ -48,7 +49,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/output/bin)
 
 message("=================工程编译=================")
 #生成运行程序
-add_executable(${PROJECT_NAME}.elf ${mcu_asm} ${kernel_code} ${main_src} ${libcpu_qemu_src})
+add_executable(${PROJECT_NAME}.elf ${mcu_asm} ${kernel_code} ${main_src} ${mkrtos_libcpu_qemu})
 
 # 生成bin和hex
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
@@ -81,7 +82,7 @@ add_custom_target(run
     COMMAND echo -e "===========                                                           ==========="
     COMMAND echo -e "================================================================================="
     COMMAND echo -e ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin
-    COMMAND ${CMAKE_SOURCE_DIR}/kernel/libcpu/qemu/tools/qemu-system-arm -M lm3s6965evb --kernel ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin -nographic
+    COMMAND ${QMENU_ARM} -M lm3s6965evb --kernel ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin -nographic
 )
 
 add_custom_target(debug
@@ -96,5 +97,5 @@ add_custom_target(debug
     COMMAND echo -e "===========                                                           ==========="
     COMMAND echo -e "================================================================================="
     COMMAND echo -e ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin
-    COMMAND ${CMAKE_SOURCE_DIR}/kernel/libcpu/qemu/tools/qemu-system-arm -M lm3s6965evb --kernel ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin -nographic -s -S
+    COMMAND ${QMENU_ARM} -M lm3s6965evb --kernel ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME}.bin -nographic -s -S
 )

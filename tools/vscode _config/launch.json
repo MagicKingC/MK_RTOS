@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/build/output/bin/mkrtos.elf",
             "cwd": "${workspaceFolder}",
             "MIMode": "gdb",
-            "miDebuggerPath":"/usr/bin/arm-none-eabi-gdb",
+            "miDebuggerPath":"arm-none-eabi-gdb",
             "miDebuggerServerAddress": "localhost:1234",
             "stopAtEntry":true
         },
@@ -19,7 +19,7 @@
             "name": "MK_RTOS Build And Debug Run",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/usr/bin/echo",
+            "program": "echo",
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "build and debug run"
         },
@@ -27,7 +27,7 @@
             "name": "MK_RTOS Build And Run",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/usr/bin/echo",
+            "program": "echo",
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "build and run"
         },
