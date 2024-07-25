@@ -9,6 +9,5 @@
 #include <mktask.h>
 #include <mklist.h>
 #include <mkdebug.h>
-#include <mksemaphore.h>
 
 #endif

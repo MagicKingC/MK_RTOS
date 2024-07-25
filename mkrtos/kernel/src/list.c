@@ -20,6 +20,9 @@ static mk_ready_list_t _mk_task_ready_list[MK_TASK_PRIORITY_NUM];
  * @brief 延迟列表
  */
 static mk_delay_list_t _mk_task_delay_list;
+/**
+ * @brief 软件定时器列表
+ */
 
 /**
  * @brief 用于查找 1 在当前数字的第几位
@@ -40,8 +43,7 @@ const mk_uint8_t _bitmap[] = {
     /* C0 */ 6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
     /* D0 */ 4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
     /* E0 */ 5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-    /* F0 */ 4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-};
+    /* F0 */ 4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0};
 
 /**
  * @brief 初始化优先级位表
@@ -131,7 +133,7 @@ void mk_init_system_list(void) {
  * @brief 列表初始化
  * @param _list
  */
-void mk_init_list(mk_list_t* _list) {
+void mk_init_list(mk_list_t *_list) {
     MK_INIT_LIST_HEAD(*_list, mk_list_t);
 }
 
@@ -140,10 +142,10 @@ void mk_init_list(mk_list_t* _list) {
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_insert_node_to_list_tail(mk_list_t* _list, mk_task_t* _task, mk_size_t _offset) {
+mk_code_t mk_insert_node_to_list_tail(mk_list_t *_list, mk_task_t *_task, mk_size_t _offset) {
     _list->task_num++;
 
-    mk_list_t* _tmp_task_list = (mk_list_t*)((mk_size_t)_task + _offset);
+    mk_list_t *_tmp_task_list = (mk_list_t *)((mk_size_t)_task + _offset);
 
     // 第一次插入
     if (_list->prev == MK_NULL && _list->next == MK_NULL) {
@@ -157,7 +159,7 @@ mk_code_t mk_insert_node_to_list_tail(mk_list_t* _list, mk_task_t* _task, mk_siz
         _tmp_task_list->prev = _list->prev;
         _tmp_task_list->next = MK_NULL;
 
-        ((mk_list_t*)(((mk_size_t)_list->prev) + _offset))->next = _task;
+        ((mk_list_t *)(((mk_size_t)_list->prev) + _offset))->next = _task;
 
         _list->prev = _task;
     }
@@ -170,7 +172,7 @@ mk_code_t mk_insert_node_to_list_tail(mk_list_t* _list, mk_task_t* _task, mk_siz
  * @param _list
  * @return mk_task_t*
  */
-mk_task_t* mk_get_node_from_list(mk_list_t* _list) {
+mk_task_t *mk_get_node_from_list(mk_list_t *_list) {
     return _list->next;
 }
 
@@ -179,8 +181,8 @@ mk_task_t* mk_get_node_from_list(mk_list_t* _list) {
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_delete_node_from_list(mk_list_t* _list, mk_task_t* _task, mk_size_t _offset) {
-    mk_list_t* _tmp_task_list;
+mk_code_t mk_delete_node_from_list(mk_list_t *_list, mk_task_t *_task, mk_size_t _offset) {
+    mk_list_t *_tmp_task_list;
 
     if (_list->task_num > 0) {
         _list->task_num--;
@@ -188,9 +190,9 @@ mk_code_t mk_delete_node_from_list(mk_list_t* _list, mk_task_t* _task, mk_size_t
         return MK_FAIL;
     }
 
-    _tmp_task_list = (mk_list_t*)((mk_size_t)_task + _offset);
+    _tmp_task_list = (mk_list_t *)((mk_size_t)_task + _offset);
 
-    if (_list->task_num == 0)  // 只有一个节点
+    if (_list->task_num == 0) // 只有一个节点
     {
         _list->prev = MK_NULL;
         _list->next = MK_NULL;
@@ -198,16 +200,16 @@ mk_code_t mk_delete_node_from_list(mk_list_t* _list, mk_task_t* _task, mk_size_t
         if (_offset == GET_STR_DATA_ADDR_OFFSET(mk_task_t, ready_list)) {
             mk_clear_bitmap(_task->prio);
         }
-    } else if (_tmp_task_list->next == MK_NULL) {  // 尾节点
+    } else if (_tmp_task_list->next == MK_NULL) { // 尾节点
         _list->prev = _tmp_task_list->prev;
-        ((mk_list_t*)((mk_size_t)(_tmp_task_list->prev) + _offset))->next = MK_NULL;
-    } else if (_tmp_task_list->prev == MK_NULL) {  // 头节点
+        ((mk_list_t *)((mk_size_t)(_tmp_task_list->prev) + _offset))->next = MK_NULL;
+    } else if (_tmp_task_list->prev == MK_NULL) { // 头节点
         _list->next = _tmp_task_list->next;
-        ((mk_list_t*)((mk_size_t)(_tmp_task_list->next) + _offset))->prev = MK_NULL;
+        ((mk_list_t *)((mk_size_t)(_tmp_task_list->next) + _offset))->prev = MK_NULL;
 
-    } else {  // 非首尾节点
-        ((mk_list_t*)((mk_size_t)(_tmp_task_list->prev) + _offset))->next = _tmp_task_list->next;
-        ((mk_list_t*)((mk_size_t)(_tmp_task_list->next) + _offset))->prev = _tmp_task_list->prev;
+    } else { // 非首尾节点
+        ((mk_list_t *)((mk_size_t)(_tmp_task_list->prev) + _offset))->next = _tmp_task_list->next;
+        ((mk_list_t *)((mk_size_t)(_tmp_task_list->next) + _offset))->prev = _tmp_task_list->prev;
     }
 
     _tmp_task_list->prev = MK_NULL;
@@ -221,7 +223,7 @@ mk_code_t mk_delete_node_from_list(mk_list_t* _list, mk_task_t* _task, mk_size_t
  * @param _task
  * @return mk_code_t
  */
-static mk_code_t mk_move_node_to_tail(mk_list_t* _list, mk_task_t* _task) {
+static mk_code_t mk_move_node_to_tail(mk_list_t *_list, mk_task_t *_task) {
     mk_size_t _prio = 0;
 
     if (_task->prio > MK_TASK_PRIORITY_NUM) {
@@ -252,7 +254,7 @@ fun_end:
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_insert_node_to_ready_list(mk_task_t* _task) {
+mk_code_t mk_insert_node_to_ready_list(mk_task_t *_task) {
     if (_task->prio > MK_TASK_PRIORITY_NUM) {
         return MK_FAIL;
     }
@@ -268,7 +270,7 @@ mk_code_t mk_insert_node_to_ready_list(mk_task_t* _task) {
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_move_node_to_ready_list_tail(mk_task_t* _task) {
+mk_code_t mk_move_node_to_ready_list_tail(mk_task_t *_task) {
     return mk_move_node_to_tail(_mk_task_ready_list, _task);
 }
 
@@ -277,7 +279,7 @@ mk_code_t mk_move_node_to_ready_list_tail(mk_task_t* _task) {
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_delete_node_from_ready_list(mk_task_t* _task) {
+mk_code_t mk_delete_node_from_ready_list(mk_task_t *_task) {
     if (_task->prio > MK_TASK_PRIORITY_NUM) {
         return MK_FAIL;
     }
@@ -297,7 +299,7 @@ void mk_printf_ready_list(mk_size_t _prio) {
         return;
     }
     _status = mk_enter_critical();
-    mk_task_t* tmp = _mk_task_ready_list[_prio].next;
+    mk_task_t *tmp = _mk_task_ready_list[_prio].next;
 
     mkprintk("#########################################\r\n");
     mkprintk("#### print ready list\r\n");
@@ -316,7 +318,7 @@ void mk_printf_ready_list(mk_size_t _prio) {
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_insert_node_to_delay_list(mk_task_t* _task) {
+mk_code_t mk_insert_node_to_delay_list(mk_task_t *_task) {
     _task->task_status = MK_TASK_STATUS_SUSPEND;
     return mk_insert_node_to_list_tail(&_mk_task_delay_list, _task, GET_STR_DATA_ADDR_OFFSET(mk_task_t, delay_list));
 }
@@ -326,7 +328,7 @@ mk_code_t mk_insert_node_to_delay_list(mk_task_t* _task) {
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_delete_node_from_delay_list(mk_task_t* _task) {
+mk_code_t mk_delete_node_from_delay_list(mk_task_t *_task) {
     return mk_delete_node_from_list(&_mk_task_delay_list, _task, GET_STR_DATA_ADDR_OFFSET(mk_task_t, delay_list));
 }
 
@@ -338,8 +340,8 @@ mk_code_t mk_delete_node_from_delay_list(mk_task_t* _task) {
  * 就绪态，同时将下一个节点的数据减去当前节点的延时时间
  */
 void mk_update_delay_list(void) {
-    mk_task_t* _task = MK_NULL;
-    mk_task_t* _task_tmp = MK_NULL;
+    mk_task_t *_task = MK_NULL;
+    mk_task_t *_task_tmp = MK_NULL;
     mk_size_t _task_num = _mk_task_delay_list.task_num;
     if (_task_num == 0) {
         return;
@@ -368,7 +370,7 @@ void mk_printf_delay_list(void) {
     mk_uint32_t _status;
 
     _status = mk_enter_critical();
-    mk_task_t* tmp = _mk_task_delay_list.next;
+    mk_task_t *tmp = _mk_task_delay_list.next;
 
     mkprintk("#########################################\r\n");
     mkprintk("#### print delay list\r\n");
@@ -391,8 +393,8 @@ void mk_printf_delay_list(void) {
  * @param _highest_prio_index
  * @return mk_task_t*
  */
-mk_task_t* mk_get_node_from_ready_list(mk_size_t _highest_prio_index) {
-    mk_task_t* _task = MK_NULL;
+mk_task_t *mk_get_node_from_ready_list(mk_size_t _highest_prio_index) {
+    mk_task_t *_task = MK_NULL;
 
     if (_mk_task_ready_list[_highest_prio_index].task_num > 0) {
         _task = _mk_task_ready_list[_highest_prio_index].next;

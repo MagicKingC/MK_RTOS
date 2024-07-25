@@ -58,6 +58,7 @@ static void mk_startup_kernel(void) {
     mk_init_task_bit_map();
     // 初始化列表
     mk_init_system_list();
+    
 #ifdef MK_USE_SOFTTIMER
     // 初始化软定时器列表
     mk_init_soft_timer_list();
@@ -66,6 +67,7 @@ static void mk_startup_kernel(void) {
     mk_init_idle_task();
     // 初始化main任务
     mk_init_main_task();
+
 #ifdef MK_USE_SOFTTIMER
     // 初始化定时器任务
     mk_init_timer_task();

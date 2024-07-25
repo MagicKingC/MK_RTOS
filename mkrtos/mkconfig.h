@@ -1,5 +1,5 @@
-#ifndef MKRTOS_CONFIG_H
-#define MKRTOS_CONFIG_H
+#ifndef MKRTOSCONFIG_H
+#define MKRTOSCONFIG_H
 
 //调试台 1：表示使用系统调试 0：表示不使用
 #define MK_USING_SYS_DEBUG 1
@@ -48,6 +48,9 @@
 
 //软定时器
 #define MK_USE_SOFTTIMER 1
+
+//定时器名字长度
+#define MK_SOFTTIMER_NAME_LEN 16
 
 //软定时器任务栈大小
 #define MK_SOFTTIMER_STACK_SIZE 256
