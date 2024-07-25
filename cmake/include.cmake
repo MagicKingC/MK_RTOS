@@ -2,6 +2,7 @@ set(libcpu_head "mkrtos/libcpu/qemu")
 
 set(kernel_head "mkrtos/kernel/include"
                 "mkrtos/kernel/tools/include"
+                "mkrtos"
 )
 set(mklib_head "mkrtos/mklib/include")
 

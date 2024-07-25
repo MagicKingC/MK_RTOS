@@ -34,3 +34,17 @@ void mk_memset(void *_dst,const char _ch,mk_size_t _size){
         ((char *)_dst)[--_size] = _ch;
     }
 }
+
+
+/**
+ * @brief 内存拷贝
+ * @param _dst 
+ * @param _src 
+ * @param _size 
+ */
+void mk_memcpy(void *_dst,void * _src,mk_size_t _size){
+    while (_size >= 0)
+    {
+        ((char *)_dst)[--_size] = _src;
+    }
+}

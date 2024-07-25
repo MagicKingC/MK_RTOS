@@ -4,6 +4,7 @@
 //调试台 1：表示使用系统调试 0：表示不使用
 #define MK_USING_SYS_DEBUG 1
 
+//表示是否使用qmenu
 #define MK_USE_QMENU_DEBUG 1
 
 //优先级个数 >= 32
@@ -37,7 +38,13 @@
 #define MK_COM_NAME_LEN 32
 
 //信号量
-#define MK_USE_SEM 1
+#define MK_USE_SEMAPHORE 1
+
+//通讯变量名字长度
+#define MK_EVENT_NAME_LEN 32
+
+//事件
+#define MK_USE_EVENT 1
 
 //软定时器
 #define MK_USE_SOFTTIMER 1

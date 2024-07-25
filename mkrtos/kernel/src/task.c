@@ -7,9 +7,9 @@
 #include <mkdebug.h>
 #endif
 
-mk_task_t* g_current_task;
-mk_stack_t* g_current_task_sp;
-mk_stack_t* g_next_task_sp;
+mk_task_t *g_current_task;
+mk_stack_t *g_current_task_sp;
+mk_stack_t *g_next_task_sp;
 
 typedef struct _mk_statck_manual_ops_reg {
     mk_uint32_t r4;
@@ -46,20 +46,20 @@ typedef struct _mk_statck_ops {
  * @param _stack_size
  * @return mk_stack_t*
  */
-mk_stack_t* _mk_init_stack(void (*_func_entry)(void*), void* _param, mk_stack_t* _stack, mk_size_t _stack_size) {
-    mk_stack_ops_reg_t* stack_ops_reg;
+mk_stack_t *_mk_init_stack(void (*_func_entry)(void *), void *_param, mk_stack_t *_stack, mk_size_t _stack_size) {
+    mk_stack_ops_reg_t *stack_ops_reg;
 
-    mk_stack_t* _stack_tmp;
+    mk_stack_t *_stack_tmp;
 
 #if MK_STACK_DIRECTION
-    _stack_tmp = (mk_stack_t*)MK_ALIGN_DOWN((mk_uint32_t)(_stack), 8);
+    _stack_tmp = (mk_stack_t *)MK_ALIGN_DOWN((mk_uint32_t)(_stack), 8);
     _stack_tmp = _stack_tmp + sizeof(mk_stack_ops_reg_t);
 #else
-    _stack_tmp = (mk_stack_t*)MK_ALIGN_DOWN((mk_uint32_t)(_stack + _stack_size), 8);
+    _stack_tmp = (mk_stack_t *)MK_ALIGN_DOWN((mk_uint32_t)(_stack + _stack_size), 8);
     _stack_tmp = _stack_tmp - sizeof(mk_stack_ops_reg_t);
 
 #endif
-    stack_ops_reg = (mk_stack_ops_reg_t*)(_stack_tmp);
+    stack_ops_reg = (mk_stack_ops_reg_t *)(_stack_tmp);
 
     stack_ops_reg->statck_manual_ops.r4 = 0x04;
     stack_ops_reg->statck_manual_ops.r5 = 0x05;
@@ -94,14 +94,8 @@ mk_stack_t* _mk_init_stack(void (*_func_entry)(void*), void* _param, mk_stack_t*
  * @param _timer_tick 时间片
  * @return mk_code_t
  */
-mk_code_t mk_task_init(const char* _task_name,
-                       mk_task_t* _task,
-                       void (*_func_entry)(void*),
-                       void* _param,
-                       mk_stack_t* _stack,
-                       mk_size_t _stack_size,
-                       mk_size_t _task_pro,
-                       mk_size_t _timer_tick) {
+mk_code_t mk_task_init(const char *_task_name, mk_task_t *_task, void (*_func_entry)(void *), void *_param,
+                       mk_stack_t *_stack, mk_size_t _stack_size, mk_size_t _task_pro, mk_size_t _timer_tick) {
 #ifdef MK_USING_SYS_DEBUG
     mkprintk("%s(%s)\r\n", __func__, _task_name);
 #endif
@@ -133,7 +127,7 @@ mk_code_t mk_task_init(const char* _task_name,
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_task_start(mk_task_t* _task) {
+mk_code_t mk_task_start(mk_task_t *_task) {
     mk_code_t res = MK_FAIL;
     mk_uint32_t _status = mk_enter_critical();
     if (_task->task_status == MK_TASK_STATUS_CTREATE) {
@@ -148,7 +142,7 @@ mk_code_t mk_task_start(mk_task_t* _task) {
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_task_suspend(mk_task_t* _task) {
+mk_code_t mk_task_suspend(mk_task_t *_task) {
     mk_code_t res = MK_FAIL;
     mk_uint32_t _status = mk_enter_critical();
     if (_task->task_status == MK_TASK_STATUS_RUNNING || _task->task_status == MK_TASK_STATUS_READY) {
@@ -167,7 +161,7 @@ mk_code_t mk_task_suspend(mk_task_t* _task) {
  * @param _task
  * @return mk_code_t
  */
-mk_code_t mk_task_resume(mk_task_t* _task) {
+mk_code_t mk_task_resume(mk_task_t *_task) {
     mk_code_t res = MK_FAIL;
     mk_uint32_t _status = mk_enter_critical();
     if (_task->task_status == MK_TASK_STATUS_SUSPEND) {
@@ -179,11 +173,77 @@ mk_code_t mk_task_resume(mk_task_t* _task) {
 }
 
 /**
+ * @brief 放回当前任务指针
+ * @return mk_task_t*
+ */
+mk_task_t *mk_get_current_task(void) {
+    return g_current_task;
+}
+
+/**
+ * @brief 获取当前任务优先级
+ * @return mk_size_t
+ */
+mk_size_t mk_get_current_task_prio(void) {
+    return g_current_task->prio;
+}
+
+/**
+ * @brief 获取当前任务名字
+ * @return mk_size_t
+ */
+char *mk_get_current_task_name(void) {
+    return g_current_task->task_name;
+}
+
+/**
+ * @brief 移除任务
+ * @param _task
+ * @return mk_code_t
+ */
+mk_code_t mk_task_delete(mk_task_t *_task) {
+    _task->task_status = MK_TASK_STATUS_COLOSE;
+    mk_delete_node_from_ready_list(_task);
+}
+
+/**
+ * @brief 延迟函数
+ * @param _systick_times 延迟滴答数
+ * @return mk_code_t 系统码
+ */
+mk_code_t mk_task_tick_delay(mk_size_t _systick_times) {
+    mk_uint32_t _status = mk_enter_critical();
+
+    g_current_task->delay_systick = _systick_times;
+
+    // 插入休眠队列
+    mk_insert_node_to_delay_list(g_current_task);
+
+    // 从就绪队列移除
+    mk_delete_node_from_ready_list(g_current_task);
+
+    mk_exit_critical(_status);
+
+    // 进行任务调度
+    mk_tack_scheduler();
+
+    return MK_SUCCESS;
+}
+
+/**
+ * @brief 延迟函数
+ * @param _ms
+ */
+void mk_task_delay_ms(mk_size_t _ms) {
+    mk_task_tick_delay(_ms);
+}
+
+/**
  * @brief 进行任务调度
  */
 void mk_tack_scheduler() {
     mk_size_t priority_num;
-    mk_task_t* hight_task;
+    mk_task_t *hight_task;
     mk_uint32_t _status = mk_enter_critical();
     // 更新延迟队列
     mk_update_delay_list();
@@ -222,66 +282,4 @@ sw_task:
 
 _exit:
     mk_exit_critical(_status);
-}
-
-/**
- * @brief 放回当前任务指针
- * @return mk_task_t*
- */
-mk_task_t* mk_get_current_task(void) {
-    return g_current_task;
-}
-
-/**
- * @brief 获取当前任务优先级
- * @return mk_size_t
- */
-mk_size_t mk_get_current_task_prio(void) {
-    return g_current_task->prio;
-}
-
-/**
- * @brief 获取当前任务名字
- * @return mk_size_t
- */
-char* mk_get_current_task_name(void) {
-    return g_current_task->task_name;
-}
-
-/**
- * @brief 移除任务
- * @param _task
- * @return mk_code_t
- */
-mk_code_t mk_task_delete(mk_task_t* _task) {
-    _task->task_status = MK_TASK_STATUS_COLOSE;
-    mk_delete_node_from_ready_list(_task);
-}
-
-/**
- * @brief 延迟函数
- * @param _systick_times 延迟滴答数
- * @return mk_code_t 系统码
- */
-mk_code_t mk_task_tick_delay(mk_size_t _systick_times) {
-    mk_uint32_t _status = mk_enter_critical();
-
-    g_current_task->delay_systick = _systick_times;
-
-    // 插入休眠队列
-    mk_insert_node_to_delay_list(g_current_task);
-
-    // 从就绪队列移除
-    mk_delete_node_from_ready_list(g_current_task);
-
-    mk_exit_critical(_status);
-
-    // 进行任务调度
-    mk_tack_scheduler();
-
-    return MK_SUCCESS;
-}
-
-void mk_task_delay_ms(mk_size_t _ms) {
-    mk_task_tick_delay(_ms);
 }
