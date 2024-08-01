@@ -34,8 +34,16 @@
 //idle 空闲优先级 
 #define MK_IDLE_TASK_PRIORITY MK_TASK_PRIORITY_NUM - 1
 
-//通讯变量名字长度
-#define MK_COM_NAME_LEN 32
+// 是否使用断言
+#define MK_USE_ASSERT 1
+
+// 是否使用 ipc 通讯
+#define MK_USE_IPC  1
+
+#if MK_USE_IPC 
+
+//ipc变量名字长度
+#define MK_IPC_NAME_LEN 32
 
 //信号量
 #define MK_USE_SEMAPHORE 1
@@ -45,6 +53,8 @@
 
 //事件
 #define MK_USE_EVENT 1
+
+#endif
 
 //软定时器
 #define MK_USE_SOFTTIMER 1

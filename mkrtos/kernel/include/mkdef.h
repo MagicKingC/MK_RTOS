@@ -5,7 +5,7 @@
 
 #define MK_FALSE 0
 #define MK_TRUE 1
-#define MK_NULL (void *)0
+#define MK_NULL (void*)0
 
 /*************************************/
 /**
@@ -54,18 +54,20 @@ enum _MK_CODE_ {
     MK_FAIL = -1,
     MK_SUCCESS = 0,
     MK_BUSY,
+    MK_TIMER_OUT,
     MK_TIMER_ERR,
+    MK_EVENT_CREATE_ERR,
 };
 
 /**
  * @brief 任务状态
  */
 enum _MK_TASK_STATUS_ {
-    MK_TASK_STATUS_CTREATE = 0, // 创建态
-    MK_TASK_STATUS_READY,       // 就绪态
-    MK_TASK_STATUS_SUSPEND,     // 挂起态
-    MK_TASK_STATUS_RUNNING,     // 运行态
-    MK_TASK_STATUS_COLOSE,      // 结束态
+    MK_TASK_STATUS_CTREATE = 0,  // 创建态
+    MK_TASK_STATUS_READY,        // 就绪态
+    MK_TASK_STATUS_SUSPEND,      // 挂起态
+    MK_TASK_STATUS_RUNNING,      // 运行态
+    MK_TASK_STATUS_COLOSE,       // 结束态
 };
 
 typedef struct _mk_task_tcb_ mk_task_t;
@@ -73,8 +75,8 @@ typedef enum _MK_CODE_ mk_code_t;
 typedef enum _MK_TASK_STATUS_ mk_task_status_t;
 
 typedef struct _MK_LIST {
-    mk_task_t *prev;    /*上一个任务*/
-    mk_task_t *next;    /*下一个任务*/
+    mk_task_t* prev;    /*上一个任务*/
+    mk_task_t* next;    /*下一个任务*/
     mk_base_t task_num; /* 任务数 */
 } mk_list_t;
 
@@ -85,7 +87,7 @@ typedef mk_list_t mk_sem_list_t;
 struct _mk_task_tcb_ {
     char task_name[MK_TASK_NAME_LEN]; /* 任务名字 */
 
-    mk_stack_t *task_sp;  /* 任务栈指针*/
+    mk_stack_t* task_sp;  /* 任务栈指针*/
     mk_size_t stack_size; /* 任务栈大小 */
 
     mk_size_t delay_systick; /* 系统滴答 */
@@ -108,23 +110,19 @@ struct _mk_task_tcb_ {
  */
 typedef struct _mk_timer_node_ mk_timer_t;
 typedef struct _mk_timer_list_node_ mk_list_timer_t;
-typedef void (*mk_timer_callback_fun_t)(void *);
+typedef void (*mk_timer_callback_fun_t)(void*);
 
 typedef enum MK_TIMER_FLAGE {
     MK_TIMER_ONCE = 0,
     MK_TIMER_REPEAT,
 } mk_timer_flage_t;
 
-typedef enum MK_TIMER_STATUS {
-    MK_TIMER_INIT = 0,
-    MK_TIMER_RUNNING,
-    MK_TIMER_STOP
-} mk_timer_status_t;
+typedef enum MK_TIMER_STATUS { MK_TIMER_INIT = 0, MK_TIMER_RUNNING, MK_TIMER_STOP } mk_timer_status_t;
 
 struct _mk_timer_node_ {
-    mk_timer_t *prev;
-    mk_timer_t *next;
-    void *para;
+    mk_timer_t* prev;
+    mk_timer_t* next;
+    void* para;
     char name[MK_SOFTTIMER_NAME_LEN];
     mk_size_t base_systick;
     mk_size_t timerout_systick;
@@ -134,8 +132,8 @@ struct _mk_timer_node_ {
 } _MK_ATTRIBUTE(aligned(1));
 
 struct _mk_timer_list_node_ {
-    mk_timer_t *prev;    /* 上一个定时器 */
-    mk_timer_t *next;    /* 下一个定时器 */
+    mk_timer_t* prev;    /* 上一个定时器 */
+    mk_timer_t* next;    /* 下一个定时器 */
     mk_base_t timer_num; /* 当前定时器个数 */
 } _MK_ATTRIBUTE(aligned(1));
 
@@ -147,8 +145,13 @@ struct _mk_timer_list_node_ {
 #define MK_RTOS_EXT
 #endif
 
-MK_RTOS_EXT void __mk_assert_func(const char *, int, const char *, const char *) _MK_ATTRIBUTE(__noreturn__);
-#define MK_ASSERT(_error, _msg) (_error) ? (void *)0 : (__mk_assert_func(__FILE__, __LINE__, __func__, #_msg))
+MK_RTOS_EXT void __mk_assert_func(const char*, int, const char*, const char*) _MK_ATTRIBUTE(__noreturn__);
+
+#if MK_USE_ASSERT
+#define MK_ASSERT(_error, _msg) (_error) ? (void*)0 : (__mk_assert_func(__FILE__, __LINE__, __func__, #_msg))
+#else
+#define MK_ASSERT(_error, _msg)
+#endif
 
 #define mk_weak __attribute__((weak))
 
