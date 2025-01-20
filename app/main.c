@@ -22,7 +22,7 @@ void task1_entry(void* param) {
 void task2_entry(void* param) {
     mkprintk("%s\r\n", __func__);
     for (;;) {
-        mk_sem_get(&sem);
+        mk_sem_task(&sem,100);
         mkprintk("now task name: %s\r\n", mk_get_current_task_name());
     }
 }

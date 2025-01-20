@@ -18,7 +18,7 @@ mk_code_t mk_sem_create(mk_sem_t* _sem, const char* _name, mk_size_t _sem_value)
 
     MK_ASSERT(_sem == MK_NULL, "_sem is null");
 
-    mk_ipc_init(&_sem->obj);
+    mk_ipc_init(&_sem->obj, _name);
 
     _sem->value = _sem_value;
 
