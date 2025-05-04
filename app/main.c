@@ -7,8 +7,8 @@ mk_sem_t sem;
 mk_task_t task1;
 mk_task_t task2;
 
-static mk_stack_t task1_stk[128];
-static mk_stack_t task2_stk[128];
+static mk_stack_t task1_stk[64];
+static mk_stack_t task2_stk[64];
 
 void task1_entry(void* param) {
     mkprintk("%s\r\n", __func__);
@@ -21,10 +21,13 @@ void task1_entry(void* param) {
 
 void task2_entry(void* param) {
     mkprintk("%s\r\n", __func__);
-    for (;;) {
+    for (;;)
+    {
         mk_sem_task(&sem,MK_WAIT_FOREVERY);
         mkprintk("now task name: %s\r\n", mk_get_current_task_name());
+        mk_now_task_delete();
     }
+   
 }
 
 void test_time1(void* param) {

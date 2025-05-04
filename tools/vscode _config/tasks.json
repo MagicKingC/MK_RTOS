@@ -3,6 +3,14 @@
     "tasks": [
         {
             "type": "shell",
+            "label": "build",
+            "command": "rm -rf ${workspaceFolder}/build/; mkdir ${workspaceFolder}/build/; cd ${workspaceFolder}/build/; cmake .. ; make;",
+            "args": [
+
+            ]
+        },
+        {
+            "type": "shell",
             "label": "build and debug run",
             "command": "rm -rf ${workspaceFolder}/build/; mkdir ${workspaceFolder}/build/; cd ${workspaceFolder}/build/; cmake .. ; make; make debug",
             "args": [

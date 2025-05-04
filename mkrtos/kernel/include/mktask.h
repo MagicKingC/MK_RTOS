@@ -28,6 +28,8 @@ MK_RTOS_EXT mk_code_t mk_task_init(const char* _task_name,
 MK_RTOS_EXT mk_code_t mk_task_start(mk_task_t* _task);
 MK_RTOS_EXT mk_code_t mk_task_resume(mk_task_t* _task);
 MK_RTOS_EXT mk_code_t mk_task_suspend(mk_task_t* _task);
+MK_RTOS_EXT void mk_task_delete(mk_task_t* _task);
+MK_RTOS_EXT void mk_now_task_delete();
 
 MK_RTOS_EXT void mk_tack_scheduler(void);
 MK_RTOS_EXT void mk_init_idle_task(void);

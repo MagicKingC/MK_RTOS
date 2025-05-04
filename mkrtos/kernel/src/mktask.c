@@ -199,12 +199,22 @@ char *mk_get_current_task_name(void) {
 
 /**
  * @brief 移除任务
- * @param _task
- * @return mk_code_t
+ * @param _task 任务指针
  */
-mk_code_t mk_task_delete(mk_task_t *_task) {
+void mk_task_delete(mk_task_t *_task) {
+    mk_code_t _status;
     _task->task_status = MK_TASK_STATUS_COLOSE;
-    return mk_delete_node_from_ready_list(_task);
+    mk_delete_node_from_ready_list(_task);
+    mk_tack_scheduler();
+}
+
+/**
+ * @brief 删除当前任务
+ */
+void mk_now_task_delete(void){
+    g_current_task->task_status = MK_TASK_STATUS_COLOSE;
+    mk_delete_node_from_ready_list(g_current_task);
+    mk_tack_scheduler();
 }
 
 /**

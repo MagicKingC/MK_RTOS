@@ -16,13 +16,21 @@
             "stopAtEntry":true
         },
         {
-            "name": "MK_RTOS Build And Debug Run",
+            "name": "MK_RTOS Build",
             "type": "cppdbg",
             "request": "launch",
             "program": "echo",
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "build and debug run"
+            "preLaunchTask": "build"
         },
+        // {
+        //     "name": "MK_RTOS Build And Debug Run",
+        //     "type": "cppdbg",
+        //     "request": "launch",
+        //     "program": "echo",
+        //     "cwd": "${workspaceFolder}",
+        //     "preLaunchTask": "build and debug run"
+        // },
         {
             "name": "MK_RTOS Build And Run",
             "type": "cppdbg",
