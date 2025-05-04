@@ -16,9 +16,9 @@
 mk_code_t mk_sem_create(mk_sem_t* _sem, const char* _name, mk_size_t _sem_value) {
     _sem->is_use = MK_FALSE;
 
-    MK_ASSERT(_sem == MK_NULL, "_sem is null");
+    MK_ASSERT(_sem == MK_NULL, "_sem(mk_sem_create) is null");
 
-    mk_ipc_init(&_sem->obj);
+    mk_ipc_init(&_sem->obj,"ipc_sem");
 
     _sem->value = _sem_value;
 
@@ -34,7 +34,7 @@ mk_code_t mk_sem_release(mk_sem_t* _sem) {
     mk_task_t* _tmp_task = MK_NULL;
     mk_uint32_t _status;
 
-    MK_ASSERT(_sem == MK_NULL, "_sem is null");
+    MK_ASSERT(_sem == MK_NULL, "_sem(mk_sem_release) is null");
 
     _status = mk_enter_critical();
     _sem->is_use = MK_TRUE;
@@ -44,6 +44,7 @@ mk_code_t mk_sem_release(mk_sem_t* _sem) {
         if (_tmp_task != MK_NULL) {
             // 将任务从信号量列表移除
             mk_delete_node_from_list(&_sem->obj.list, _tmp_task, GET_STR_DATA_ADDR_OFFSET(mk_task_t, sem_list));
+            // 判断是否在延迟队列
             // 插入就绪队列 立马执行所以无需增加一个信号量
             mk_insert_node_to_ready_list(_tmp_task);
         }
@@ -61,10 +62,11 @@ mk_code_t mk_sem_release(mk_sem_t* _sem) {
  * @param _sem
  * @return mk_code_t
  */
-mk_code_t mk_sem_task(mk_sem_t* _sem, mk_size_t _tick_time) {
+mk_code_t mk_sem_task(mk_sem_t* _sem, mk_ticks_t _tick_time) {
     mk_uint32_t _status;
 
-    MK_ASSERT(_sem == MK_NULL, "_sem is null");
+    MK_ASSERT(_sem == MK_NULL, "_sem(mk_sem_task) is null");
+
 
     _status = mk_enter_critical();
     if (_sem->value > 0) {
@@ -72,17 +74,25 @@ mk_code_t mk_sem_task(mk_sem_t* _sem, mk_size_t _tick_time) {
         mk_exit_critical(_status);
         goto exit;
     }
-    if (_tick_time < 0) {
+
+    if (_tick_time == 0) {
         mk_exit_critical(_status);
         goto exit_time;
     } else {
-        g_current_task->task_status = MK_TASK_STATUS_SUSPEND;
-
-        // 插入信号量队列
-        mk_insert_node_to_list_tail(&_sem->obj.list, g_current_task, GET_STR_DATA_ADDR_OFFSET(mk_task_t, sem_list));
-
+        // 判断是否为永久阻塞
+        if (_tick_time != MK_WAIT_FOREVERY) {
+            // 插入延迟队列
+            g_current_task->delay_systick = _tick_time;
+            mk_insert_node_to_delay_list(g_current_task);
+        } else {
+            // 插入信号量列表
+            mk_insert_node_to_list_tail(&_sem->obj.list, g_current_task, GET_STR_DATA_ADDR_OFFSET(mk_task_t, sem_list));
+        }
         // 从就绪队列移除
         mk_delete_node_from_ready_list(g_current_task);
+
+        // 设置任务状态为挂起 
+        g_current_task->task_status = MK_TASK_STATUS_SUSPEND;
 
         mk_exit_critical(_status);
 

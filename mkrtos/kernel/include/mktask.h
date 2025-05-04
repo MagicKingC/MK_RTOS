@@ -30,7 +30,6 @@ MK_RTOS_EXT mk_code_t mk_task_resume(mk_task_t* _task);
 MK_RTOS_EXT mk_code_t mk_task_suspend(mk_task_t* _task);
 
 MK_RTOS_EXT void mk_tack_scheduler(void);
-
 MK_RTOS_EXT void mk_init_idle_task(void);
 
 MK_RTOS_EXT mk_task_t* mk_get_current_task(void);

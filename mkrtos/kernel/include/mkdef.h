@@ -21,9 +21,11 @@ typedef unsigned int mk_uint32_t;
 
 typedef mk_uint8_t mk_bool_t;
 
+
 typedef long mk_base_t;
 typedef unsigned long mk_ubase_t;
 typedef mk_base_t mk_size_t;
+typedef mk_ubase_t mk_ticks_t;
 
 #define __mk_weak __attributes__((weak))
 #define __MK_IO volatile mk_base_t
@@ -59,6 +61,10 @@ enum _MK_CODE_ {
     MK_EVENT_CREATE_ERR,
 };
 
+enum _MK_TASK_SYSTICK_ {
+    MK_WAIT_FOREVERY = 0xFFFFFFFF,
+};
+
 /**
  * @brief 任务状态
  */
@@ -84,6 +90,9 @@ typedef mk_list_t mk_ready_list_t;
 typedef mk_list_t mk_delay_list_t;
 typedef mk_list_t mk_sem_list_t;
 
+/**
+ * @brief 任务控制块
+ */
 struct _mk_task_tcb_ {
     char task_name[MK_TASK_NAME_LEN]; /* 任务名字 */
 
@@ -148,7 +157,7 @@ struct _mk_timer_list_node_ {
 MK_RTOS_EXT void __mk_assert_func(const char*, int, const char*, const char*) _MK_ATTRIBUTE(__noreturn__);
 
 #if MK_USE_ASSERT
-#define MK_ASSERT(_error, _msg) (_error) ? (void*)0 : (__mk_assert_func(__FILE__, __LINE__, __func__, #_msg))
+#define MK_ASSERT(_error, _msg) (_error) ? (__mk_assert_func(__FILE__, __LINE__, __func__, #_msg)) : (void*)0
 #else
 #define MK_ASSERT(_error, _msg)
 #endif

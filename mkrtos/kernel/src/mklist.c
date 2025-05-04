@@ -53,7 +53,7 @@ void mk_init_task_bit_map(void) {
     mkprintk("entry %s\r\n", __func__);
     mkprintk("MK_PRIORITY_INDEX_BUFF_SIZE %ld\r\n", MK_PRIORITY_INDEX_BUFF_SIZE);
 #endif
-    MK_ASSERT((MK_TASK_PRIORITY_NUM >= 32), "task priority num must bigger 32");
+    MK_ASSERT((MK_TASK_PRIORITY_NUM < 32), "task priority num must bigger 32");
     for (mk_base_t i = 0; i < MK_PRIORITY_INDEX_BUFF_SIZE; i++) {
         _mk_priority_index_buff[i] = 0;
     }
@@ -281,6 +281,7 @@ mk_code_t mk_move_node_to_ready_list_tail(mk_task_t *_task) {
  */
 mk_code_t mk_delete_node_from_ready_list(mk_task_t *_task) {
     if (_task->prio > MK_TASK_PRIORITY_NUM) {
+        mkprintk("\r\nerr: task pro:%d\r\n", _task->prio);
         return MK_FAIL;
     }
     return mk_delete_node_from_list(&_mk_task_ready_list[_task->prio], _task,

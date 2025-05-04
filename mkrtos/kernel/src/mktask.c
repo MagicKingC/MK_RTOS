@@ -130,6 +130,7 @@ mk_code_t mk_task_init(const char *_task_name, mk_task_t *_task, void (*_func_en
 mk_code_t mk_task_start(mk_task_t *_task) {
     mk_code_t res = MK_FAIL;
     mk_uint32_t _status = mk_enter_critical();
+     
     if (_task->task_status == MK_TASK_STATUS_CTREATE) {
         res = mk_insert_node_to_ready_list(_task);
     }
@@ -203,7 +204,7 @@ char *mk_get_current_task_name(void) {
  */
 mk_code_t mk_task_delete(mk_task_t *_task) {
     _task->task_status = MK_TASK_STATUS_COLOSE;
-    mk_delete_node_from_ready_list(_task);
+    return mk_delete_node_from_ready_list(_task);
 }
 
 /**
@@ -244,6 +245,7 @@ void mk_task_delay_ms(mk_size_t _ms) {
 void mk_tack_scheduler() {
     mk_size_t priority_num;
     mk_task_t *hight_task;
+
     mk_uint32_t _status = mk_enter_critical();
     // 更新延迟队列
     mk_update_delay_list();
