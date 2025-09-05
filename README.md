@@ -51,6 +51,11 @@ mkdir .vscode
 make debug 
 # 点击vscode 左边调试按键
 # 然后点击上面绿色小按钮，选择 MK_RTOS Debug （千万不要选错）
+
+# 使用vscode 调试插件
+1、点击vscode 左边调试按键
+2、选择 MK_RTOS Build And Debug Run，点击左边绿色小按钮
+3、选择 MK_RTOS Debug，点击左边绿色小按钮
 ```
 
 
