@@ -139,15 +139,16 @@ mk_code_t mk_task_start(mk_task_t *_task) {
 }
 
 /**
- * @brief 任务挂起
+ * @brief 任务状态转换
  * @param _task
+ * @param _status
  * @return mk_code_t
  */
-mk_code_t mk_task_suspend(mk_task_t *_task) {
+mk_code_t mk_task_change_status(mk_task_t *_task,mk_task_status_t _task_status) {
     mk_code_t res = MK_FAIL;
     mk_uint32_t _status = mk_enter_critical();
     if (_task->task_status == MK_TASK_STATUS_RUNNING || _task->task_status == MK_TASK_STATUS_READY) {
-        _task->task_status = MK_TASK_STATUS_SUSPEND;
+        _task->task_status = _task_status;
         res = mk_delete_node_from_ready_list(_task);
     }
     mk_exit_critical(_status);
@@ -158,6 +159,24 @@ mk_code_t mk_task_suspend(mk_task_t *_task) {
 }
 
 /**
+ * @brief 任务挂起
+ * @param _task
+ * @return mk_code_t
+ */
+mk_code_t mk_task_suspend(mk_task_t *_task) {
+    return mk_task_change_status(_task,MK_TASK_STATUS_SUSPEND);
+}
+
+/**
+ * @brief 任务阻塞
+ * @param _task
+ * @return mk_code_t
+ */
+mk_code_t mk_task_block(mk_task_t *_task) {
+    return mk_task_change_status(_task,MK_TASK_STATUS_BLOCK);
+}
+
+/**
  * @brief 任务唤醒
  * @param _task
  * @return mk_code_t
@@ -165,7 +184,7 @@ mk_code_t mk_task_suspend(mk_task_t *_task) {
 mk_code_t mk_task_resume(mk_task_t *_task) {
     mk_code_t res = MK_FAIL;
     mk_uint32_t _status = mk_enter_critical();
-    if (_task->task_status == MK_TASK_STATUS_SUSPEND) {
+    if (_task->task_status == MK_TASK_STATUS_SUSPEND || _task->task_status == MK_TASK_STATUS_BLOCK) {
         _task->task_status = MK_TASK_STATUS_READY;
         res = mk_insert_node_to_ready_list(_task);
     }

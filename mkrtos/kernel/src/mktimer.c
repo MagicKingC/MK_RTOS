@@ -79,7 +79,7 @@ void timer_entry(void *param) {
         mk_updte_timer_list();
         // 判断列表是否存在定时器，如果没有则挂起任务
         if (soft_timer_list.timer_num == 0) {
-            mk_task_suspend(g_current_task);
+            mk_task_block(g_current_task);
         } else {
             mk_task_tick_delay(1);
         }
@@ -134,7 +134,7 @@ mk_code_t mk_start_timer(mk_timer_t *_timer) {
     if (_timer->status != MK_TIMER_RUNNING) {
         mk_insert_node_to_soft_timer_list(_timer);
         // 同时唤醒定时器守护任务
-        if (timer_task.task_status == MK_TASK_STATUS_SUSPEND) {
+        if (timer_task.task_status == MK_TASK_STATUS_BLOCK) {
             mk_task_resume(&timer_task);
         }
         return MK_SUCCESS;

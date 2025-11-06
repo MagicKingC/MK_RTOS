@@ -29,7 +29,7 @@
 #define MK_TASK_NAME_LEN 16
 
 //idle 空闲任务栈大小
-#define MK_IDLE_STACK_SIZE 512
+#define MK_IDLE_STACK_SIZE 128
 
 //idle 空闲优先级 
 #define MK_IDLE_TASK_PRIORITY MK_TASK_PRIORITY_NUM - 1
@@ -47,6 +47,9 @@
 
 //信号量
 #define MK_USE_SEMAPHORE 1
+
+//互斥锁
+#define MK_USE_MUTEX 1
 
 //通讯变量名字长度
 #define MK_EVENT_NAME_LEN 32

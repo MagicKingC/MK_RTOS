@@ -1,14 +1,22 @@
 #include <mkrtos.h>
 #include <mksemaphore.h>
+#include <mkmutex.h>
 #include <mktimer.h>
 
 mk_sem_t sem;
+mk_mutex_t mutex;
 
 mk_task_t task1;
 mk_task_t task2;
+mk_task_t task3;
+mk_task_t task4;
 
 static mk_stack_t task1_stk[64];
 static mk_stack_t task2_stk[64];
+static mk_stack_t task3_stk[64];
+static mk_stack_t task4_stk[64];
+
+int tmp_value = 0;
 
 void task1_entry(void* param) {
     mkprintk("%s\r\n", __func__);
@@ -26,6 +34,34 @@ void task2_entry(void* param) {
         mk_sem_task(&sem,MK_WAIT_FOREVERY);
         mkprintk("now task name: %s\r\n", mk_get_current_task_name());
         mk_now_task_delete();
+    }
+   
+}
+
+void task3_entry(void* param) {
+    mkprintk("%s\r\n", __func__);
+    for (;;)
+    {
+        mkprintk("now task name: %s\r\n", mk_get_current_task_name());
+        mkprintk("tmp_value: %d\r\n", tmp_value);
+        mk_mutex_lock(&mutex,MK_WAIT_FOREVERY);
+        tmp_value++;
+        mk_mutex_unlock(&mutex);
+        mk_task_delay_ms(300);
+    }
+   
+}
+
+void task4_entry(void* param) {
+    mkprintk("%s\r\n", __func__);
+    for (;;)
+    {
+        mkprintk("now task name: %s\r\n", mk_get_current_task_name());
+        mkprintk("tmp_value: %d\r\n", tmp_value);
+        mk_mutex_lock(&mutex,MK_WAIT_FOREVERY);
+        tmp_value++;
+        mk_mutex_unlock(&mutex);
+        mk_task_delay_ms(300);
     }
    
 }
@@ -48,6 +84,7 @@ int main(void) {
     mkprintk("now task name: %s\r\n", mk_get_current_task_name());
 
     mk_sem_create(&sem, "test_sem", 0);
+    mk_mutex_create(&mutex, "test_mutex");
 
     mk_timer_t tmp_timer1 = mk_timer_create("test_timer1", test_time1, (void *) 4, 100, MK_TIMER_REPEAT);
     mk_timer_t tmp_timer2 = mk_timer_create("test_timer2", test_time2, MK_NULL, 100, MK_TIMER_ONCE);
@@ -57,9 +94,13 @@ int main(void) {
 
     mk_task_init("test1", &task1, task1_entry, (void*)test, task1_stk, 1024, 2, 10);
     mk_task_init("test2", &task2, task2_entry, (void*)0x0, task2_stk, 1024, 2, 10);
+    mk_task_init("test3", &task3, task3_entry, (void*)0x0, task3_stk, 1024, 4, 10);
+    mk_task_init("test4", &task4, task4_entry, (void*)0x0, task4_stk, 1024, 3, 10);
 
     mk_task_start(&task1);
     mk_task_start(&task2);
+    mk_task_start(&task3);
+    mk_task_start(&task4);
 
     while (1) {
         mkprintk("run main\r\n");

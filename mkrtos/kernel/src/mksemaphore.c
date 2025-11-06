@@ -44,8 +44,6 @@ mk_code_t mk_sem_release(mk_sem_t* _sem) {
         if (_tmp_task != MK_NULL) {
             // 将任务从信号量列表移除
             mk_delete_node_from_list(&_sem->obj.list, _tmp_task, GET_STR_DATA_ADDR_OFFSET(mk_task_t, sem_list));
-            // 判断是否在延迟队列
-            // 插入就绪队列 立马执行所以无需增加一个信号量
             mk_insert_node_to_ready_list(_tmp_task);
         }
     } else {
@@ -91,8 +89,8 @@ mk_code_t mk_sem_task(mk_sem_t* _sem, mk_ticks_t _tick_time) {
         // 从就绪队列移除
         mk_delete_node_from_ready_list(g_current_task);
 
-        // 设置任务状态为挂起 
-        g_current_task->task_status = MK_TASK_STATUS_SUSPEND;
+        // 设置任务状态为阻塞
+        g_current_task->task_status = MK_TASK_STATUS_BLOCK;
 
         mk_exit_critical(_status);
 

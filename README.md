@@ -24,6 +24,13 @@ mk_startup_kernel : 表示系统入口
 # 安装工具
 sudo apt-get install  cmake
 sudo dpkg -i tools/gdb-arm-none-eabi_7.10-1ubuntu3+9_amd64.deb
+
+# Ubuntu 22.04（可以使用一下命令进行安装）
+sudo apt update
+sudo apt install gcc-arm-none-eabi gdb-multiarch -y
+
+# 注意：如果使用gdb-multiarch 那么需要再 launch.json 中将 arm-none-eabi-gdb 改为 gdb-multiarch
+
 ```
 
 #### 编译说明
@@ -47,11 +54,13 @@ make
 # 创建.vscode文件夹
 mkdir .vscode
 # 将 tools/vscode_config 里面的文件拷贝到 .vscode
+# 方式1
 # 开启debug调试
 make debug 
 # 点击vscode 左边调试按键
 # 然后点击上面绿色小按钮，选择 MK_RTOS Debug （千万不要选错）
 
+# 方式2 （无效）
 # 使用vscode 调试插件
 1、点击vscode 左边调试按键
 2、选择 MK_RTOS Build And Debug Run，点击左边绿色小按钮
@@ -66,13 +75,11 @@ make debug
 
 3、基于时间片的任务切换（已完成）
 
-4、计数信号量（已完成）
+4、信号量（已完成）
 
-5、任务信号量
+5、互斥量
 
 6、队列
-
-7、互斥量
 
 #### 额外说明
 目前还在研发中，有兴趣的小伙伴可以一起研发，共同开发属于自己的rtos

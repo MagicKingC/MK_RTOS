@@ -72,6 +72,7 @@ enum _MK_TASK_STATUS_ {
     MK_TASK_STATUS_CTREATE = 0,  // 创建态
     MK_TASK_STATUS_READY,        // 就绪态
     MK_TASK_STATUS_SUSPEND,      // 挂起态
+    MK_TASK_STATUS_BLOCK,        // 阻塞态
     MK_TASK_STATUS_RUNNING,      // 运行态
     MK_TASK_STATUS_COLOSE,       // 结束态
 };
@@ -89,6 +90,7 @@ typedef struct _MK_LIST {
 typedef mk_list_t mk_ready_list_t;
 typedef mk_list_t mk_delay_list_t;
 typedef mk_list_t mk_sem_list_t;
+typedef mk_list_t mk_mutex_list_t;
 
 /**
  * @brief 任务控制块
@@ -101,6 +103,7 @@ struct _mk_task_tcb_ {
 
     mk_size_t delay_systick; /* 系统滴答 */
     mk_size_t prio;          /* 优先级 */
+    mk_size_t mutex_prio;    /* 互斥锁优先级 */
 
     mk_size_t timer_tick;      /* 剩余的时间片 */
     mk_size_t base_timer_tick; /* 时间片 */
@@ -110,6 +113,7 @@ struct _mk_task_tcb_ {
     mk_ready_list_t ready_list; /* 就绪队列 */
     mk_delay_list_t delay_list; /* 延时队列 */
     mk_sem_list_t sem_list;     /* 信号量队列 */
+    mk_mutex_list_t mutex_list;   /* 互斥锁队列 */
 
 } _MK_ATTRIBUTE(aligned(1));
 

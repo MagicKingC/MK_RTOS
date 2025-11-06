@@ -9,6 +9,8 @@
 void _MK_ATTRIBUTE(__noreturn__)
     __mk_assert_func(const char *_file, int _line, const char *_func_name, const char *_error) {
     mkprintk("file:%s,line:%d,fun:%s,err:%s\r\n", _file, _line, _func_name, _error);
+    mk_enter_critical();
+    while (1);
 }
 
 #if MK_USE_QMENU_DEBUG
