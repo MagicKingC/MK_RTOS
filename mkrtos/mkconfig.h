@@ -23,7 +23,7 @@
 #define MK_MAIN_STACK_SIZE 512
 
 //main 任务优先级 
-#define MK_MAIN_TASK_PRIORITY 5
+#define MK_MAIN_TASK_PRIORITY MK_TASK_PRIORITY_NUM - 2
 
 //任务名字长度
 #define MK_TASK_NAME_LEN 16

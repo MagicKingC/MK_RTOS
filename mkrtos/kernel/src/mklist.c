@@ -338,7 +338,7 @@ mk_size_t mk_find_hight_priority_from_list(mk_list_t *_list)
         _prio = tmp->prio;
         while (tmp != MK_NULL)
         {
-            if (tmp->prio >_prio)
+            if (tmp->prio < _prio)
             {
                 _prio = tmp->prio;
             }
@@ -407,7 +407,7 @@ void mk_update_delay_list(void)
 }
 
 /**
- * @brief 取出优先级最高的任务,同时将队列移动到队尾
+ * @brief 取出优先级最高的任务,同时将任务移动到队尾
  * @param _highest_prio_index
  * @return mk_task_t*
  */

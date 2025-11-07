@@ -27,6 +27,7 @@ MK_RTOS_EXT void mk_printf_delay_list(void);
 MK_RTOS_EXT void mk_init_list(mk_list_t* _list);
 MK_RTOS_EXT mk_code_t mk_insert_node_to_list_tail(mk_list_t* _list, mk_task_t* _task, mk_size_t _offset);
 MK_RTOS_EXT mk_code_t mk_delete_node_from_list(mk_list_t* _list, mk_task_t* _task, mk_size_t _offset);
+MK_RTOS_EXT mk_size_t mk_find_hight_priority_from_list(mk_list_t *_list);
 MK_RTOS_EXT mk_task_t* mk_get_node_from_list(mk_list_t* _list);
 
 

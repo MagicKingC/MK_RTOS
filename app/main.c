@@ -10,11 +10,13 @@ mk_task_t task1;
 mk_task_t task2;
 mk_task_t task3;
 mk_task_t task4;
+mk_task_t task5;
 
 static mk_stack_t task1_stk[64];
 static mk_stack_t task2_stk[64];
 static mk_stack_t task3_stk[64];
 static mk_stack_t task4_stk[64];
+static mk_stack_t task5_stk[64];
 
 int tmp_value = 0;
 
@@ -43,10 +45,13 @@ void task3_entry(void* param) {
     for (;;)
     {
         mkprintk("now task name: %s\r\n", mk_get_current_task_name());
-        mkprintk("tmp_value: %d\r\n", tmp_value);
+        mkprintk("priority: %d\r\n",mk_get_current_task_prio());
+        mkprintk("task3 beginning\r\n");
         mk_mutex_lock(&mutex,MK_WAIT_FOREVERY);
         tmp_value++;
         mk_mutex_unlock(&mutex);
+        mkprintk("priority: %d\r\n",mk_get_current_task_prio());
+        mkprintk("task3 end\r\n");
         mk_task_delay_ms(300);
     }
    
@@ -57,10 +62,32 @@ void task4_entry(void* param) {
     for (;;)
     {
         mkprintk("now task name: %s\r\n", mk_get_current_task_name());
-        mkprintk("tmp_value: %d\r\n", tmp_value);
+        mkprintk("priority: %d\r\n",mk_get_current_task_prio());
+        mkprintk("task4 beginning\r\n");
         mk_mutex_lock(&mutex,MK_WAIT_FOREVERY);
         tmp_value++;
         mk_mutex_unlock(&mutex);
+        mkprintk("priority: %d\r\n",mk_get_current_task_prio());
+        mkprintk("task4 end\r\n");
+        mk_task_delay_ms(300);
+    }
+   
+}
+
+void task5_entry(void* param) {
+    mkprintk("%s\r\n", __func__);
+    for (;;)
+    {
+        mkprintk("now task name: %s\r\n", mk_get_current_task_name());
+        mkprintk("priority: %d\r\n",mk_get_current_task_prio());
+        mkprintk("task5 beginning\r\n");
+        mk_mutex_lock(&mutex,MK_WAIT_FOREVERY);
+        mkprintk("task5 mutex\r\n");
+        mk_task_delay_ms(1000);
+        tmp_value++;
+        mk_mutex_unlock(&mutex);
+        mkprintk("priority: %d\r\n",mk_get_current_task_prio());
+        mkprintk("task5 end\r\n");
         mk_task_delay_ms(300);
     }
    
@@ -94,16 +121,20 @@ int main(void) {
 
     mk_task_init("test1", &task1, task1_entry, (void*)test, task1_stk, 1024, 2, 10);
     mk_task_init("test2", &task2, task2_entry, (void*)0x0, task2_stk, 1024, 2, 10);
-    mk_task_init("test3", &task3, task3_entry, (void*)0x0, task3_stk, 1024, 4, 10);
-    mk_task_init("test4", &task4, task4_entry, (void*)0x0, task4_stk, 1024, 3, 10);
+    mk_task_init("test3", &task3, task3_entry, (void*)0x0, task3_stk, 1024, 3, 10);
+    mk_task_init("test4", &task4, task4_entry, (void*)0x0, task4_stk, 1024, 4, 10);
+    mk_task_init("test5", &task5, task5_entry, (void*)0x0, task5_stk, 1024, 5, 10);
 
     mk_task_start(&task1);
     mk_task_start(&task2);
     mk_task_start(&task3);
     mk_task_start(&task4);
+    mk_task_start(&task5);
 
     while (1) {
-        mkprintk("run main\r\n");
+        // mkprintk("run main\r\n");
+        mkprintk("now task name: %s\r\n", mk_get_current_task_name());
+        mkprintk("priority: %d\r\n",mk_get_current_task_prio());
         mk_task_delay_ms(100);
     }
 }

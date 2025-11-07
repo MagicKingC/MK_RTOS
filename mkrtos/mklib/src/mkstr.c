@@ -48,3 +48,22 @@ void mk_memcpy(void *_dst,void * _src,mk_size_t _size){
         ((char *)_dst)[--_size] = _src;
     }
 }
+
+/**
+ * @brief 字符串比较
+ * @param _str1 
+ * @param _str2 
+ * @return mk_int32_t 
+ */
+mk_int32_t mk_strcmp(const char *_dst,const char *_src){
+    while (*_dst != '\0' && *_src != '\0')
+    {
+        if (*_dst != *_src)
+        {
+            return 1;
+        }
+        _dst++;
+        _src++;
+    }
+    return 0;
+}   

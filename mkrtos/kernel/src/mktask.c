@@ -103,6 +103,7 @@ mk_code_t mk_task_init(const char *_task_name, mk_task_t *_task, void (*_func_en
     _task->task_sp = _mk_init_stack(_func_entry, _param, _stack, _stack_size);
 
     _task->prio = _task_pro;
+    _task->mutex_prio = _task_pro;
     _task->delay_systick = 0;
 
     _task->timer_tick = _timer_tick;
@@ -221,7 +222,6 @@ char *mk_get_current_task_name(void) {
  * @param _task 任务指针
  */
 void mk_task_delete(mk_task_t *_task) {
-    mk_code_t _status;
     _task->task_status = MK_TASK_STATUS_COLOSE;
     mk_delete_node_from_ready_list(_task);
     mk_tack_scheduler();
@@ -279,9 +279,9 @@ void mk_tack_scheduler() {
     // 更新延迟队列
     mk_update_delay_list();
 
-    // 查找最高优先级任务
+    // 查找最高优先级任务 prio越小，优先级越高
     priority_num = mk_find_hight_priority();
-    if (priority_num > g_current_task->prio) {
+    if (priority_num < g_current_task->prio) {
         goto sw_task;
     }
 
