@@ -27,7 +27,8 @@ project(mkrtos)
 set(root_dir ${CMAKE_SOURCE_DIR})
 
 # 编译参数
-set(COM_FLAGS "${MCPU_FLAGS} ${VFP_FLAGS} -Wall -g -fno-builtin -gdwarf-2 -gstrict-dwarf -mcpu=cortex-m3 -mthumb -nostartfiles  --specs=nosys.specs -std=c11")
+# set(COM_FLAGS "${MCPU_FLAGS} ${VFP_FLAGS} -Wall -g -fno-builtin -gdwarf-2 -gstrict-dwarf -mcpu=cortex-m3 -mthumb -nostartfiles  --specs=nosys.specs -std=c11")
+set(COM_FLAGS "${MCPU_FLAGS} ${VFP_FLAGS} -Wall -g -fno-builtin -gdwarf-2 -gstrict-dwarf -mcpu=cortex-m4 -mthumb -nostartfiles  --specs=nosys.specs -std=c11")
 
 #设置编译参数
 set(CMAKE_C_FLAGS ${COM_FLAGS})
@@ -41,7 +42,8 @@ enable_language(ASM)
 set(CMAKE_ASM_FLAGS ${COM_FLAGS})
 
 #源文件
-include(${CMAKE_SOURCE_DIR}/cmake/include.cmake)
+# include(${CMAKE_SOURCE_DIR}/cmake/include_qemu.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/include_m4.cmake)
 include_directories(${C_INCLUDES})
 
 #编译后输出文件路径
@@ -49,7 +51,8 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/output/bin)
 
 message("=================工程编译=================")
 #生成运行程序
-add_executable(${PROJECT_NAME}.elf ${mcu_asm} ${kernel_code} ${main_src} ${mkrtos_libcpu_qemu})
+# add_executable(${PROJECT_NAME}.elf ${mcu_asm} ${kernel_code} ${main_src} ${mkrtos_libcpu_qemu})
+add_executable(${PROJECT_NAME}.elf ${mcu_asm} ${kernel_code} ${main_src} ${mkrtos_libcpu_m4})
 
 # 生成bin和hex
 add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
